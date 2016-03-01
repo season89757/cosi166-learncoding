@@ -8,4 +8,10 @@ class ImdbController < ApplicationController
   def register
   end
 
+  def result
+  end
+
+  def detail
+  end
+
 end
