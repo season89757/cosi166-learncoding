@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require_relative "../goodapi"
+require_relative "../public/goodapi"
+
+User.delete_all
+Book.delete_all
 
 User.create(username: "liuchao", display_name: "Chao Liu", password: "1", email: "lc89757@brandeis.edu")
 User.create(username: "hanzhenyu", display_name: "Zhenyu Han", password: "1", email: "hanzhenyu@brandeis.edu")

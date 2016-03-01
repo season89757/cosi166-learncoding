@@ -1,8 +1,8 @@
-<h1 align=center>IMDB for Computer Science Books</h1>
+<h1 id='title1'>IMDB for Computer Science Books</h1>
 
-<div style="margin-left:auto;margin-right:2px;width:80px;">
-  <%= link_to "Login", imdb_login_path %><br>
-  <%= link_to "register", imdb_register_path %><br>
+<div id='bar'>
+  <%= link_to "Login", imdb_login_path %>
+  <%= link_to "register", imdb_register_path %>
 </div>
 
 <div align=center>
@@ -11,7 +11,7 @@
 
 <table width=100% height=100%><tr><td><center>
   <span>
-    <input type="Textbox" name="mid" style="height:50px;width:400px;text-align:center;"/>
+    <input type="Textbox" name="mid" id='search'/>
   </span>
   <button type="submit" style="height:50px; width:80px; margin-left:5px">Search</button>
 </center></td></tr></table>

@@ -1,3 +1,22 @@
 // Place all the styles related to the imdb controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#title1 {
+  background: #9c9;
+  text-align: center;
+  font: small-caps 40px/40px "Times New Roman", serif;
+}
+
+#bar {
+  margin-left:auto;
+  font: small-caps 20px/20px "Times New Roman", serif;
+  margin-right:2px;
+  width:80px;
+}
+
+#search {
+  height:50px;
+  width:400px;
+  text-align:left;
+}
