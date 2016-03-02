@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'search_box/search_results'
+
   resources :books
   resources :users
   root 'imdb#index'
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   get 'imdb/register'
 
   get 'imdb/result'
+
+  get 'search_box/search_results'
 
   get 'imdb/detail'
 

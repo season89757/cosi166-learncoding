@@ -12,8 +12,10 @@
 </div>
 
 <div align=center>
-  <span>
-    <input type="Textbox" name="mid" id='search'/>
-  </span>
-  <button type="submit" style="height:50px; width:80px; margin-left:5px">Search</button>
+<%= form_tag("search_box/search_results", method: "get", id:'search') do %>
+  <%= text_field_tag(:terms) %>
+  <%= submit_tag("Search") %>
+<% end %>
 </div>
+
+
