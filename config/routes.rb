@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
+  get 'admin/index'
+
+  get 'imdb/welcome'
+
   resources :books
   resources :users
+  
   root 'imdb#index'
 
   get 'imdb/login'
+
+  get 'users/new'
+
+  get 'imdb/index'
 
   get 'imdb/register'
 
