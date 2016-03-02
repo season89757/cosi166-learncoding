@@ -9,7 +9,9 @@ class ImdbController < ApplicationController
   end
 
   def result
-    @description='this is the description of the book'
+    @book_name = 'Java 7 Programming'
+    @book_rating = 4.5
+    @book_description='this is the description of the book'
   end
 
   def detail
