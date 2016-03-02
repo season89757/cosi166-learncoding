@@ -9,6 +9,7 @@ class ImdbController < ApplicationController
   end
 
   def result
+    @book_image="java.jpg"
   end
 
   def detail
