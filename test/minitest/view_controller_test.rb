@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './imdb_controller'
+require_relative '../../app/controller/imdb_controller'
 #since I am responsible for the UI design, and our web page has not connected to the database that store the
 #book information, this code is only for testing whether the controller has grab the example data correctly or not.
 
