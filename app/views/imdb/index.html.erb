@@ -1,17 +1,20 @@
-<h1 id='title1'>IMDB for Computer Science Books</h1>
+<h1 id='title1'>IMDB for Computer Science Books!!!</h1>
 
 <div id='bar'>
-  <%= link_to "Login", imdb_login_path %>
-  <%= link_to "register", users_new_path %>
+
+  <%= link_to "Login", imdb_login_path %><br>
+  <%= link_to "Register", imdb_register_path %><br>
+  <%= link_to "Result", imdb_result_path %><br>
+  <%= link_to "Detail", imdb_detail_path %><br>
 </div>
 
 <div align=center>
   <%= image_tag("homepage.png", :size =>"480x194") %><br>
 </div>
 
-<table width=100% height=100%><tr><td><center>
-  <span>
-    <input type="Textbox" name="mid" id='search'/>
-  </span>
-  <button type="submit" style="height:50px; width:80px; margin-left:5px">Search</button>
-</center></td></tr></table>
+<div align=center>
+<%= form_tag("search_box/search_results", method: "get", id:'search') do %>
+  <%= text_field_tag(:terms) %>
+  <%= submit_tag("Search") %>
+<% end %>
+</div>

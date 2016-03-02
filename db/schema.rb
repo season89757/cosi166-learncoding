@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160302144646) do
+=======
+ActiveRecord::Schema.define(version: 0) do
+
+# These are extensions that must be enabled in order to support this database
+ enable_extension "plpgsql"
+>>>>>>> b2523ee8540fdcde3c3bab0b4e17af5a0c5e0cd0
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
