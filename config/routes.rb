@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :books
+  resources :users
   root 'imdb#index'
 
   get 'imdb/login'

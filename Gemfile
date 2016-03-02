@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
+<<<<<<< HEAD
 ruby '2.2.4'
+=======
+ruby '2.2.3'
+>>>>>>> 7e2605193368fed26b3b55819150075030adc9fd
 
 # added per Pito's tutorial instructions
 gem 'rails_12factor', group: :production
@@ -26,6 +30,7 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'goodreads'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
