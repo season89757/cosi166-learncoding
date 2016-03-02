@@ -1,9 +1,5 @@
 source 'https://rubygems.org'
-<<<<<<< HEAD
-ruby '2.2.4'
-=======
 ruby '2.2.3'
->>>>>>> 7e2605193368fed26b3b55819150075030adc9fd
 
 # added per Pito's tutorial instructions
 gem 'rails_12factor', group: :production
