@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   get 'sessions/new'
 
   get 'sessions/create'
@@ -9,13 +8,12 @@ Rails.application.routes.draw do
   get 'admin/index'
 
   get 'imdb/welcome'
-=======
+
   get 'search_box/search_results'
->>>>>>> b2523ee8540fdcde3c3bab0b4e17af5a0c5e0cd0
 
   resources :books
   resources :users
-  
+
   root 'imdb#index'
 
   get 'imdb/login'
@@ -27,8 +25,6 @@ Rails.application.routes.draw do
   get 'imdb/register'
 
   get 'imdb/result'
-
-  get 'search_box/search_results'
 
   get 'imdb/detail'
 
