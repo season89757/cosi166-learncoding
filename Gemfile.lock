@@ -30,6 +30,8 @@ GEM
       activemodel (= 4.2.5)
       activesupport (= 4.2.5)
       arel (~> 6.0)
+    activerecord_url_connections (0.0.7)
+      activerecord
     activesupport (4.2.5)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -174,6 +176,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord_url_connections
   amazon-ecs
   bcrypt (~> 3.1.7)
   bcrypt-ruby (~> 3.0.0)

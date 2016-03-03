@@ -17,4 +17,17 @@ class SessionsController < ApplicationController
     session[:username] = nil
     redirect_to store_url, notice: "Logged out"
   end
+
+  def create_test(username, password)
+    user = User.find_by(username: username)
+    if user
+    #  redirect_to admin_url
+      return true
+    else
+      #redirect_to imdb_login_path, alert: "Invalid user/password combination"
+      return false
+    end
+  end
+
+
 end

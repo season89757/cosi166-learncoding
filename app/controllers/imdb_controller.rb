@@ -1,4 +1,6 @@
 class ImdbController < ApplicationController
+  attr_accessor :book_image, :tag1, :book_name, :id
+
   def index
     if params[:user_id]
       id = params[:user_id]
