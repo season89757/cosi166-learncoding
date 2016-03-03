@@ -1,16 +1,24 @@
-<<<<<<< HEAD
 <h1 id='title1'>IMDB for Computer Science Books</h1>
 
-<span>
-  Username<input type="Textbox" class = 'username' />
-</span><br>
-<span>
-  Password<input type="Textbox" class = 'password'/>
-</span><br>
-<span>
-  Confirm<input type="Textbox" class = 're_password'/>
-</span><br>
 <div>
-  <%= button_to "cancel", imdb_index_path, :method => "get" %>
-  <%= button_to "register", users_index_path, :method => "get" %>
+  <% if @error %>
+    <%= @error %>
+  <% end %>
+</div>
+<div align = center>
+  <%= form_tag("register", method: "post") do %>
+    <%= label_tag(:q_display_name, "Display Name")%>
+    <%= text_field_tag(:display_name) %><br>
+    <%= label_tag(:q_username, "Username")%>
+    <%= text_field_tag(:username) %><br>
+    <%= label_tag(:q_password, "Password")%>
+    <%= text_field_tag(:password) %><br>
+    <%= label_tag(:q_confirm, "Confirm")%>
+    <%= text_field_tag(:confirm) %><br>
+    <%= label_tag(:q_email, "Email")%>
+    <%= text_field_tag(:email) %><br>
+    <%= submit_tag("Cancel")%>
+    <%= submit_tag("Register")%>
+
+    <% end %>
 </div>

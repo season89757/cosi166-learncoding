@@ -1,11 +1,41 @@
 class ImdbController < ApplicationController
   def index
+    if params[:user_id]
+      id = params[:user_id]
+      @session = User.find(id)
+    end
   end
 
   def login
+    if params[:error] then @error = params[:error] end
+
+    if params[:username]
+      @user = User.find_by(username: params[:username], password: params[:password])
+      if @user
+        redirect_to imdb_index_path(:user_id => @user)
+      else
+        redirect_to imdb_login_path(:error => "Wrong credentials")
+      end
+    end
   end
 
   def register
+    if params[:error] then @error = params[:error] end
+
+    if params[:username]
+      if params[:password] != params[:confirm]
+        redirect_to imdb_register_path(:error => "Passwords do not match")
+      else
+        user_exists = User.find_by(username:params[:username])
+        email_exists = User.find_by(email:params[:email])
+        if user_exists || email_exists
+          redirect_to imdb_register_path(:error => "User or Email already exists")
+        else
+          @user = User.create(username: params[:username], password: params[:password], email: params[:email], display_name: params[:display_name], admin: false)
+          redirect_to imdb_index_path(:user_id => @user)
+        end
+      end
+    end
   end
 
   def result
