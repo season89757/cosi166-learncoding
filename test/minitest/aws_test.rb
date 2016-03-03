@@ -1,5 +1,7 @@
 require 'minitest/autorun'
 require 'amazon/ecs'
+require_relative '../test_helper'
+
 describe "aws_api" do
   before do
     Amazon::Ecs.configure do |options|

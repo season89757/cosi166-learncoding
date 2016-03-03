@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :books
   resources :users
 
+  post 'imdb/register'
+
   root 'imdb#index'
 
   get 'imdb/login'

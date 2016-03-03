@@ -11,8 +11,11 @@ require_relative "../public/goodapi"
 User.delete_all
 Book.delete_all
 
-User.create(username: "liuchao", display_name: "Chao Liu", password: "1", admin: false, email: "lc89757@brandeis.edu")
+User.create(username: "liuchao", display_name: "Chao Liu", password: "1", admin: true, email: "lc89757@brandeis.edu")
 User.create(username: "hanzhenyu", display_name: "Zhenyu Han", password: "1", admin: true, email: "hanzhenyu@brandeis.edu")
+User.create(username: "breyerjs", display_name: "Jackson", password: "1", admin: true, email: "breyerjs@brandeis.edu")
+User.create(usernmae: "boyang", display_name: "Boyang", password: "1", admin: true, email: "ban@brandeis.edu")
+User.create(username: "aaaaaa", password: "1", admin: false, email: "sample@sample.com")
 Book.create(title: "Agile Web Development with Rails", author: "Sam Ruby")
 Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 
