@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-require_relative "../public/goodapi"
-require_relative "../public/aws"
+require_relative "../lib/api/goodapi"
+require_relative "../lib/api/aws"
 
 User.delete_all
 Book.delete_all
@@ -22,7 +22,9 @@ Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 
 result = GoodR.new(20).results
 result.each do |single|
-  Book.create(title: single.best_book.title, author:single.best_book.author.name)
+  title = single.best_book.title
+  author = single.best_book.author.name
+  Book.create(title: author, author:author)
 end
 
 amazon_result = Awsapi.new.res

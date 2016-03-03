@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require_relative '../test_helper'
-require_relative '../../public/goodapi'
+require_relative '../../lib/api/goodapi'
 
 describe "GoodRead" do
   before do
