@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 # added per Pito's tutorial instructions
+gem 'pry-byebug'
+gem 'better_errors'
+gem 'minitest-rails'
 gem 'rails_12factor', group: :production
 gem 'sqlite3', group: :development
 gem 'pg', group: :production

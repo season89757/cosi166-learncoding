@@ -1,17 +1,20 @@
 require 'minitest/autorun'
-require_relative '../../app/controller/imdb_controller'
+require 'rails/all'
+require_relative '../../app/controllers/application_controller'
+require_relative '../../app/controllers/imdb_controller'
 #since I am responsible for the UI design, and our web page has not connected to the database that store the
 #book information, this code is only for testing whether the controller has grab the example data correctly or not.
 
 
-describe ImdbController do
+describe 'ImdbController' do
   before do
     @imdbcontroller = ImdbController.new
+    @imdbcontroller.result
   end
 
   describe "#image" do
     it "test if we get the correct image" do
-      @imdbcontroller.bookimage.must_equal 'java.jpg'
+      @imdbcontroller.book_image.must_equal 'java.jpg'
     end
   end
 
@@ -23,7 +26,7 @@ describe ImdbController do
 
   describe "#name" do
     it "test if we get the correct book name" do
-      @imdbcontroller.book_name.must_equal = 'Java 7 Programming'
+      @imdbcontroller.book_name.must_equal 'Java 7 Programming'
     end
   end
 

@@ -1,4 +1,6 @@
 class ImdbController < ApplicationController
+  attr_accessor :book_image, :tag1, :book_name
+
   def index
   end
 
