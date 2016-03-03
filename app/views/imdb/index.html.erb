@@ -1,8 +1,12 @@
 <h1 id='title1'>IMDB for Computer Science Books!!!</h1>
 
 <%  if @session %>
-  Hello <%= @session.display_name %>
+  <% if @session.admin %>
+    Hello Adminstrator <%= @session.display_name %>
+  <% else %>
+    Hello  <%= @session.display_name %>
   <% end %>
+<% end %>
 
 <div id='bar'>
 

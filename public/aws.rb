@@ -1,9 +1,6 @@
-# gem install amazon-ecs
 
 require 'amazon/ecs'
-# default options:
-#  options[:version] => "2013-08-01"
-#  options[:service] => "AWSECommerceService"
+
 Amazon::Ecs.configure do |options|
   options[:AWS_access_key_id] = 'AKIAIGLTXMSS4JLNHH6A'
   options[:AWS_secret_key] = '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'

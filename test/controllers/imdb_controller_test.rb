@@ -1,9 +1,2 @@
-require 'test_helper'
-
-class ImdbControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
-    assert_response :success
-  end
-
-end
+require_relative '../test_helper'
+#require "rails/all"
