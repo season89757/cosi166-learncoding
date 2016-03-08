@@ -1,10 +1,11 @@
 <h1 id='title1'>IMDB for Computer Science Books????</h1>
 
-<%  if @session %>
-  <% if @session.admin %>
-    Hello Adminstrator <%= @session.display_name %>
+<%  if session[:user_id] %>
+  <% user = User.find_by(id: session[:user_id])%>
+  <% if user.admin %>
+    Hello Adminstrator <%= user.display_name %>
   <% else %>
-    Hello  <%= @session.display_name %>
+    Hello  <%= user.display_name %>
   <% end %>
 <% end %>
 
@@ -14,6 +15,7 @@
   <%= link_to "Register", imdb_register_path %><br>
   <%= link_to "Result", imdb_result_path %><br>
   <%= link_to "Detail", imdb_detail_path %><br>
+  
 </div>
 
 <div align=center>

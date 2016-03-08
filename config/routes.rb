@@ -5,6 +5,12 @@ Rails.application.routes.draw do
 
   get 'sessions/destroy'
 
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   get 'admin/index'
 
   get 'imdb/welcome'
@@ -29,7 +35,6 @@ Rails.application.routes.draw do
   get 'imdb/result'
 
   get 'imdb/detail'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
