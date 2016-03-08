@@ -15,7 +15,11 @@
   <%= link_to "Register", imdb_register_path %><br>
   <%= link_to "Result", imdb_result_path %><br>
   <%= link_to "Detail", imdb_detail_path %><br>
-  
+  <% if session[:user_id] %>
+    <%= link_to "Logout", imdb_logout_path %><br>
+  <% end %>
+
+
 </div>
 
 <div align=center>
