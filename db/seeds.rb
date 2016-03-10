@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require_relative "../lib/api/goodapi"
-require_relative "../lib/api/aws"
+require_relative "../lib/api/aws_ecs/aws"
 
 User.delete_all
 Book.delete_all
@@ -20,16 +20,15 @@ User.create(username: "aaaaaa", password: "1", admin: false, email: "sample@samp
 Book.create(title: "Agile Web Development with Rails", author: "Sam Ruby")
 Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 
-result = GoodR.new(20).results
-result.each do |single|
-  title = single.best_book.title
-  author = single.best_book.author.name
-  Book.create(title: author, author:author)
-end
+# result = GoodR.new(20).results
+# result.each do |single|
+#   title = single.best_book.title
+#   author = single.best_book.author.name
+#   Book.create(title: author, author:author)
+# end
 
-amazon_result = Awsapi.new.res
-amazon_result.items[0..10].each do |n|
-  title = n.get('ItemAttributes/Title')
-  author = n.get('ItemAttributes/Author')
-  Book.create(title: title, author: author)
+aws = Awsapi.new
+aws.search("ruby", 10)
+aws.books.each do |b|
+  book = Book.new(title:b.title, author:b.author)
 end

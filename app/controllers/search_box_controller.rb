@@ -2,8 +2,8 @@ class SearchBoxController < ApplicationController
   def search_results
 
     # TODO
-    # ranking! (author, title, description)
-    # deduplication
+    # truncate results? at a certain length?
+    # 
 
 
     # hashes stopwords for O(1) access. The 1 (value) is meaningless. 
@@ -28,7 +28,10 @@ class SearchBoxController < ApplicationController
         'yours'=> 1, 'so'=> 1, 'the'=> 1, 'having'=> 1, 'once'=> 1}
 
 
-    @rawterms = params[:terms].tr(',', '')
+    @original_query_string = params[:terms]
+
+    # removes punctuation and split
+    @rawterms = @original_query_string.tr(',.', '')
     @rawterms = @rawterms.split(" ")
 
     @terms = []
@@ -38,11 +41,20 @@ class SearchBoxController < ApplicationController
         unless @stopwords.has_key?(term.downcase) then @terms.push(term) end
     end
 
-    @results = []
+    @processed_query_string = @terms.join(" ")
+
+    # Using @results.merge() lets us manipulate activerecord relations
+    #   rather than plain arrays, which is significantly faster
+    #   Using three loops crudely ranks the results on which 
+    #   column is being searched.
     for term in @terms
-        @results.concat Book.where("author like ?", "%#{term}%")
-        @results.concat Book.where("title like ?", "%#{term}%")
-        @results.concat Book.where("description like ?", "%#{term}%")
+        @results = Book.where("title like ?", "%#{term}%")
+    end
+    for term in @terms
+        @results.merge(Book.where("author like ?", "%#{term}%"))
+    end
+    for term in @terms
+        @results.merge(Book.where("description like ?", "%#{term}%"))
     end
     #deduplicates the list
     @results = @results.uniq

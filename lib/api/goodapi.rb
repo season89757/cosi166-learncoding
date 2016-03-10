@@ -1,4 +1,5 @@
 require 'goodreads'
+require 'pry-byebug'
 
 class GoodR
   attr_accessor :results
@@ -29,6 +30,10 @@ class GoodR
     end
   end
 end
+
+result = GoodR.new(20)
+binding.pry
+puts "yes"
 
 
 
