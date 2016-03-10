@@ -3,7 +3,7 @@ class SearchBoxController < ApplicationController
 
     # TODO
     # truncate results? at a certain length?
-    # 
+    # Test failing: SearchBoxControllerTest#test_searches_for_multiple_terms
 
 
     # hashes stopwords for O(1) access. The 1 (value) is meaningless. 
@@ -38,23 +38,32 @@ class SearchBoxController < ApplicationController
 
     # remove stopwords from terms
     for term in @rawterms
-        unless @stopwords.has_key?(term.downcase) then @terms.push(term) end
+        unless @stopwords.has_key?(term.downcase) then @terms.push(term.downcase) end
     end
 
-    @processed_query_string = @terms.join(" ")
+    # in case there are no meaningful terms, use the original ones
+    if @terms.empty?
+        unless @rawterms.empty? 
+            @terms = @rawterms
+        else
+            @terms = "meaningful search terms".split(' ')
+        end
+    end
+
+    @processed_query_string = @terms.join(' ')
 
     # Using @results.merge() lets us manipulate activerecord relations
     #   rather than plain arrays, which is significantly faster
     #   Using three loops crudely ranks the results on which 
     #   column is being searched.
     for term in @terms
-        @results = Book.where("title like ?", "%#{term}%")
+        @results = Book.where("lower(title) like ?", "%#{term}%")
     end
     for term in @terms
-        @results.merge(Book.where("author like ?", "%#{term}%"))
+        @results.merge(Book.where("lower(author) like ?", "%#{term}%"))
     end
     for term in @terms
-        @results.merge(Book.where("description like ?", "%#{term}%"))
+        @results.merge(Book.where("lower(description) like ?", "%#{term}%"))
     end
     #deduplicates the list
     @results = @results.uniq
