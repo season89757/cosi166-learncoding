@@ -56,7 +56,11 @@ class SearchBoxController < ApplicationController
     #   rather than plain arrays, which is significantly faster
     #   Using three loops crudely ranks the results on which 
     #   column is being searched.
-    for term in @terms
+
+
+    # initialize results, then add to it in the successive calls
+    @results = Book.where("lower(title) like ?", "%#{@terms[0]}%")
+    for term in @terms[1..-1]
         @results = Book.where("lower(title) like ?", "%#{term}%")
     end
     for term in @terms
