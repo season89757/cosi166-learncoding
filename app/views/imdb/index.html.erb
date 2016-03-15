@@ -1,36 +1,47 @@
-<h1 id='title1'>IMDB for Computer Science Books????</h1>
+<body>
+  <div id="main-container" class="container">
+    <div class="row text-center">
+      <h1>IMDB for Computer Science Books????</h1>
+    </div>
+    <div class="row text-center">
+      <div id="leftsidebar" class="col-xs-6">
+        <% if session[:imdb_user_id] %>
 
-<%  if session[:imdb_user_id] %>
-  <% @user = User.find_by(id: session[:imdb_user_id])%>
-  <% if @user.admin == "1"%>
-    Hello Adminstrator <%= @user.display_name %>
-  <% else %>
-    Hello  <%= @user.display_name %>
-  <% end %>
-<% end %>
+          <% @user = User.find_by(id: session[:imdb_user_id])%>
+          <% if @user.admin == "1"%>
+            <div>Hello Adminstrator <%= @user.display_name %></div>
+          <% else %>
+            <div>Hello  <%= @user.display_name %></div>
+          <% end %>
+        <% end %>
 
-<div id='bar'>
+      </div>
+      <div id="rightsidebar" class="col-xs-6">
+        <div>
+          <% if session[:imdb_user_id] %>
+            <%= link_to "Logout", imdb_logout_path %><br>
+          <% else %>
+            <%= link_to "Login", imdb_login_path %><br>
+            <%= link_to "Register", imdb_register_path %><br>
+          <% end %>
+          <%= link_to "Result", imdb_result_path %><br>
+          <%= link_to "Detail", imdb_detail_path %><br>
+        </div>
+      </div>
+    </div>
 
-  <% if session[:imdb_user_id] %>
-    <%= link_to "Logout", imdb_logout_path %><br>
-  <% else %>
-    <%= link_to "Login", imdb_login_path %><br>
-    <%= link_to "Register", imdb_register_path %><br>
-  <% end %>
-  <%= link_to "Result", imdb_result_path %><br>
-  <%= link_to "Detail", imdb_detail_path %><br>
+    <div class="row text-center">
+      <div align=center>
+        <%= image_tag("homepage.png", :size =>"480x194") %><br>
+      </div>
 
 
-
-</div>
-
-<div align=center>
-  <%= image_tag("homepage.png", :size =>"480x194") %><br>
-</div>
-
-<div align=center>
-<%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
-  <%= text_field_tag(:terms) %>
-  <%= submit_tag("Search") %>
-<% end %>
-</div>
+      <div align=center>
+      <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
+        <%= text_field_tag(:terms) %>
+        <%= submit_tag("Search") %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</body>
