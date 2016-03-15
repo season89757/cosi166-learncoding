@@ -59,16 +59,11 @@ class ImdbController < ApplicationController
   def detail
   end
 
-  def current_user
-   @current_user ||= User.find_by(id: session[:user_id])
-  end
-
-  def logged_in?
-    !current_user.nil?
-  end
 
   def logout
-    if logged_in? then session[:user_id]=nil end
+    if session[:imdb_user_id]
+      session[:imdb_user_id] = nil
+    end
     redirect_to imdb_index_path
   end
 
