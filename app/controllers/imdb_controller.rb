@@ -2,7 +2,7 @@ class ImdbController < ApplicationController
   attr_accessor :book_image, :tag1, :book_name, :id
 
   def index
-    if params[:user_id]
+    if params[:_user_id]
       id = params[:user_id]
       @session = User.find(id)
     end
@@ -14,7 +14,7 @@ class ImdbController < ApplicationController
     if params[:username]
       @user = User.find_by(username: params[:username], password: params[:password])
       if @user
-        session[:user_id]=@user.id
+        session[:imdb_user_id]=@user.id
         redirect_to imdb_index_path
       else
         redirect_to imdb_login_path(:error => "Wrong credentials")
@@ -35,7 +35,7 @@ class ImdbController < ApplicationController
           redirect_to imdb_register_path(:error => "User or Email already exists")
         else
           @user = User.create(username: params[:username], password: params[:password], email: params[:email], display_name: params[:display_name])
-          session[:user_id]=@user.id
+          session[:imdb_user_id]=@user.id
           redirect_to imdb_index_path
         end
       end
@@ -59,16 +59,11 @@ class ImdbController < ApplicationController
   def detail
   end
 
-  def current_user
-   @current_user ||= User.find_by(id: session[:user_id])
-  end
-
-  def logged_in?
-    !current_user.nil?
-  end
 
   def logout
-    if logged_in? then session[:user_id]=nil end
+    if session[:imdb_user_id]
+      session[:imdb_user_id] = nil
+    end
     redirect_to imdb_index_path
   end
 
