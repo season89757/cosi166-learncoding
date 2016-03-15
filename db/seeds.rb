@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require_relative "../lib/api/goodapi"
+require_relative '../lib/api/aws_ecs/amazon-ecs-master/lib/amazon/ecs'
+require 'set'
 require_relative "../lib/api/aws_ecs/aws"
 
 User.delete_all
@@ -27,8 +29,22 @@ Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 #   Book.create(title: author, author:author)
 # end
 
-aws = Awsapi.new
-aws.search("ruby", 10)
-aws.books.each do |b|
-  book = Book.new(title:b.title, author:b.author)
+#
+# aws = Awsapi.new
+# aws.search("ruby", 10)
+# aws.books.each do |b|
+#   Book.create(title:b.title, author:b.author)
+#   #book = Book.new(title:b.title, author:b.author)
+#   #book.save
+# end
+
+
+
+data = Awsapi.new
+data.search('ruby', 25)
+data.books.each do |b|
+  Book.create(title: b.title, author: b.author, ISBN: b.isbn, \
+  publish_date: b.publish_date, description: b.description, \
+  image_url: b.image_url, publisher: b.publisher, total_pages: b.total_pages, \
+  written_language: b.written_language, asin: b.asin, price: b.price)
 end

@@ -31,10 +31,6 @@ class GoodR
   end
 end
 
-result = GoodR.new(20)
-binding.pry
-puts "yes"
-
 
 
 
