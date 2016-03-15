@@ -43,6 +43,7 @@ class Awsapi
         book = fill_book_info(item)
         @books.push(book)
       end
+      sleep(0.2)
     end
 
     if leftover > 0
@@ -53,7 +54,7 @@ class Awsapi
 
       @res.items[0..leftover - 1].each do |item|
         book = fill_book_info(item)
-        @book.push(book)
+        @books.push(book)
       end
     end
 
@@ -73,7 +74,7 @@ class Awsapi
     reviews = "tbd"
     price = item.get('ItemAttributes/ListPrice/FormattedPrice')
 
-    book = Book.new(isbn, title, author, publish_date, description, \
+    book = Bookinfo.new(isbn, title, author, publish_date, description, \
     publisher, image_url, total_pages, written_language, asin, reviews, \
     price)
 
@@ -82,7 +83,7 @@ class Awsapi
 
 end
 
-class Book
+class Bookinfo
   attr_accessor :isbn, :title, :author, :publish_date, :description, \
    :publisher, :image_url, :total_pages, :written_language, :asin, \
    :reviews, :price
@@ -103,3 +104,7 @@ class Book
     @price = price
   end
 end
+
+# test = Awsapi.new
+# test.search('ruby', 15)
+# puts test.books[0].title
