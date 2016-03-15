@@ -1,5 +1,4 @@
-#require 'amazon/ecs'
-require_relative 'amazon-ecs-master/lib/amazon/ecs'
+require 'amazon/ecs'
 require 'set'
 
 class Awsapi
