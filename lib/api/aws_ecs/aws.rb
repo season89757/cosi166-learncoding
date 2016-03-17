@@ -32,7 +32,7 @@ class Awsapi
     search_times = result_num / 10
     leftover = result_num % 10
 
-    (1..result_num).each do |i|
+    (1..search_times).each do |i|
       num = i.to_s
       @res = Amazon::Ecs.item_search(keyword, {:response_group => 'Medium', \
         :country => 'us', :power => "subject:computers", :item_page => num, \
