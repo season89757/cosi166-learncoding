@@ -15,10 +15,6 @@ class SearchBoxController < ApplicationController
   end
   
   def search_results
-    # TODO:
-    #   Use number of times a term appears in target to influence the 
-    #   ranking
-
     # Controller for the resutls from a user search.
     # INPUT: 
     #   params[:terms] which holds a search query
