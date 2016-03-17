@@ -9,8 +9,16 @@ class SearchBoxController < ApplicationController
         hash[book] = score
     end 
   end
+
+  def num_times_substring_appears(substring, string)
+    string.scan(/(?=#{substring})/).count
+  end
   
   def search_results
+    # TODO:
+    #   Use number of times a term appears in target to influence the 
+    #   ranking
+
     # Controller for the resutls from a user search.
     # INPUT: 
     #   params[:terms] which holds a search query
@@ -73,15 +81,18 @@ class SearchBoxController < ApplicationController
     for term in @terms
         # search by title
         for book in Book.where("lower(title) like ?", "%#{term}%")
-            add_item_to_hash(book, 5, results_scores)
+            score = 5 * num_times_substring_appears(term, book.title)
+            add_item_to_hash(book, score, results_scores)
         end
         # search by description
         for book in Book.where("lower(description) like ?", "%#{term}%")
-            add_item_to_hash(book, 3, results_scores)  
+            score = 3 * num_times_substring_appears(term, book.description)
+            add_item_to_hash(book, score, results_scores)  
         end
         # search by author
         for book in Book.where("lower(author) like ?", "%#{term}%")
-            add_item_to_hash(book, 1, results_scores)  
+            score = 1 * num_times_substring_appears(term, book.author)
+            add_item_to_hash(book, score, results_scores)  
         end
     end
 
