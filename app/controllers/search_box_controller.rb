@@ -1,4 +1,15 @@
 class SearchBoxController < ApplicationController
+
+  # Helper Function---NOT A VIEW
+  def add_item_to_hash(book, score, hash)
+    # adds/updates an item in a hash with a particular score
+    if hash.key?(book)
+        hash[book] += score
+    else
+        hash[book] = score
+    end 
+  end
+  
   def search_results
 
     # TODO
@@ -53,17 +64,29 @@ class SearchBoxController < ApplicationController
 
     # Using three loops crudely ranks the results on which
     # column is being searched.
-    @results = Book.where("lower(title) like ?", "%#{@terms[0]}%")
-    for term in @terms[1..-1]
-        @results += Book.where("lower(title) like ?", "%#{term}%")
-    end
+
+    results_scores = Hash.new
+
+    # begin scoring
     for term in @terms
-        @results += Book.where("lower(author) like ?", "%#{term}%")
+        # search by title
+        for book in Book.where("lower(title) like ?", "%#{term}%")
+            add_item_to_hash(book, 5, results_scores)
+        end
+        # search by description
+        for book in Book.where("lower(description) like ?", "%#{term}%")
+            add_item_to_hash(book, 3, results_scores)  
+        end
+        # search by author
+        for book in Book.where("lower(author) like ?", "%#{term}%")
+            add_item_to_hash(book, 1, results_scores)  
+        end
     end
-    for term in @terms
-        @results += Book.where("lower(description) like ?", "%#{term}%")
-    end
-    #deduplicates the list
+
+    # get hash results sortred by score
+    @results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[a]}
+    # deduplicates the list
     @results = @results.uniq
+
   end
 end
