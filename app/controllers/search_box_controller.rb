@@ -11,10 +11,12 @@ class SearchBoxController < ApplicationController
   end
   
   def search_results
-
-    # TODO
-    # truncate results? at a certain length?
-    # search results bug with multiple terms - see failing test
+    # Controller for the resutls from a user search.
+    # INPUT: 
+    #   params[:terms] which holds a search query
+    # RETURN:
+    #   @results variable to the view. @results is an array of Book 
+    #   objects for consumption in the view. 
 
     # hashes stopwords for O(1) access. The 1 (value) is meaningless.
     @stopwords = {'all'=> 1, 'just'=> 1, 'being'=> 1, 'over'=> 1, 'both'=> 1, 'through'=> 1,
@@ -83,7 +85,7 @@ class SearchBoxController < ApplicationController
         end
     end
 
-    # get hash results sortred by score
+    # get hash results sorted by score
     @results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[a]}
     # deduplicates the list
     @results = @results.uniq
