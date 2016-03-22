@@ -19,8 +19,6 @@ Rails.application.routes.draw do
 
   get 'imdb/register'
 
-  get 'imdb/result'
-
   get 'imdb/detail'
 
   get 'imdb/logout'
