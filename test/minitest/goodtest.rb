@@ -4,7 +4,7 @@ require_relative '../../lib/api/goodapi'
 
 describe "GoodRead" do
   before do
-    @search = GoodR.new(20)
+    @search = GoodR.new(20,"computer science")
   end
 
   it "check if result is valid" do

@@ -24,19 +24,20 @@ User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample
 Book.create(title: "Agile Web Development with Rails", author: "Sam Ruby")
 Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 
-# result = GoodR.new(20).results
+# result = GoodR.new(40).results  # range (20-20005.,)
 # result.each do |single|
 #   title = single.best_book.title
 #   author = single.best_book.author.name
-#   Book.create(title: author, author:author)
+#   puts "title:"
+#   puts title
+#   puts "author"
+#   puts author
+#   puts "++++++++++"
+#   Book.create(title: title, author:author)
 # end
 
-
-
-
-
 data = Awsapi.new
-data.search('ruby', 25)
+data.search('ruby', 10)
 data.books.each do |b|
   Book.create(title: b.title, author: b.author, ISBN: b.isbn, \
   publish_date: b.publish_date, description: b.description, \

@@ -3,34 +3,33 @@ require 'pry-byebug'
 
 class GoodR
   attr_accessor :results
-  def initialize(num)
+  def initialize(num,term)
     @key = "vBvspX3h3XcI5YboURDBg"
     @secret = "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk"
     @client = Goodreads.new(:api_key => @key)
     @max = 2000
     @results = []
-    get(num)
+    get(num, term)
   end
 
-  def get(num)
-    if check?(num) then search(num) else search(@max) end
+  def get(num, term)
+    if check?(num) then search(num,term) else search(@max) end
   end
 
   def check?(num)
     if num <= 2000 then true else false end
   end
 
-  def search(num)
+  def search(num, term)
     page = num / 20 - 1
     for n in 0..page do
-      r = @client.search_books('computer science',:page => page.to_s)
+      r = @client.search_books(term,:page => page.to_s)
       r.results.work.each do |single|
         @results << single
       end
     end
   end
 end
-
 
 
 # @key = "vBvspX3h3XcI5YboURDBg"
