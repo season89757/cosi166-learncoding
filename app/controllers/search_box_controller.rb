@@ -1,9 +1,26 @@
 class SearchBoxController < ApplicationController
-  def search_results
 
-    # TODO
-    # truncate results? at a certain length?
-    # search results bug with multiple terms - see failing test
+  # Helper Function---NOT A VIEW
+  def add_item_to_hash(book, score, hash)
+    # adds/updates an item in a hash with a particular score
+    if hash.key?(book)
+        hash[book] += score
+    else
+        hash[book] = score
+    end
+  end
+
+  def num_times_substring_appears(substring, string)
+    string.scan(/(?=#{substring})/).count
+  end
+
+  def search_results
+    # Controller for the resutls from a user search.
+    # INPUT:
+    #   params[:terms] which holds a search query
+    # RETURN:
+    #   @results variable to the view. @results is an array of Book
+    #   objects for consumption in the view.
 
     # hashes stopwords for O(1) access. The 1 (value) is meaningless.
     @stopwords = {'all'=> 1, 'just'=> 1, 'being'=> 1, 'over'=> 1, 'both'=> 1, 'through'=> 1,
@@ -53,18 +70,34 @@ class SearchBoxController < ApplicationController
 
     # Using three loops crudely ranks the results on which
     # column is being searched.
-    @results = Book.where("lower(title) like ?", "%#{@terms[0]}%")
-    for term in @terms[1..-1]
-        @results += Book.where("lower(title) like ?", "%#{term}%")
-    end
+
+    results_scores = Hash.new
+
+    # begin scoring
     for term in @terms
-        @results += Book.where("lower(author) like ?", "%#{term}%")
+        # search by title
+        for book in Book.where("lower(title) like ?", "%#{term}%")
+            score = 5 * num_times_substring_appears(term, book.title)
+            add_item_to_hash(book, score, results_scores)
+        end
+        # search by description
+        for book in Book.where("lower(description) like ?", "%#{term}%")
+            score = 3 * num_times_substring_appears(term, book.description)
+            add_item_to_hash(book, score, results_scores)
+        end
+        # search by author
+        for book in Book.where("lower(author) like ?", "%#{term}%")
+            score = 1 * num_times_substring_appears(term, book.author)
+            add_item_to_hash(book, score, results_scores)
+        end
     end
-    for term in @terms
-        @results += Book.where("lower(description) like ?", "%#{term}%")
-    end
-    #deduplicates the list
-    @cur =0
+
+
+    # get hash results sorted by score
+    @results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[a]}
+    # deduplicates the list
+
     @results = @results.uniq
+
   end
 end
