@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'imdb/welcome'
-
   get 'search_box/search_results'
 
   resources :books

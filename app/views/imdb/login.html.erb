@@ -1,9 +1,7 @@
 <h1 id='title1'>IMDB for Computer Science Books</h1>
 
 <div>
-  <% if @error %>
-    <%= @error %>
-  <% end %>
+  <%= login_error %>
 </div>
 <div align = center>
   <%= form_tag("login", method: "get") do %>
