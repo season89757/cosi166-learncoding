@@ -64,6 +64,7 @@ class SearchBoxController < ApplicationController
         @results += Book.where("lower(description) like ?", "%#{term}%")
     end
     #deduplicates the list
+    @cur =0
     @results = @results.uniq
   end
 end

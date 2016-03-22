@@ -32,16 +32,34 @@
 }
 
 #p2{
-  font-size:20px;
+  font-size:15px;
   color:#ff0000;
 }
 
-#p2{
+#p3{
   font-size:15px;
+  width:300px;
+  height:250px;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
+#p4{
+  font-size: 15px;
+}
 
 #twosides{
   padding-left: 0;
   padding-right: 0;
+  min-height: 2000px;
+  background-color: blue;
+}
+
+#imageurl{
+  width:250px;
+  height:250px;
+}
+#sidebarimage{
+  height:100%;
+  width:80px;
 }

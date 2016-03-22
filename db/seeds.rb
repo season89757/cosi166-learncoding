@@ -36,7 +36,7 @@ Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 
 
 data = Awsapi.new
-data.search('ruby', 25)
+data.search('ruby', 10)
 data.books.each do |b|
   Book.create(title: b.title, author: b.author, ISBN: b.isbn, \
   publish_date: b.publish_date, description: b.description, \
