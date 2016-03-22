@@ -11,8 +11,7 @@
     </div>
     <h2 align=center>Search Result</h2>
 
-    <% @results.each do | book |%>
-    <div class="row">
+    <div >
       <div class="col-md-3">
         <div>
           <%= image_tag(@book_image, :size =>"250x250") %>
@@ -32,13 +31,13 @@
 
       <div class="col-md-4">
         <div align=left>
-          <p id="p1"><%= book.title %></p>
+          <p id="p1"><%= @book_name %></p>
         </div>
         <div align=right>
           <p id="p2"><%= @book_rating %></p>
         </div>
         <div>
-          <p id="p3"><%= book.description %></p>
+          <p id="p3"><%= @book_description %></p>
         </div>
       </div>
 
@@ -63,7 +62,6 @@
 
       </div>
     </div>
-    <%end%>
   </div>
 
   <div class="col-md-1" id="twosides">
