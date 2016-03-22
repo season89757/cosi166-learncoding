@@ -88,13 +88,15 @@ class SearchBoxController < ApplicationController
         # search by author
         for book in Book.where("lower(author) like ?", "%#{term}%")
             score = 1 * num_times_substring_appears(term, book.author)
-            add_item_to_hash(book, score, results_scores)  
+            add_item_to_hash(book, score, results_scores)
         end
     end
+
 
     # get hash results sorted by score
     @results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[a]}
     # deduplicates the list
+
     @results = @results.uniq
 
   end

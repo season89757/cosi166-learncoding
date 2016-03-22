@@ -1,44 +1,74 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
 
 <div class="row">
 
   <div class="col-md-1" id="twosides">
-    <%= image_tag("blue.jpg",:height=>"1000px",:width=>"80px") %>
+
   </div>
 
+  <body>
   <div class="col-md-10">
     <div align=center>
       <%= link_to "IMDB Homepage", imdb_index_path %>
     </div>
     <h2 align=center>Search Result</h2>
 
-    <% @results.each do | book |%>
-    <div class="row">
+    <!-- here is the beginning of book information list-->
+    <div class="row" >
+    <% @results.each do |book| %>
+
       <div class="col-md-3">
         <div>
-          <%= image_tag(@book_image, :size =>"250x250") %>
+          <%= image_tag(book.image_url, :size=>"250x250") %>
         </div>
         <div class="btn-group">
           <button type="button" class="btn btn-primary" id="button-margin01">
-            <%= @tag1 %>
+            tag1
           </button>
           <button type="button" class="btn btn-primary" id="button-margin01">
-            <%= @tag2 %>
+            tag2
           </button>
           <button type="button" class="btn btn-primary" id="button-margin01">
-            <%= @tag3 %>
-          </button>
+            tag3
         </div>
       </div>
 
       <div class="col-md-4">
-        <div align=left>
+
+        <div align=center>
           <p id="p1"><%= book.title %></p>
         </div>
-        <div align=right>
-          <p id="p2"><%= @book_rating %></p>
+        <div align=center>
+          <p id="p2"><%= book.author %></p>
         </div>
-        <div>
+
+        <div align=center>
           <p id="p3"><%= book.description %></p>
+          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More Details</button>
+
+          <!-- Modal -->
+
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <p id="p4"><%= book.description %></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
         </div>
       </div>
 
@@ -48,11 +78,11 @@
         </div>
 
         <div >
-          <p id="p2"><%= @firstpost %></p>
+          <p id="p2">firstpost</p>
         </div>
 
         <div >
-          <p id="p2"><%= @secondpost %></p>
+          <p id="p2">secondpost</p>
         </div>
 
         <div class="btn-group">
@@ -60,14 +90,18 @@
           <button type="button" class="btn btn-primary" id="button-margin01">Swap</button>
         </div>
 
-
       </div>
+      <br>
+      <br>======================================================================================================
+      <br>
+      <% end %>
     </div>
-    <%end%>
+
   </div>
 
+  </body>
+
   <div class="col-md-1" id="twosides">
-    <%= image_tag("blue.jpg",:height=>"1000px",:width=>"80px") %>
   </div>
 
 </div>

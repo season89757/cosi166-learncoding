@@ -42,10 +42,6 @@ class ImdbController < ApplicationController
     end
   end
 
-  def detail
-  end
-
-
   def logout
     if session[:imdb_user_id]
       session[:imdb_user_id] = nil
