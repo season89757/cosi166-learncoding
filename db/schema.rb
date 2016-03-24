@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160322194032) do
     t.string   "written_language"
     t.string   "asin"
     t.string   "price"
+    t.string   "similar_items"
   end
 
   create_table "comments", force: :cascade do |t|
