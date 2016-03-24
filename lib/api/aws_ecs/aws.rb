@@ -40,9 +40,10 @@ class Awsapi
 
       @res.items.each do |item|
         book = fill_book_info(item)
+        get_similar_items(book)
         @books.push(book)
       end
-      sleep(0.2)
+
     end
 
     if leftover > 0
@@ -53,6 +54,7 @@ class Awsapi
 
       @res.items[0..leftover - 1].each do |item|
         book = fill_book_info(item)
+        get_similar_items(book)
         @books.push(book)
       end
     end
@@ -72,6 +74,7 @@ class Awsapi
     asin = item.get('ASIN')
     reviews = "tbd"
     price = item.get('ItemAttributes/ListPrice/FormattedPrice')
+    sale_url = item.get('')
 
     book = Bookinfo.new(isbn, title, author, publish_date, description, \
     publisher, image_url, total_pages, written_language, asin, reviews, \
@@ -80,15 +83,25 @@ class Awsapi
     return book
   end
 
+  def get_similar_items(book)
+    @similar_items = Amazon::Ecs.similarity_lookup(book.asin)
+    book.similar_items = @similar_items
+  end
+
+  def get_book_reviews(book)
+    @reviews = Amazon::Ecs.item_lookup(book, {:response_group => 'Reviews'})
+    puts @reviews.get_element("Item").get('CustomerReviews/IFrameURL')
+  end
+
 end
 
 class Bookinfo
   attr_accessor :isbn, :title, :author, :publish_date, :description, \
    :publisher, :image_url, :total_pages, :written_language, :asin, \
-   :reviews, :price
+   :reviews, :price, :similar_items, :sale_url
 
   def initialize(isbn, title, author, publish_date, description, publisher, \
-    image_url, total_pages, written_language, asin, reviews, price)
+    image_url, total_pages, written_language, asin, reviews, price, sale_url)
     @isbn = isbn
     @title = title
     @author = author
@@ -101,9 +114,11 @@ class Bookinfo
     @asin = asin
     @reviews = reviews
     @price = price
+    @similar_items = []
+    @sale_url = sale_url
   end
 end
 
-# test = Awsapi.new
-# test.search('ruby', 15)
-# puts test.books[0].title
+test = Awsapi.new
+#test.search('ruby', 15)
+test.get_book_reviews("0672325667")
