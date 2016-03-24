@@ -74,11 +74,11 @@ class Awsapi
     asin = item.get('ASIN')
     reviews = "tbd"
     price = item.get('ItemAttributes/ListPrice/FormattedPrice')
-    sale_url = item.get('')
+    sale_url = item.get('DetailPageURL')
 
     book = Bookinfo.new(isbn, title, author, publish_date, description, \
     publisher, image_url, total_pages, written_language, asin, reviews, \
-    price)
+    price, sale_url)
 
     return book
   end
@@ -114,11 +114,11 @@ class Bookinfo
     @asin = asin
     @reviews = reviews
     @price = price
-    @similar_items = []
+    @similar_items = ''
     @sale_url = sale_url
   end
 end
 
-test = Awsapi.new
-#test.search('ruby', 15)
-test.get_book_reviews("0672325667")
+# test = Awsapi.new
+# test.search('ruby', 5)
+# puts test.books[1].sale_url
