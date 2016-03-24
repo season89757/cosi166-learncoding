@@ -5,16 +5,7 @@
     </div>
     <div class="row text-center">
       <div id="leftsidebar" class="col-xs-6">
-        <% if session[:imdb_user_id] %>
-
-          <% @user = User.find_by(id: session[:imdb_user_id])%>
-          <% if @user.admin == "1"%>
-            <div>Hello Adminstrator <%= @user.display_name %></div>
-          <% else %>
-            <div>Hello  <%= @user.display_name %></div>
-          <% end %>
-        <% end %>
-
+        <%= index_top%>
       </div>
       <div id="rightsidebar" class="col-xs-6">
         <div>
@@ -34,7 +25,7 @@
       </div>
     </div>
 
-    <div align=center>
+    <div align="center">
       <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
       <%= text_field_tag(:terms) %>
       <%= submit_tag("Search") %>
