@@ -119,6 +119,6 @@ class Bookinfo
   end
 end
 
-# test = Awsapi.new
-# test.search('ruby', 5)
-# puts test.books[1].sale_url
+test = Awsapi.new
+test.search('ruby', 5)
+puts test.books[1].sale_url
