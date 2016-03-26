@@ -8,7 +8,7 @@ module GoogleBooks
 
   include HTTParty
   format :json
-
+  
   class << self
 
     attr_accessor :parameters
@@ -33,8 +33,7 @@ module GoogleBooks
       options[:page] ||= 1
       options[:count] ||= 5
       parameters['filter'] = options[:filter] if options[:filter]
-      #parameters['startIndex'] = options[:count] * (options[:page] - 1)
-      parameters['startIndex'] = options[:page]
+      parameters['startIndex'] = options[:count] * (options[:page] - 1)
       parameters['maxResults'] = options[:count]
       parameters['key'] = options[:api_key] if options[:api_key]
       parameters['orderBy'] = 'newest' if options[:order_by].eql?('newest')
@@ -60,3 +59,5 @@ module GoogleBooks
     end
   end
 end
+
+

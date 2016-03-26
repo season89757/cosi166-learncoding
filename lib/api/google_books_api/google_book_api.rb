@@ -18,19 +18,34 @@ attr_accessor :books
     @books = []
   end
 
-  def search(keyword, num_of_results = 300, subject = 'computers')
-
+  def search(keyword, num_of_results = 100, subject = 'computers')
+    stop_sign = false
     search_times = num_of_results / 10
+
+    search_leftover = num_of_results % 10
+
+    if search_leftover > 0
+      search_times += 1
+    end
+
 
     (1..search_times).each do |current_page|
 
-      books = GoogleBooks.search(keyword + ', subject:' + subject, {:count => 10, \
-        :page => current_page, :api_key => 'AIzaSyA-juJrawn2LRzmPIwnKRSw0MmNisVuC84'})
+      # if stop_sign
+      #   return
+      # end
+
+      books = GoogleBooks.search(keyword + ', subject:' + subject, \
+      {:count => 10, :page => current_page})
+
+
 
       books.each do |book|
         new_book = fill_book_info(book)
         @books.push(new_book)
       end
+
+
     end
   end
 
@@ -48,8 +63,8 @@ attr_accessor :books
     ratings_count = book.ratings_count
     preview_url = book.preview_link
 
-    rest_info = fill_tbd_book_info_amazon(title)
     #rest_info = [0, 1, 2, 3]
+    rest_info = fill_tbd_book_info_amazon(title)
     asin = rest_info[0]
     reviews = 'tbd'
     price = rest_info[1]
@@ -120,8 +135,21 @@ class Bookinfo
   end
 end
 
+# books = GoogleBooks.search('ruby' + ', subject:' + 'computers', {:count => 10, \
+#   :page => 1})
+# puts books.total_items
+# books.each do |i|
+#   puts i.title
+# end
+
+
 # test = GoogleBooksAPI.new
-# test.search('ruby', 20, 'computers')
+# test.search('ruby', 50, 'computers')
+# test.books.each do |i|
+#   puts i.title
+# end
+# puts test.books.length
+# puts test.books[100].title
 # test.books.each do |book|
 #    puts book.title
 #    puts book.sales_rank

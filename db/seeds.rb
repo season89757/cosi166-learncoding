@@ -26,8 +26,11 @@ User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample
 Book.create(title: "Agile Web Development with Rails", author: "Sam Ruby")
 Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 
-#allow return up to 2000 results at one time
-#but slow to run grab 1 book info need about 1s
+# Now the api can access all the search results
+# but the number of total search results under 'computers' category
+# which are the books related to 'programming' is not as much as
+# we may imagine, e.g. all the 'ruby programming' books are only 300
+# and all the 'java programming' books are 768
 test = GoogleBooksAPI.new
 test.search('ruby', 20, 'computers')
 test.books.each do |b|
