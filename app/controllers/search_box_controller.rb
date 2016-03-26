@@ -100,4 +100,9 @@ class SearchBoxController < ApplicationController
     @results = @results.uniq
 
   end
+
+  def book_detail
+    id = params[:book_id]
+    @book = Book.find_by(id: id)
+  end
 end
