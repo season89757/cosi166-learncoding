@@ -41,6 +41,7 @@ class Awsapi
       @res.items.each do |item|
         book = fill_book_info(item)
         get_similar_items(book)
+        get_book_reviews(book)
         @books.push(book)
       end
 
@@ -55,6 +56,7 @@ class Awsapi
       @res.items[0..leftover - 1].each do |item|
         book = fill_book_info(item)
         get_similar_items(book)
+        get_book_reviews(book)
         @books.push(book)
       end
     end
@@ -84,13 +86,16 @@ class Awsapi
   end
 
   def get_similar_items(book)
+    sleep(0.1)
     @similar_items = Amazon::Ecs.similarity_lookup(book.asin)
     book.similar_items = @similar_items
   end
 
   def get_book_reviews(book)
-    @reviews = Amazon::Ecs.item_lookup(book, {:response_group => 'Reviews'})
-    puts @reviews.get_element("Item").get('CustomerReviews/IFrameURL')
+    sleep(0.1)
+    @review_info = Amazon::Ecs.item_lookup(book.asin, {:response_group => 'Reviews'})
+    @review = @review_info.get_element("Item").get('CustomerReviews/IFrameURL')
+    book.reviews = @review
   end
 
 end
@@ -119,6 +124,6 @@ class Bookinfo
   end
 end
 
-test = Awsapi.new
-test.search('ruby', 5)
-puts test.books[1].sale_url
+# test = Awsapi.new
+# test.search('ruby', 15)
+# puts test.books[1].reviews
