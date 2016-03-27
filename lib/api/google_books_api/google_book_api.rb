@@ -1,12 +1,12 @@
 #require 'googlebooks'
 require_relative 'GoogleBooks-master/lib/googlebooks.rb'
 require 'amazon/ecs'
-
+require 'goodreads'
 
 
 class GoogleBooksAPI
 
-attr_accessor :books
+attr_accessor :books, :goodreads_client
 
   def initialize
     Amazon::Ecs.configure do |options|
@@ -14,6 +14,9 @@ attr_accessor :books
       options[:AWS_secret_key] = 'UDH2y4Z8+22XI7q2AUAnyAdzGoonOVXBmO4zUuBc'
       options[:associate_tag] = 'i0a70-20'
     end
+
+    @goodreads_client = Goodreads::Client.new(api_key: "vBvspX3h3XcI5YboURDBg", \
+     api_secret: "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk")
 
     @books = []
   end
@@ -28,23 +31,15 @@ attr_accessor :books
       search_times += 1
     end
 
-
     (1..search_times).each do |current_page|
-
-      # if stop_sign
-      #   return
-      # end
 
       books = GoogleBooks.search(keyword + ', subject:' + subject, \
       {:count => 10, :page => current_page})
-
-
 
       books.each do |book|
         new_book = fill_book_info(book)
         @books.push(new_book)
       end
-
 
     end
   end
@@ -63,13 +58,14 @@ attr_accessor :books
     ratings_count = book.ratings_count
     preview_url = book.preview_link
 
-    #rest_info = [0, 1, 2, 3]
-    rest_info = fill_tbd_book_info_amazon(title)
+    rest_info = [0, 1, 2, 3]
+    #rest_info = fill_tbd_book_info_amazon(title)
     asin = rest_info[0]
     reviews = 'tbd'
     price = rest_info[1]
+    #price = book.sale_info['listPrice']
     similar_items = 'tbd'
-    sale_url = rest_info[2]
+    sale_url = book.sale_info['buyLink']
     sales_rank = rest_info[3]
 
     new_book = Bookinfo.new(isbn, title, author, publish_date, description, \
@@ -97,9 +93,12 @@ attr_accessor :books
     info_array.push(sale_url)
     info_array.push(sales_rank)
 
-    sleep(1)
+    sleep(0.5)
 
     return info_array
+  end
+
+  def get_book_reviews()
   end
 
 end
@@ -135,16 +134,19 @@ class Bookinfo
   end
 end
 
-# books = GoogleBooks.search('ruby' + ', subject:' + 'computers', {:count => 10, \
-#   :page => 1})
-# puts books.total_items
+# books = GoogleBooks.search('ruby' + ', subject:' + 'computers', \
+# {:count => 10, :page => 1})
+#
 # books.each do |i|
-#   puts i.title
+#   puts i.isbn
 # end
 
+# 9781576760536
 
 # test = GoogleBooksAPI.new
-# test.search('ruby', 50, 'computers')
+# test.search('java', 10, 'computers')
+# puts test.books.length
+
 # test.books.each do |i|
 #   puts i.title
 # end
@@ -152,8 +154,8 @@ end
 # puts test.books[100].title
 # test.books.each do |book|
 #    puts book.title
-#    puts book.sales_rank
 #    puts book.price
+#    puts book.sale_url
 # end
 
 # test = GoogleBooksAPI.new

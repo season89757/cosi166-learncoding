@@ -29,10 +29,11 @@ Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 # Now the api can access all the search results
 # but the number of total search results under 'computers' category
 # which are the books related to 'programming' is not as much as
-# we may imagine, e.g. all the 'ruby programming' books are only 300
-# and all the 'java programming' books are 768
+# we may imagine, e.g. all the 'ruby programming' books are only 301
+# and all the 'java programming' books are 731
 test = GoogleBooksAPI.new
-test.search('ruby', 20, 'computers')
+test.search('ruby', 200, 'computers')
+test.search('java', 500, 'computers')
 test.books.each do |b|
   Book.create(title: b.title, author: b.author, ISBN: b.isbn, \
   publish_date: b.publish_date, description: b.description, \
@@ -42,6 +43,8 @@ test.books.each do |b|
   average_rating: b.average_rating, ratings_count: b.ratings_count, \
   preview_url: b.preview_url, sales_rank: b.sales_rank)
 end
+
+
 
 # result = GoodR.new(40).results  # range (20-20005.,)
 # result.each do |single|
