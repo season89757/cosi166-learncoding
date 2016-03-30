@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'search_box/search_results'
 
+  get 'search_box/book_detail'
+
   resources :books
   resources :users
 
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
   get 'imdb/logout'
 
   get 'imdb/searchresult'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
