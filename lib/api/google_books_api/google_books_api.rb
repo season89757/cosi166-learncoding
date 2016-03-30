@@ -1,7 +1,7 @@
 #require 'googlebooks'
 require_relative 'GoogleBooks-master/lib/googlebooks.rb'
 require 'amazon/ecs'
-require 'goodreads'
+# require 'goodreads'
 
 
 class GoogleBooksAPI
@@ -15,8 +15,8 @@ attr_accessor :books, :goodreads_client
       options[:associate_tag] = 'i0a70-20'
     end
 
-    @goodreads_client = Goodreads::Client.new(api_key: "vBvspX3h3XcI5YboURDBg", \
-     api_secret: "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk")
+    # @goodreads_client = Goodreads::Client.new(api_key: "vBvspX3h3XcI5YboURDBg", \
+    #  api_secret: "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk")
 
     @books = []
   end

@@ -7,7 +7,6 @@ require_relative '../../app/controllers/imdb_controller'
 describe 'ImdbController' do
   before do
     @imdbcontroller = ImdbController.new
-    @imdbcontroller.result
   end
 
   describe "index" do
@@ -40,7 +39,7 @@ class ImdbControllerTest < ActionController::TestCase
             email: 'haroun@gmail.com')
         rushdie = User.find_by(username: "Rushdie")
         assert rushdie != nil
-        assert_redirected_to(imdb_index_path(:user_id => rushdie.id))
+        assert_redirected_to(imdb_index_path)
     end
 
     test "Register rejects if passwords don't match" do
@@ -74,7 +73,7 @@ class ImdbControllerTest < ActionController::TestCase
 
     test "Login logs user in" do
         get :login, username: "Dickens", password: "great-expectations"
-        assert_redirected_to(imdb_index_path(:user_id => @existing_user.id))
+        assert_redirected_to(imdb_index_path)
     end
 
     test "Login refuses wrong password" do

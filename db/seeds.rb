@@ -12,7 +12,7 @@
 # require 'set'
 # require_relative "../lib/api/aws_ecs/aws"
 
-require_relative '../lib/api/google_books_api/google_book_api'
+require_relative '../lib/api/google_books_api/google_books_api'
 
 
 if User.all.length != 0 then User.delete_all end
