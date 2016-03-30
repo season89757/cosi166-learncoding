@@ -13,7 +13,7 @@
     <% @forums.each do |forum| %>
       <tr>
         <td><%= link_to 'Show', forum %></td>
-        <td><%= link_to 'Edit', forums_edit_path(forum) %></td>
+        <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
         <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Forum', forums_new_path %>
+<%= link_to 'New Forum', new_forum_path %>
