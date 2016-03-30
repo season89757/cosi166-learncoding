@@ -108,6 +108,7 @@ module Amazon
       opts[:item_id] = item_id
 
       self.send_request(opts)
+      sleep(0.2)
     end
 
     # Browse node lookup by node ID.
@@ -124,6 +125,7 @@ module Amazon
       opts[:item_id] = item_id
 
       self.send_request(opts)
+      sleep(0.2)
     end
 
     # Generic send request to ECS REST service. You have to specify the :operation parameter.
@@ -141,6 +143,7 @@ module Amazon
         raise Amazon::RequestError, "HTTP Response: #{res.code} #{res.message}"
       end
       Response.new(res.body)
+      sleep(0.2)
     end
 
     def self.validate_request(opts)

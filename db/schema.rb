@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310203132) do
+ActiveRecord::Schema.define(version: 20160326010536) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.integer  "ISBN"
+    t.string   "ISBN"
     t.string   "author"
     t.date     "publish_date"
     t.text     "description"
@@ -27,15 +27,27 @@ ActiveRecord::Schema.define(version: 20160310203132) do
     t.string   "written_language"
     t.string   "asin"
     t.string   "price"
+    t.string   "similar_items"
+    t.string   "average_rating"
+    t.string   "ratings_count"
+    t.string   "sales_rank"
+    t.string   "preview_url"
+    t.string   "reviews"
+    t.string   "sale_url"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "book_id"
     t.text     "title"
-    t.integer  "agree"
+    t.text     "body"
+    t.integer  "like"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "comments", ["book_id"], name: "index_comments_on_book_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "domains", force: :cascade do |t|
     t.string   "name"

@@ -40,9 +40,11 @@ class Awsapi
 
       @res.items.each do |item|
         book = fill_book_info(item)
+        get_similar_items(book)
+        get_book_reviews(book)
         @books.push(book)
       end
-      sleep(0.2)
+
     end
 
     if leftover > 0
@@ -53,6 +55,8 @@ class Awsapi
 
       @res.items[0..leftover - 1].each do |item|
         book = fill_book_info(item)
+        get_similar_items(book)
+        get_book_reviews(book)
         @books.push(book)
       end
     end
@@ -72,12 +76,26 @@ class Awsapi
     asin = item.get('ASIN')
     reviews = "tbd"
     price = item.get('ItemAttributes/ListPrice/FormattedPrice')
+    sale_url = item.get('DetailPageURL')
 
     book = Bookinfo.new(isbn, title, author, publish_date, description, \
     publisher, image_url, total_pages, written_language, asin, reviews, \
-    price)
+    price, sale_url)
 
     return book
+  end
+
+  def get_similar_items(book)
+    sleep(0.1)
+    @similar_items = Amazon::Ecs.similarity_lookup(book.asin)
+    book.similar_items = @similar_items
+  end
+
+  def get_book_reviews(book)
+    sleep(0.1)
+    @review_info = Amazon::Ecs.item_lookup(book.asin, {:response_group => 'Reviews'})
+    @review = @review_info.get_element("Item").get('CustomerReviews/IFrameURL')
+    book.reviews = @review
   end
 
 end
@@ -85,10 +103,10 @@ end
 class Bookinfo
   attr_accessor :isbn, :title, :author, :publish_date, :description, \
    :publisher, :image_url, :total_pages, :written_language, :asin, \
-   :reviews, :price
+   :reviews, :price, :similar_items, :sale_url
 
   def initialize(isbn, title, author, publish_date, description, publisher, \
-    image_url, total_pages, written_language, asin, reviews, price)
+    image_url, total_pages, written_language, asin, reviews, price, sale_url)
     @isbn = isbn
     @title = title
     @author = author
@@ -101,9 +119,11 @@ class Bookinfo
     @asin = asin
     @reviews = reviews
     @price = price
+    @similar_items = ''
+    @sale_url = sale_url
   end
 end
 
 # test = Awsapi.new
 # test.search('ruby', 15)
-# puts test.books[0].title
+# puts test.books[1].reviews
