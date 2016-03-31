@@ -15,11 +15,15 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    if params[:_user_id]
-      id = params[:user_id]
-      @session = User.find(id)
+    if session[:imdb_user_id]
+      id = session[:imdb_user_id]
+      @user_id = id
+      @forum_id = params[:forum_id]
+
+
+    else
+      redirect_to forums_path
     end
-    @user_id = id
     @post = Post.new
   end
 
@@ -34,7 +38,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        forum = Forum.find(@post.forum_id)
+        format.html { redirect_to forum_post_path(forum, @post) }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }

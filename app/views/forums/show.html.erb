@@ -2,7 +2,7 @@
 <h1>Welcome to the <%= @forum.name %> Forum!!<br> </h1>
 <%= link_to 'Back to All Forums', forums_path %><br>
 
-<%= button_to 'Create a new post!', forum_posts_path(@forum, :new)%>
+<%= button_to 'Create a new post!', new_forum_post_path(@forum, :forum_id => @forum), method: :get%>
 
 <% @forum.posts.each do | p | %>
     <h3><%=link_to p.title, forum_post_path(@forum, p) %></h3>
