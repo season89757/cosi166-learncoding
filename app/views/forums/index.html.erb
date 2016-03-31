@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Forums</h1>
+<h1>Forums</h1>
+
+<%= link_to 'New Forum', new_forum_path %><br><br>
 
 <table>
   <thead>
@@ -12,9 +14,7 @@
   <tbody>
     <% @forums.each do |forum| %>
       <tr>
-        <td><%= link_to 'Show', forum %></td>
-        <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
-        <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to forum.name, forum %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,3 @@
 
 <br>
 
-<%= link_to 'New Forum', new_forum_path %>

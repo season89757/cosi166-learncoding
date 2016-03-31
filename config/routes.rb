@@ -6,7 +6,10 @@ Rails.application.routes.draw do
 
   resources :books
   resources :users
-  resources :forums
+  resources :forums do
+    resources :posts
+  end
+  #resources :posts
 
   post 'imdb/register'
 

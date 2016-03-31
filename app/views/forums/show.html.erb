@@ -1,4 +1,13 @@
 <p id="notice"><%= notice %></p>
+<h1>Welcome to the <%= @forum.name %> Forum!!<br> </h1>
+<%= link_to 'Back to All Forums', forums_path %><br>
 
-<%= link_to 'Edit', edit_forum_path(@forum) %> |
-<%= link_to 'Back', forums_path %>
+<%= button_to 'Create a new post!', forum_posts_path(@forum, :new)%>
+
+<% @forum.posts.each do | p | %>
+    <h3><%=link_to p.title, forum_post_path(@forum, p) %></h3>
+    <i><%= p.content%></i><br>
+    Has <%=p.postreplies.length%> response(s)
+<%end%>
+
+
