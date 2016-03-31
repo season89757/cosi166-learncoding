@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Forums', forums_path%> > <%= @forum.name %>
+
 <h1>Welcome to the <%= @forum.name %> Forum!!<br> </h1>
-<%= link_to 'Back to All Forums', forums_path %><br>
 
 <%= button_to 'Create a new post!', new_forum_post_path(@forum, :forum_id => @forum), method: :get%>
 

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to @forum.name, forum_path(@forum)%> > <%=@post.title%>
+<%= link_to 'Forums', forums_path%> > <%= link_to @forum.name, forum_path(@forum)%> > <%=@post.title%>
 
 <h1><%= @post.title %></h1>
 <h4>Original Question</h4>
