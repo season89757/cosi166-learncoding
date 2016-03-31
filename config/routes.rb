@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :forums do
     resources :posts
   end
-  #resources :posts
+  resources :posts
 
   post 'imdb/register'
 
