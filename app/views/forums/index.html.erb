@@ -4,21 +4,8 @@
 
 <%= link_to 'New Forum', new_forum_path %><br><br>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @forums.each do |forum| %>
-      <tr>
-        <td><%= link_to forum.name, forum %></td>
-      </tr>
+        <h3><%= link_to forum.name, forum %></h3>
     <% end %>
-  </tbody>
-</table>
 
-<br>
 

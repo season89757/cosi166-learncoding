@@ -7,6 +7,7 @@
 <% @forum.posts.each do | p | %>
     <h3><%=link_to p.title, forum_post_path(@forum, p) %></h3>
     <i><%= p.content%></i><br>
+    Posted by <%=User.find(id=p.user_id).display_name%> <br>
     Has <%=p.postreplies.length%> response(s)
 <%end%>
 

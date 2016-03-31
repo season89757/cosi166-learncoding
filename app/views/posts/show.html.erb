@@ -5,9 +5,10 @@
 <h1><%= @post.title %></h1>
 <h4>Original Question</h4>
 <%=@post.content%><br>
+-posted by <%=User.find(id=@post.user_id).display_name%>
 
 <h4> Replies: </h4>
 <% @post.postreplies.each do |pr| %>
     <%=pr.content%><br>
-    -posted by <%=User.find(id=pr.user_id).display_name%>
+    -reply by <%=User.find(id=pr.user_id).display_name%>
 <%end%>
