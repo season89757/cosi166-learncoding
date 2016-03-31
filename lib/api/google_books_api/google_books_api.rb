@@ -1,5 +1,7 @@
 #require 'googlebooks'
 require_relative 'GoogleBooks-master/lib/googlebooks.rb'
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 require 'amazon/ecs'
 # require 'goodreads'
 
@@ -15,8 +17,8 @@ attr_accessor :books, :goodreads_client
       options[:associate_tag] = 'i0a70-20'
     end
 
-    # @goodreads_client = Goodreads::Client.new(api_key: "vBvspX3h3XcI5YboURDBg", \
-    #  api_secret: "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk")
+    @goodreads_client = Goodreads::Client.new(api_key: "vBvspX3h3XcI5YboURDBg", \
+     api_secret: "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk")
 
     @books = []
   end
@@ -34,7 +36,7 @@ attr_accessor :books, :goodreads_client
     (1..search_times).each do |current_page|
 
       books = GoogleBooks.search(keyword + ', subject:' + subject, \
-      {:count => 10, :page => current_page})
+      {:count => 10, :page => current_page })
 
       books.each do |book|
         new_book = fill_book_info(book)
