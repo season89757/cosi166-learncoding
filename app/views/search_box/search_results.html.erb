@@ -4,6 +4,86 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <script>
+	var pageSize = 10;    //the number of records every page shows
+	var curPage=0;        //current page
+	var lastPage;        //last page
+	var direct=0;        //page change direction
+	var len;            //totle number of records
+	var page;            //totle number of pages
+	var begin;
+	var end;
+
+	$(document).ready(function display(){
+	  len = <%=@results.length%>    // the total number of result records
+	  page=len % pageSize==0 ? len/pageSize : Math.floor(len/pageSize)+1;//calculate the page numebr
+	  // alert("page==="+page);
+	  curPage=1;    // make current page the first page
+	  displayPage();//display the first page
+
+	  document.getElementById("btn0").innerHTML="current " + curPage + "/" + page + " pages";    // show the current page
+	  document.getElementById("sjzl").innerHTML="totally result: " + len + "";        // show the total result number
+
+
+	  $("#btn1").click(function firstPage(){    // first page
+	    curPage=1;
+	    direct = 0;
+	    displayPage();
+	  });
+	  $("#btn2").click(function frontPage(){    // pre page
+	    direct=-1;
+	    displayPage();
+	  });
+	  $("#btn3").click(function nextPage(){    // next page
+	    direct=1;
+	    displayPage();
+	  });
+	  $("#btn4").click(function lastPage(){    // last page
+	    curPage=page;
+	    direct = 0;
+	    displayPage();
+	  });
+	});
+
+	function displayPage(){
+			if(curPage <=1 && direct==-1){
+					direct=0;
+					alert("already the first page");
+					return;
+			} else if (curPage >= page && direct==1) {
+					direct=0;
+					alert("already the last page");
+					return ;
+			}
+
+			lastPage = curPage;
+
+			// fix the bug: when len=1, curPage= 0
+			if (len > pageSize) {
+					curPage = ((curPage + direct + len) % len);
+			} else {
+					curPage = 1;
+			}
+
+			begin=(curPage-1)*pageSize;// starting number of page to be shown
+			end = begin + 1*pageSize - 1;    // ending number of page to be shown
+
+			document.getElementById("btn0").innerHTML="current " + curPage + "/" + page + " pages";    // show the current page
+		  document.getElementById("sjzl").innerHTML="totally result: " + len + "";        // show the total result number
+
+			if(end > len ) end=len;
+			$("#searchresult tr").hide();    // first hide all records
+			$("#searchresult tr").each(function(i){    // then according to the condition to decide which pages to be shown
+			  if(i>=begin && i<=end)// show the record between : begin<=x<=end
+					$(this).show();
+			});
+
+	 }
+
+
+	</script>
+
 </head>
 
 <div class="row">
@@ -18,84 +98,102 @@
       <%= link_to "IMDB Homepage", imdb_index_path %>
     </div>
     <h2 align=center>Search Result</h2>
+    <div align ="right">
+      <a id="btn0"></a><br>
+  	  <a id="sjzl"></a><br>
+  	  <a  href="#" id="btn1">firstPage</a>
+  	  <a  href="#" id="btn2">prePage</a>
+  	  <a  href="#" id="btn3">nextPage</a>
+  	  <a  href="#" id="btn4">lastPage</a>
+    </div>
 
     <!-- here is the beginning of book information list-->
-    <div class="row" >
-    <% @results.each do |book| %>
 
-      <div class="col-md-3">
-        <div>
-          <%= link_to image_tag(book.image_url, :size=>"250x250"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => book.id}), :remote => true %>
-        </div>
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary" id="button-margin01">
-            tag1
-          </button>
-          <button type="button" class="btn btn-primary" id="button-margin01">
-            tag2
-          </button>
-          <button type="button" class="btn btn-primary" id="button-margin01">
-            tag3
-        </div>
-      </div>
+    <table id="searchresult">
+      <% @results.each do |book| %>
+      <tr>
+      <td>
+      <div class="container">
+        <div class="well well-lg">
+          <div class="row">
+          <div class="col-md-3">
+            <div>
+              <%= link_to image_tag(book.image_url, :size=>"250x250"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => book.id}), :remote => true %>
+            </div>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" id="button-margin01">
+                tag1
+              </button>
+              <button type="button" class="btn btn-primary" id="button-margin01">
+                tag2
+              </button>
+              <button type="button" class="btn btn-primary" id="button-margin01">
+                tag3
+              </div>
+          </div>
 
-      <div class="col-md-4">
+          <div class="col-md-4">
 
-        <div align=center>
-          <p id="p1"><%= book.title %></p>
-        </div>
-        <div align=center>
-          <p id="p2"><%= book.author %></p>
-        </div>
+            <div align=center>
+              <p id="p1"><%= book.title %></p>
+            </div>
+            <div align=center>
+              <p id="p2"><%= book.author %></p>
+            </div>
 
-        <div align=center>
-          <p id="p3"><%= book.description %></p>
-          <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More Details</button>
+            <div align=center>
+              <p id="p3"><%= book.description %></p>
+              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#<%=book.ISBN%>">More Details</button>
 
-          <!-- Modal -->
+              <!-- Modal -->
 
-          <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <p id="p4"><%= book.description %></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <div id="<%=book.ISBN%>" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <p id="p4"><%= book.description %></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+
                 </div>
               </div>
+
 
             </div>
           </div>
 
+          <div class="col-md-3">
+            <div >
+              <p id="p1">Comments:</p>
+            </div>
 
+            <div >
+              <p id="p2">firstpost</p>
+            </div>
+
+            <div >
+              <p id="p2">secondpost</p>
+            </div>
+
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" id="button-margin01">Buy</button>
+              <button type="button" class="btn btn-primary" id="button-margin01">Swap</button>
+            </div>
+
+          </div>
+          </div>
         </div>
       </div>
+      </td>
+      </tr>
 
-      <div align=left class="col-md-3">
-        <div >
-          <p id="p1">Comments:</p>
-        </div>
-
-        <div >
-          <p id="p2">firstpost</p>
-        </div>
-
-        <div >
-          <p id="p2">secondpost</p>
-        </div>
-
-        <div class="btn-group">
-          <button type="button" class="btn btn-primary" id="button-margin01">Buy</button>
-          <button type="button" class="btn btn-primary" id="button-margin01">Swap</button>
-        </div>
-
-      </div>
-      <br>
-      <br>======================================================================================================
-      <br>
       <% end %>
-    </div>
+    </table>
+
+
 
   </div>
 

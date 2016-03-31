@@ -29,9 +29,15 @@ class GoodR
       end
     end
   end
+
+  def get_reviews(isbn)
+    return client.book_by_isbn(isbn.to_s)
+  end
 end
 
-
+test = GoodR.new
+res = test.get_reviews("9781576760536")
+puts res.class
 # @key = "vBvspX3h3XcI5YboURDBg"
 # @secret = "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk"
 # @final = []

@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325200451) do
+ActiveRecord::Schema.define(version: 20160326010536) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.integer  "ISBN"
+    t.string   "ISBN"
     t.string   "author"
     t.date     "publish_date"
     t.text     "description"
@@ -28,6 +28,12 @@ ActiveRecord::Schema.define(version: 20160325200451) do
     t.string   "asin"
     t.string   "price"
     t.string   "similar_items"
+    t.string   "average_rating"
+    t.string   "ratings_count"
+    t.string   "sales_rank"
+    t.string   "preview_url"
+    t.string   "reviews"
+    t.string   "sale_url"
   end
 
   create_table "comments", force: :cascade do |t|

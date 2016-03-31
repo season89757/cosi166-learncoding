@@ -1,1 +1,115 @@
-<p>sample</p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<div class="row">
+  <div class="col-md-1" id="twosides">
+
+  </div>
+
+  <div class="col-md-10">
+
+    <div class="row">
+
+      <div align="center">
+        <%= link_to "IMDB Homepage", imdb_index_path %>
+      </div>
+
+      <div align="right">
+        <h2>User Profile</h2>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <div>
+            <%= image_tag(@book.image_url,:size=>"250x250")%>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" id="button-margin01">
+              tag1
+            </button>
+            <button type="button" class="btn btn-primary" id="button-margin01">
+              tag2
+            </button>
+            <button type="button" class="btn btn-primary" id="button-margin01">
+              tag3
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <div align=center>
+            <p id="p5"><%= @book.title %></p>
+          </div>
+          <div align=right>
+            <p id="p6"><%= @book.author %></p>
+          </div>
+          <div >
+            <p id="p7"><%= @book.description %></p>
+            <div align="right">
+              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More Details</button>
+
+            <!-- Modal -->
+
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <p id="p4"><%= @book.description %></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+
+          <div class="container">
+            <h3>What we offer you for this book:</h3>
+            <ul class="nav nav-pills nav-justified">
+              <li class="active"><a href="#">Comments</a></li>
+              <li><a href="#">Buy</a></li>
+              <li><a href="#">Swap</a></li>
+            </ul>
+          </div>
+
+          <div class="container" name="comments">
+            <h2>Comment List</h2>
+            <ul class="list-group">
+              <li class="list-group-item"><span class="badge">12</span> New</li>
+              <li class="list-group-item"><span class="badge">5</span> Deleted</li>
+              <li class="list-group-item"><span class="badge">3</span> Warnings</li>
+            </ul>
+          </div>
+
+          <div class="container">
+            <h2>Write your own comments!</h2>
+            <form role="form">
+              <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea class="form-control" rows="5" id="comment"></textarea>
+              </div>
+            </form>
+          </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-1" id="twosides">
+
+  </div>
+</div>
