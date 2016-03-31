@@ -23,8 +23,8 @@ User.create(username: "hanzhenyu", display_name: "Zhenyu Han", password: "1", ad
 User.create(username: "breyerjs", display_name: "Jackson", password: "1", admin: "1", email: "breyerjs@brandeis.edu")
 User.create(username: "boyang", display_name: "Boyang", password: "1", admin: "1", email: "ban@brandeis.edu")
 User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample.com")
-Book.create(title: "Agile Web Development with Rails", author: "Sam Ruby")
-Book.create(title: "Don't Make Me Think", author: "Steve Krug")
+#Book.create(title: "Agile Web Development with Rails", author: "Sam Ruby")
+#Book.create(title: "Don't Make Me Think", author: "Steve Krug")
 
 # Now the api can access all the search results
 # but the number of total search results under 'computers' category
