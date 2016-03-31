@@ -35,7 +35,7 @@ attr_accessor :books, :goodreads_client
 
       books = GoogleBooks.search(keyword + ', subject:' + subject, \
       {:count => 10, :page => current_page, :api_key => \
-        'AIzaSyA-juJrawn2LRzmPIwnKRSw0MmNisVuC84'})
+        'AIzaSyAsl0_kXtNRGah-kVnDMw00OpmNsnQ7eDA'})
 
       books.each do |book|
         new_book = fill_book_info(book)
