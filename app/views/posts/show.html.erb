@@ -7,8 +7,12 @@
 <%=@post.content%><br>
 -posted by <%=User.find(id=@post.user_id).display_name%>
 
+<% if @user_id != 'no_user' %>
+    <%= render 'postreplies/form', :locals => {:post => @post} %>
+<%end%>
+
 <h4> Replies: </h4>
 <% @post.postreplies.each do |pr| %>
     <%=pr.content%><br>
-    -reply by <%=User.find(id=pr.user_id).display_name%>
+    -reply by <%=User.find(id=pr.user_id).display_name%><br><br>
 <%end%>

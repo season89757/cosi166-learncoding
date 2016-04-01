@@ -1,0 +1,31 @@
+<%= form_for(@postreply) do |f| %>
+  <% if @postreply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@postreply.errors.count, "error") %> prohibited this postreply from being saved:</h2>
+
+      <ul>
+      <% @postreply.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :user_id, :value=>@user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :post_id, :value=>@post.id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Reply" %>
+  </div>
+<% end %>

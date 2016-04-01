@@ -7,9 +7,13 @@ Rails.application.routes.draw do
   resources :books
   resources :users
   resources :forums do
-    resources :posts
+    resources :posts do 
+      resources :postreplies
+    end
   end
   resources :posts
+  resources :postreplies
+
 
   post 'imdb/register'
 

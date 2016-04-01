@@ -10,6 +10,13 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    if session[:imdb_user_id]
+      id = session[:imdb_user_id]
+      @user_id = id
+    else
+      @user_id = 'no_user'
+    end
+    @postreply = Postreply.new
     @forum = Forum.find(id=@post.forum_id)
   end
 
