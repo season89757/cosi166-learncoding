@@ -8,8 +8,11 @@
 -posted by <%=User.find(id=@post.user_id).display_name%>
 
 <% if @user_id != 'no_user' %>
+    <br><br>
     <%= render 'postreplies/form', :locals => {:post => @post} %>
+    <br><br>
 <%end%>
+
 
 <h4> Replies: </h4>
 <% @post.postreplies.each do |pr| %>
