@@ -5,7 +5,8 @@
 <h1><%= @post.title %></h1>
 <h4>Original Question</h4>
 <%=@post.content%><br>
--posted by <%=User.find(id=@post.user_id).display_name%>
+-posted by <%=User.find(id=@post.user_id).display_name%><br>
+<%=@post.created_at.strftime('%I:%M%p on %m/%d/%Y')%>
 
 <% if @user_id != 'no_user' %>
     <br><br>
@@ -17,5 +18,7 @@
 <h4> Replies: </h4>
 <% @post.postreplies.each do |pr| %>
     <%=pr.content%><br>
-    -reply by <%=User.find(id=pr.user_id).display_name%><br><br>
+    -reply by <%=User.find(id=pr.user_id).display_name%><br> 
+    <%=pr.created_at.strftime('%I:%M%p on %m/%d/%Y')%>
+    <br><br>
 <%end%>
