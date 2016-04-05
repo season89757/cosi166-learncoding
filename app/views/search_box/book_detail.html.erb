@@ -84,24 +84,22 @@
             </ul>
           </div>
 
-          <div class="container" name="comments">
-            <h2>Comment List</h2>
-            <ul class="list-group">
-              <li class="list-group-item"><span class="badge">12</span> New</li>
-              <li class="list-group-item"><span class="badge">5</span> Deleted</li>
-              <li class="list-group-item"><span class="badge">3</span> Warnings</li>
-            </ul>
+          <div id = "comment_list">
+            <%= render "comment_list" %>
           </div>
+          
+          <% if session[:imdb_user_id]%>
+            <div class="container">
+              <h2>Write your own comments!</h2>
+              <%= form_tag("/search_box/create", method: "post", remote: true, id:'comment') do %>
+              <%= text_field_tag(:comment_title) %>
+              <%= text_field_tag(:comment_body) %>
+              <%= hidden_field_tag :book_id,@book.id %>
+              <%= submit_tag "Comment"%>
+              <%end%>
+            </div>
+          <%end%>
 
-          <div class="container">
-            <h2>Write your own comments!</h2>
-            <form role="form">
-              <div class="form-group">
-                <label for="comment">Comment:</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
-              </div>
-            </form>
-          </div>
 
       </div>
 

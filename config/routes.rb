@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
+  post 'comment/create'
+
   get 'search_box/search_results'
 
   get 'search_box/book_detail'
 
+  post "search_box/create"
+
   resources :books
-  resources :users
   resources :forums do
-    resources :posts do 
+    resources :posts do
       resources :postreplies
     end
   end
@@ -32,6 +35,8 @@ Rails.application.routes.draw do
   get 'imdb/logout'
 
   get 'imdb/searchresult'
+
+  get 'users/profile'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
