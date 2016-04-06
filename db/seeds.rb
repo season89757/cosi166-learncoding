@@ -12,7 +12,9 @@
 # require 'set'
 # require_relative "../lib/api/aws_ecs/aws"
 
-require_relative '../lib/api/google_books_api/google_books_api'
+# require_relative '../lib/api/google_books_api/google_books_api'
+
+require_relative '../lib/api/parse_json_book_info'
 
 
 if User.all.length != 0 then User.delete_all end
@@ -31,10 +33,15 @@ User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample
 # which are the books related to 'programming' is not as much as
 # we may imagine, e.g. all the 'ruby programming' books are only 301
 # and all the 'java programming' books are 731
-test = GoogleBooksAPI.new
-test.search('ruby', 200, 'computers')
-test.search('java', 500, 'computers')
-test.books.each do |b|
+
+
+#============== store the data to database from local json file ==============
+book_info = ParseJson.new
+
+file_name_list = ['ruby', 'java', 'php']
+
+book_info.load_info(file_name_list)
+book_info.books.each do |b|
   Book.create(title: b.title, author: b.author, ISBN: b.isbn, \
   publish_date: b.publish_date, description: b.description, \
   image_url: b.image_url, publisher: b.publisher, total_pages: b.total_pages, \

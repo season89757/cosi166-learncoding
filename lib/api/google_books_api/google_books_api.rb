@@ -3,9 +3,8 @@ require_relative 'GoogleBooks-master/lib/googlebooks.rb'
 require 'openssl'
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 require 'amazon/ecs'
-require 'json'
+# require 'json'
 require 'goodreads'
-
 
 class GoogleBooksAPI
 
@@ -120,13 +119,14 @@ attr_accessor :books, :goodreads_client, :books_hash_list
       @books_hash_list.push(book_hash)
     end
 
-
   end
 
-  def to_json(books_hash_list)
-    File.open((@file_name + "_books.json"),"w") do |f|
-      f.write(books_hash_list.to_json)
-    end
+  def to_json(books_hash_list, save_path)
+    file = File.open(save_path,"w")
+    file.write(books_hash_list.to_json)
+    file.close
+    @books = []
+    @books_hash_list = []
   end
 
 end
@@ -171,11 +171,13 @@ end
 
 # 9781576760536
 
-test = GoogleBooksAPI.new
-test.search('ruby', 80, 'computers')
-puts test.books.length
-test.to_hash(test.books)
-test.to_json(test.books_hash_list)
+# test = GoogleBooksAPI.new
+# test.search('java', 80, 'computers')
+# puts test.books.length
+# test.to_hash(test.books)
+# puts test.books_hash_list.length
+# path = Dir.pwd + "/lib/save_book_info/test.json"
+# test.to_json(test.books_hash_list, path)
 
 # test.books.each do |i|
 #   puts i.title
@@ -198,3 +200,4 @@ test.to_json(test.books_hash_list)
 # https://books.google.com/books?id=6jyOUrJBJHAC&dq=Refactoring:+Ruby+Edition&source=gbs_navlinks_s
 # http://www.amazon.com/Refactoring-Ruby-Addison-Wesley-Professional/dp/0321984137/ref=sr_1_1?ie=UTF8&qid=1458950286&sr=8-1&keywords=Refactoring%3A+Ruby+Edition
 # http://www.isbnsearch.org/search?s=0321604170
+# same book but different isbn
