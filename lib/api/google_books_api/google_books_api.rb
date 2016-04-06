@@ -3,12 +3,13 @@ require_relative 'GoogleBooks-master/lib/googlebooks.rb'
 require 'openssl'
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 require 'amazon/ecs'
-# require 'goodreads'
+require 'json'
+require 'goodreads'
 
 
 class GoogleBooksAPI
 
-attr_accessor :books, :goodreads_client
+attr_accessor :books, :goodreads_client, :books_hash_list
 
   def initialize
     Amazon::Ecs.configure do |options|
@@ -21,9 +22,12 @@ attr_accessor :books, :goodreads_client
      api_secret: "dMmUn90jCCmBEKvnjuhpvQ7h53dOY6PSt7DX7Gg9Vk")
 
     @books = []
+    @books_hash_list = []
+    @file_name =''
   end
 
   def search(keyword, num_of_results = 100, subject = 'computers')
+    @file_name = keyword
     stop_sign = false
     search_times = num_of_results / 10
 
@@ -103,6 +107,28 @@ attr_accessor :books, :goodreads_client
   def get_book_reviews()
   end
 
+  def to_hash(books)
+
+    books.each do |b|
+      book_hash = Hash["isbn" => b.isbn, "title" => b.title, "author" => b.author, \
+        "publish_date" => b.publish_date, "description" => b.description, \
+        "publisher" => b.publisher, "image_url" => b.image_url, "total_pages" => b.total_pages, \
+         "written_language" => b.written_language, "asin" => b.asin, "reviews" => b.reviews, \
+          "price" => b.price, "similar_items" => b.similar_items, "sale_url" => b.sale_url, \
+          "average_rating" => b.average_rating, "ratings_count" => b.ratings_count, "preview_url" => b.preview_url, \
+        "sales_rank" => b.sales_rank]
+      @books_hash_list.push(book_hash)
+    end
+
+
+  end
+
+  def to_json(books_hash_list)
+    File.open((@file_name + "_books.json"),"w") do |f|
+      f.write(books_hash_list.to_json)
+    end
+  end
+
 end
 
 class Bookinfo
@@ -145,9 +171,11 @@ end
 
 # 9781576760536
 
-# test = GoogleBooksAPI.new
-# test.search('java', 10, 'computers')
-# puts test.books.length
+test = GoogleBooksAPI.new
+test.search('ruby', 80, 'computers')
+puts test.books.length
+test.to_hash(test.books)
+test.to_json(test.books_hash_list)
 
 # test.books.each do |i|
 #   puts i.title
