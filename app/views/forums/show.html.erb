@@ -1,4 +1,15 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Forums', forums_path%> > <%= @forum.name %>
 
-<%= link_to 'Edit', edit_forum_path(@forum) %> |
-<%= link_to 'Back', forums_path %>
+<h1>Welcome to the <%= @forum.name %> Forum!!<br> </h1>
+
+<%= button_to 'Create a new post!', new_forum_post_path(@forum, :forum_id => @forum), method: :get%>
+
+<% @forum.posts.each do | p | %>
+    <h3><%=link_to p.title, forum_post_path(@forum, p) %></h3>
+    <i><%= p.content%></i><br>
+    Posted by <%=User.find(id=p.user_id).display_name%> <br>
+    Has <%=p.postreplies.length%> response(s)
+<%end%>
+
+

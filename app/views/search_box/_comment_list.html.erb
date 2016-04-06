@@ -1,0 +1,17 @@
+
+<table class = 'table'>
+  <thread>
+    <tr>
+      <th>title</th>
+      <th>comment</th>
+    </tr>
+  </thread>
+  <tbody>
+    <% @comments.each do |c|%>
+    <tr>
+      <td><%=c.title%></td>
+      <td><%=c.body%></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

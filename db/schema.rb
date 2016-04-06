@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326010536) do
+ActiveRecord::Schema.define(version: 20160331160337) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -75,12 +75,28 @@ ActiveRecord::Schema.define(version: 20160326010536) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "postreplies", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "postreplies", ["post_id"], name: "index_postreplies_on_post_id"
+  add_index "postreplies", ["user_id"], name: "index_postreplies_on_user_id"
+
   create_table "posts", force: :cascade do |t|
     t.text     "content"
     t.text     "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "forum_id"
   end
+
+  add_index "posts", ["forum_id"], name: "index_posts_on_forum_id"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "ratings", force: :cascade do |t|
     t.integer  "difficulty"

@@ -5,6 +5,7 @@ class ForumsController < ApplicationController
   # GET /forums.json
   def index
     @forums = Forum.all
+
   end
 
   # GET /forums/1
@@ -69,6 +70,6 @@ class ForumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def forum_params
-      params[:forum]
+      params.require(:forum).permit(:name)
     end
 end

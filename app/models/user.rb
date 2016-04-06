@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   #has_secure_password
   has_many :posts
+  has_many :postreplies
 
   has_many :comments
   has_many :books, :through => :comments

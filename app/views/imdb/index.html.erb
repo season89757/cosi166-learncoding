@@ -11,6 +11,7 @@
         <div>
           <% if session[:imdb_user_id] %>
             <%= link_to "Logout", imdb_logout_path %><br>
+            <%= link_to "Profile", users_profile_path %><br>
           <% else %>
             <%= link_to "Login", imdb_login_path %><br>
             <%= link_to "Register", imdb_register_path %><br>
