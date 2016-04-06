@@ -1,5 +1,5 @@
 {<img src="https://codeclimate.com/github/season89757/cosi166-learncoding/badges/gpa.svg" />}[https://codeclimate.com/github/season89757/cosi166-learncoding]
-
+{<img src="https://codeship.com/projects/3d10dee0-d840-0133-0af0-5e1dcb628de7/status?branch=master" alt="Status?branch=master" />}[https://codeship.com/projects/143174]
 == README
 
 This README would normally document whatever steps are necessary to get the
