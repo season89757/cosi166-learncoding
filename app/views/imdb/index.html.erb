@@ -11,6 +11,11 @@
     </div>
 
     <div class="row text-center">
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
       <div align=center>
         <%= image_tag(@logo_src, size: "985x315", :class => "logo") %>
       </div>
@@ -18,7 +23,7 @@
 
     <div align="center" class = "row">
       <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
-      <div class = "col-xs-8">
+      <div class = "col-xs-10">
         <div class = "search_box">
           <input name = "terms" class = "form-control"></input>
         </div>
