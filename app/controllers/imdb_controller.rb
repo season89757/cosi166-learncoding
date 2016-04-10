@@ -2,11 +2,12 @@ class ImdbController < ApplicationController
   attr_accessor :book_image, :tag1, :book_name, :id
 
   def index
-    image = open('/home/boyang/Dropbox/cosi166b_ban/cosi166-learncoding/app/assets/images/imdb_logo25.png') { |f| f.read }
-    test1 = Base64.encode64(image)
-    # @logo_url = Base64.decode64(test1)
-    @logo_src = "data:image/png;base64," + test1
-    # @path = File.dirname(File.dirname(__FILE__)) + '/assets/images/imdb_logo25.png'
+    logo_path = File.dirname(File.dirname(__FILE__)) + '/assets/images/imdb_logo25.png'
+    logo = open(logo_path) { |f| f.read }
+    logo_base64 = Base64.encode64(logo)
+    #@logo_url = Base64.decode64(test1)
+    @logo_src = "data:image/png;base64," + logo_base64
+
     if params[:_user_id]
       id = params[:user_id]
       @session = User.find(id)
