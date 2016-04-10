@@ -15,7 +15,7 @@
 # require_relative '../lib/api/google_books_api/google_books_api'
 
 require_relative '../lib/api/parse_json_book_info'
-
+require_relative '../lib/image_processing'
 
 if User.all.length != 0 then User.delete_all end
 if Book.all.length != 0 then Book.delete_all end
@@ -51,7 +51,9 @@ book_info.books.each do |b|
   preview_url: b.preview_url, sales_rank: b.sales_rank)
 end
 
-
+image_processing = ImageProcessing.new
+logo_base64 = image_processing.image_processing('imdb_logo25', 'png')
+Image.create(name: 'logo', base64: logo_base64)
 
 # result = GoodR.new(40).results  # range (20-20005.,)
 # result.each do |single|

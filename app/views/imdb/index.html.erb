@@ -1,33 +1,31 @@
 <body>
+  <div>
+    <%= render 'top_menu'%>
+  </div>
   <div id="main-container" class="container">
 
     <div class="row text-center">
       <div id="leftsidebar" class="col-xs-6">
         <%= index_top%>
       </div>
-      <div id="rightsidebar" class="col-xs-6">
-        <div>
-          <% if session[:imdb_user_id] %>
-            <%= link_to "Logout", imdb_logout_path %><br>
-            <%= link_to "Profile", users_profile_path %><br>
-          <% else %>
-            <%= link_to "Login", imdb_login_path %><br>
-            <%= link_to "Register", imdb_register_path %><br>
-          <% end %>
-        </div>
-      </div>
     </div>
 
     <div class="row text-center">
       <div align=center>
-        <%= image_tag(@logo_src, size: "985x315") %>
+        <%= image_tag(@logo_src, size: "985x315", :class => "logo") %>
       </div>
     </div>
 
-    <div align="center">
+    <div align="center" class = "row">
       <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
-      <%= text_field_tag(:terms) %>
-      <%= submit_tag("Search") %>
+      <div class = "col-xs-8">
+        <div class = "search_box">
+          <input name = "terms" class = "form-control"></input>
+        </div>
+      </div>
+      <div class = "col-xs-2">
+        <button type = "submit" class = "btn btn-primary">Search</button>
+      </div>
       <% end %>
     </div>
 

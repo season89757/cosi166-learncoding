@@ -9,25 +9,35 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Course System</a>
+        <a class="navbar-brand" href="#">IMDB for CS Books</a>
       </div>
       </div>
-      <div class = "col-xs-8">
+      <div class = "col-xs-7">
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="show">Home</a></li>
-          <li><a href="../subject/show">Subjects</a></li>
-          <li><a href="../course/show">Courses</a></li>
-          <li><a href="../instructor/show">Instructors</a></li>
-          <li><a href="../search/show">Search</a></li>
+          <li class="active"><%= link_to "Home", imdb_index_path%></li>
+          <li><%= link_to "Ruby", imdb_index_path%></li>
+          <li><%= link_to "Java", imdb_index_path%></li>
+          <li><%= link_to "Python", imdb_index_path%></li>
+          <li><%= link_to "Swap", imdb_index_path%></li>
         </ul>
       </div><!--/.nav-collapse -->
       </div>
-      <div class = "col-xs-1">
-        <form name="sign_in_form" action="../user/sign_out" method="get" accept-charset="utf-8">
-        <button type="submit" class="btn btn-default" name="sign_out_button" style="vertical-align: middle;">Sign out</button>
-        </form>
-      </div>
+      <% if !session[:imdb_user_id]%>
+        <div class = "col-xs-1">
+            <%= button_to "Sign Up", controller: "imdb", action: "register", class: "btn btn-success", style: "vertical-align: middle"%>
+        </div>
+        <div class = "col-xs-1">
+            <%= link_to "Sign In", imdb_login_path, :class => "middle"%>
+        </div>
+      <% else %>
+        <div class = "col-xs-1">
+            <%= link_to "Profile", users_profile_path, :class => "middle"%>
+        </div>
+        <div class = "col-xs-1">
+            <%= link_to "Sign Out", imdb_logout_path, :class => "middle"%>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
