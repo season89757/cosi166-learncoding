@@ -1,7 +1,8 @@
-<body>
+<body class = "background">
   <div>
     <%= render 'top_menu'%>
   </div>
+
   <div id="main-container" class="container">
 
     <div class="row text-center">
@@ -16,8 +17,10 @@
       <br>
       <br>
       <br>
+      <br>
+      <br>
       <div align=center>
-        <%= image_tag(@logo_src, size: "985x315", :class => "logo") %>
+        <%= image_tag(@logo_src, size: "844x270") %>
       </div>
     </div>
 
@@ -25,10 +28,14 @@
       <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
       <div class = "col-xs-10">
         <div class = "search_box">
+          <br>
+          <br>
           <input name = "terms" class = "form-control"></input>
         </div>
       </div>
       <div class = "col-xs-2">
+        <br>
+        <br>
         <button type = "submit" class = "btn btn-primary">Search</button>
       </div>
       <% end %>

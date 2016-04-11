@@ -51,9 +51,23 @@ book_info.books.each do |b|
   preview_url: b.preview_url, sales_rank: b.sales_rank)
 end
 
+#============== store image to database from app/assets/images folder ==============
 image_processing = ImageProcessing.new
-logo_base64 = image_processing.image_processing('imdb_logo25', 'png')
-Image.create(name: 'logo', base64: logo_base64)
+
+logo3_base64 = image_processing.image_processing('imdb_logo26', 'png')
+Image.create(name: 'logo3', base64: logo3_base64)
+
+logo4_base64 = image_processing.image_processing('imdb_logo27', 'png')
+Image.create(name: 'logo4', base64: logo4_base64)
+
+logo5_base64 = image_processing.image_processing('imdb_logo30', 'png')
+Image.create(name: 'logo5', base64: logo5_base64)
+
+logo6_base64 = image_processing.image_processing('imdb_logo31', 'png')
+Image.create(name: 'logo6', base64: logo6_base64)
+
+home_background_base64 = image_processing.image_processing('homepage_background2', 'png')
+Image.create(name: 'background', base64: home_background_base64)
 
 # result = GoodR.new(40).results  # range (20-20005.,)
 # result.each do |single|
