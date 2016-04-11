@@ -6,9 +6,9 @@ class ImdbController < ApplicationController
     logo_base64 = logo.base64
     @logo_src = "data:image/png;base64," + logo_base64
 
-    # background = Image.find_by(name: 'background')
-    # background_base64 = background.base64
-    # @background_src = "data:image/png;base64," + background_base64
+    background = Image.find_by(name: 'background')
+    background_base64 = background.base64
+    @background_src = "data:image/png;base64," + background_base64
 
     if params[:_user_id]
       id = params[:user_id]
