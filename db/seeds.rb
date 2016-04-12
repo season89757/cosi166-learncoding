@@ -38,7 +38,10 @@ User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample
 #============== store the data to database from local json file ==============
 book_info = ParseJson.new
 
-file_name_list = ['ruby', 'java', 'php']
+file_name_list = ['java', 'c', 'c++', 'c#', 'python', 'php', \
+'javascript', 'perl', 'ruby', 'visual basic .net', 'delphi', \
+'assembly language', 'objective-c', 'visual basic', 'swift', 'matlab', \
+'pl_or_sql', 'r', 'groovy']
 
 book_info.load_info(file_name_list)
 book_info.books.each do |b|
