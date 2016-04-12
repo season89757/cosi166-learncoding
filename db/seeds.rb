@@ -16,6 +16,7 @@
 
 require_relative '../lib/api/parse_json_book_info'
 require_relative '../lib/image_processing'
+require_relative '../lib/fake_data_generator'
 
 if User.all.length != 0 then User.delete_all end
 if Book.all.length != 0 then Book.delete_all end
@@ -52,6 +53,19 @@ book_info.books.each do |b|
   reviews: b.reviews, similar_items: b.similar_items, sale_url: b.sale_url, \
   average_rating: b.average_rating, ratings_count: b.ratings_count, \
   preview_url: b.preview_url, sales_rank: b.sales_rank)
+end
+
+#=================== generate 2 fake comments for each book ===================
+# must generate fake comments after store book info
+first_book_id = Book.first.id
+last_book_id = Book.last.id
+
+fake_comments = FakeData.new
+fake_comments.book_comment_generator(first_book_id, last_book_id, 2)
+
+fake_comments.comment_hash_list.each do |comment|
+  Comment.create(user_id: comment["user_id"], book_id: comment["book_id"], \
+  title: comment["title"], body: comment["body"], like: comment["like"])
 end
 
 #============== store image to database from app/assets/images folder ==============
