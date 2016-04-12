@@ -15,10 +15,14 @@ class ParseJson
       file_paths.push(path)
     end
 
+    max = 56
+    count = 0
+
     file_paths.each do |fp|
       file = open(fp)
       json_file = file.read
       parsed_book_info = JSON.parse(json_file)
+
       parsed_book_info.each do |book|
         isbn = book["isbn"]
         title = book["title"]
@@ -43,7 +47,16 @@ class ParseJson
             reviews, price, similar_items, sale_url, average_rating, \
             ratings_count, preview_url, sales_rank)
         @books.push(b)
+
+        count += 1
+        if count == max
+          count = 0
+          max -= 2
+          break
+        end
+
       end
+
     end
 
   end

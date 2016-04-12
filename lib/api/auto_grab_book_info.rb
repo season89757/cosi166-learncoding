@@ -43,11 +43,26 @@ save_path = File.dirname(File.dirname(__FILE__)) + '/save_book_info/'
 # book_info.save_book_info('ruby', 270, save_path, 'computers') Success!
 # book_info.save_book_info('java', 650, save_path, 'computers') Success!
 # book_info.save_book_info('php', 300, save_path, 'computers') Success!
+# book_info.save_book_info('c', 580, save_path, 'computers') Success!
+# book_info.save_book_info('c++', 550, save_path, 'computers') Success!
+# book_info.save_book_info('c#', 360, save_path, 'computers') Success!
+# book_info.save_book_info('javascript', 360, save_path, 'computers') Success!
+# book_info.save_book_info('perl', 270, save_path, 'computers') Success!
+# book_info.save_book_info('visual basic .net', 340, save_path, 'computers') Success!
+# book_info.save_book_info('delphi', 320, save_path, 'computers') Success!
+# book_info.save_book_info('assembly language', 420, save_path, 'computers') Success!
+# book_info.save_book_info('objective-c', 310, save_path, 'computers') Success!
+# book_info.save_book_info('visual basic', 460, save_path, 'computers') Success!
+# book_info.save_book_info('swift', 240 , save_path, 'computers') Success!
+# book_info.save_book_info('matlab', 290, save_path, 'computers') Success!
+# book_info.save_book_info('pl/sql', 290, save_path, 'computers') Success!
+# book_info.save_book_info('r', 200, save_path, 'computers') Success!
+# book_info.save_book_info('groovy', 210, save_path, 'computers') Success!
+# book_info.save_book_info('python', 290, save_path, 'computers') Success!
 
+#===================6710 books in total=============================
 
-
-
-
+# book_info.save_book_info('D', 0, save_path, 'computers')
 
 # test1 = File.open('test.txt',"w")
 # test1.write('1')

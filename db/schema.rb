@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331160337) do
+ActiveRecord::Schema.define(version: 20160412183727) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20160331160337) do
     t.integer  "book_id"
     t.text     "title"
     t.text     "body"
-    t.integer  "like"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "like"
   end
 
   add_index "comments", ["book_id"], name: "index_comments_on_book_id"
@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(version: 20160331160337) do
 
   create_table "forums", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "name"
+    t.string   "base64"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

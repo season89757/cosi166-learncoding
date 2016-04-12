@@ -15,7 +15,8 @@
 # require_relative '../lib/api/google_books_api/google_books_api'
 
 require_relative '../lib/api/parse_json_book_info'
-
+require_relative '../lib/image_processing'
+require_relative '../lib/fake_data_generator'
 
 if User.all.length != 0 then User.delete_all end
 if Book.all.length != 0 then Book.delete_all end
@@ -38,7 +39,10 @@ User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample
 #============== store the data to database from local json file ==============
 book_info = ParseJson.new
 
-file_name_list = ['ruby', 'java', 'php']
+file_name_list = ['java', 'c', 'c++', 'c#', 'python', 'php', \
+'javascript', 'perl', 'ruby', 'visual basic .net', 'delphi', \
+'assembly language', 'objective-c', 'visual basic', 'swift', 'matlab', \
+'pl_or_sql', 'r', 'groovy']
 
 book_info.load_info(file_name_list)
 book_info.books.each do |b|
@@ -51,7 +55,36 @@ book_info.books.each do |b|
   preview_url: b.preview_url, sales_rank: b.sales_rank)
 end
 
+#=================== generate 2 fake comments for each book ===================
+# must generate fake comments after store book info
+first_book_id = Book.first.id
+last_book_id = Book.last.id
 
+fake_comments = FakeData.new
+fake_comments.book_comment_generator(first_book_id, last_book_id, 2)
+
+fake_comments.comment_hash_list.each do |comment|
+  Comment.create(user_id: comment["user_id"], book_id: comment["book_id"], \
+  title: comment["title"], body: comment["body"], like: comment["like"])
+end
+
+#============== store image to database from app/assets/images folder ==============
+image_processing = ImageProcessing.new
+
+logo3_base64 = image_processing.image_processing('imdb_logo26', 'png')
+Image.create(name: 'logo3', base64: logo3_base64)
+
+logo4_base64 = image_processing.image_processing('imdb_logo27', 'png')
+Image.create(name: 'logo4', base64: logo4_base64)
+
+logo5_base64 = image_processing.image_processing('imdb_logo30', 'png')
+Image.create(name: 'logo5', base64: logo5_base64)
+
+logo6_base64 = image_processing.image_processing('imdb_logo31', 'png')
+Image.create(name: 'logo6', base64: logo6_base64)
+
+home_background_base64 = image_processing.image_processing('homepage_background2', 'png')
+Image.create(name: 'background', base64: home_background_base64)
 
 # result = GoodR.new(40).results  # range (20-20005.,)
 # result.each do |single|
