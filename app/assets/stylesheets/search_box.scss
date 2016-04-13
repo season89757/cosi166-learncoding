@@ -2,20 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#p5{      //tile style
-  font-size:15px;
-  color:#0000ff;
+#booktitle{
+  font-size: 40px;
+  color:#000000;
 }
 
-#p6{       //author style
+#bookauthor{
   font-size:15px;
-  color:#ff0000;
+  color:#555555;
 }
 
-#p7{     //description style
+#bookdescription{
   font-size:15px;
-  width:800px;
-  height:170px;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  color:#ffffff;
 }

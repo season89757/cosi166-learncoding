@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'userphotos/index'
+
+  get 'userphotos/new'
+
+  get 'userphotos/create'
+
+  get 'userphotos/destroy'
+
   post 'comment/create'
 
   get 'search_box/search_results'
@@ -7,6 +15,9 @@ Rails.application.routes.draw do
   get 'search_box/book_detail'
 
   post "search_box/create"
+
+  resources :userphotos, only: [:index, :new, :create, :destroy]
+
 
   resources :books
   resources :forums do

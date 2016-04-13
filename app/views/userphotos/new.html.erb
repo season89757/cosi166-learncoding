@@ -1,0 +1,21 @@
+<% if !@userphoto.errors.empty? %>
+   <div class = "alert alert-error">
+
+      <ul>
+         <% @userphoto.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+         <% end %>
+      </ul>
+
+   </div>
+<% end %>
+
+<div class = "well">
+   <%= form_for @userphoto, html: { multipart: true } do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      <%= f.label :attachment %>
+      <%= f.file_field :attachment %>
+      <%= f.submit "Save", class: "btn btn-primary" %>
+   <% end %>
+</div>

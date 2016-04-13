@@ -37,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "activerecord_url_connections"
 
+gem 'carrierwave','~>0.9'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

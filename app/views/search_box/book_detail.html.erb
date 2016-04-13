@@ -1,113 +1,136 @@
+<!DOCTYPE html>
+<html>
 <head>
+  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+  body {
+      position: relative;
+  }
+  #section1 {padding-top:50px;height:500px;overflow:auto;color: #fff; background-color: #1E88E5;}
+  #section2 {padding-top:50px;height:500px;overflow:auto;color: #fff; background-color: #673ab7;}
+  #section31 {padding-top:50px;height:500px;color: #fff; background-color: #00bcd4;}
+  #section32 {padding-top:50px;height:500px;color: #fff; background-color: #009688;}
+  </style>
 </head>
 
-<div class="row">
-  <div class="col-md-1" id="twosides">
-
-  </div>
-
-  <div class="col-md-10">
-
-    <div class="row">
-
-      <div align="center">
-        <%= link_to "IMDB Homepage", imdb_index_path %>
-      </div>
-
-      <div align="right">
-        <h2>User Profile</h2>
-      </div>
-
-      <div class="row">
-        <div class="col-md-3">
-          <div>
-            <%= image_tag(@book.image_url,:size=>"250x250")%>
-          </div>
-          <div class="btn-group">
-            <button type="button" class="btn btn-primary" id="button-margin01">
-              tag1
-            </button>
-            <button type="button" class="btn btn-primary" id="button-margin01">
-              tag2
-            </button>
-            <button type="button" class="btn btn-primary" id="button-margin01">
-              tag3
-          </div>
-        </div>
-
-        <div class="col-md-7">
-          <div align=center>
-            <p id="p5"><%= @book.title %></p>
-          </div>
-          <div align=right>
-            <p id="p6"><%= @book.author %></p>
-          </div>
-          <div >
-            <p id="p7"><%= @book.description %></p>
-            <div align="right">
-              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">More Details</button>
-
-            <!-- Modal -->
-
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-body">
-                      <p id="p4"><%= @book.description %></p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row">
-
-          <div class="container">
-            <h3>What we offer you for this book:</h3>
-            <ul class="nav nav-pills nav-justified">
-              <li class="active"><a href="#">Comments</a></li>
-              <li><a href="#">Buy</a></li>
-              <li><a href="#">Swap</a></li>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/imdb/index">IMDB Homepage</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#section1">Book Information</a></li>
+          <li><a href="#section2">Comments</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Get It<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#section31">Buy</a></li>
+              <li><a href="#section32">Swap</a></li>
             </ul>
-          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
 
-          <div id = "comment_list">
-            <%= render "comment_list" %>
-          </div>
-          
-          <% if session[:imdb_user_id]%>
-            <div class="container">
-              <h2>Write your own comments!</h2>
-              <%= form_tag("/search_box/create", method: "post", remote: true, id:'comment') do %>
-              <%= text_field_tag(:comment_title) %>
-              <%= text_field_tag(:comment_body) %>
-              <%= hidden_field_tag :book_id,@book.id %>
-              <%= submit_tag "Comment"%>
-              <%end%>
-            </div>
-          <%end%>
+<div id="section1" class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div>
+        <%= image_tag(@book.image_url,:size=>"250x250")%>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" id="button-margin01">
+          tag1
+        </button>
+        <button type="button" class="btn btn-primary" id="button-margin01">
+          tag2
+        </button>
+        <button type="button" class="btn btn-primary" id="button-margin01">
+          tag3
+      </div>
+    </div>
 
-
+    <div class="col-md-9">
+      <div align=center>
+        <p id="booktitle"><%= @book.title %></p>
+      </div>
+      <div align=right>
+        <p id="bookauthor"><%= @book.author %></p>
+      </div>
+      <div >
+        <p id="bookdescription"><%= @book.description %></p>
       </div>
 
     </div>
-
-  </div>
-
-  <div class="col-md-1" id="twosides">
-
   </div>
 </div>
+
+<div id="section2" class="container-fluid">
+  <div class="container-fluid">
+  <h2><strong>Comments:</strong></h2>
+  <hr>
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="/images/obama.jpg" class="img-circle" height="165" width="165" alt="Avatar">
+    </div>
+
+    <div class="col-sm-9">
+      <h2>I Love Food</h2>
+      <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+      <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+      <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <br><br>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="/images/hillary.jpg" class="img-circle" height="165" width="165" alt="Avatar">
+    </div>
+    <div class="col-sm-9">
+      <h2>Officially Blogging</h2>
+      <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
+      <h5><span class="label label-success">Lorem</span></h5><br>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <hr>
+
+      <br><br>
+    </div>
+  </div>
+  <h4>Leave a Comment:</h4>
+  <form role="form">
+    <div class="form-group">
+      <textarea class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+</div>
+
+<div id="section31" class="container-fluid">
+  <h1>Online Shops:</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+<div id="section32" class="container-fluid">
+  <h1>Swap with others:</h1>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+</div>
+
+</body>
+</html>
