@@ -6,18 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# require_relative "../lib/api/goodapi"
-#
-# require_relative '../lib/api/aws_ecs/amazon-ecs-master/lib/amazon/ecs'
-# require 'set'
-# require_relative "../lib/api/aws_ecs/aws"
 
-# require_relative '../lib/api/google_books_api/google_books_api'
+require_relative '../lib/scripts/parse_json_book_info'
+require_relative '../lib/scripts/image_processing'
+require_relative '../lib/scripts/fake_data_generator'
 
-require_relative '../lib/api/parse_json_book_info'
-require_relative '../lib/image_processing'
-require_relative '../lib/fake_data_generator'
+puts "============ Start store seeds data to DB ============"
+puts "============ Please wait for about 2 mins ============"
 
+puts "============ Begin to load the User info ============"
 if User.all.length != 0 then User.delete_all end
 if Book.all.length != 0 then Book.delete_all end
 
@@ -26,17 +23,9 @@ User.create(username: "hanzhenyu", display_name: "Zhenyu Han", password: "1", ad
 User.create(username: "breyerjs", display_name: "Jackson", password: "1", admin: "1", email: "breyerjs@brandeis.edu")
 User.create(username: "boyang", display_name: "Boyang", password: "1", admin: "1", email: "ban@brandeis.edu")
 User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample.com")
-#Book.create(title: "Agile Web Development with Rails", author: "Sam Ruby")
-#Book.create(title: "Don't Make Me Think", author: "Steve Krug")
+puts "============ User info loaded successfully ============"
 
-# Now the api can access all the search results
-# but the number of total search results under 'computers' category
-# which are the books related to 'programming' is not as much as
-# we may imagine, e.g. all the 'ruby programming' books are only 301
-# and all the 'java programming' books are 731
-
-
-#============== store the data to database from local json file ==============
+puts "============ Begin to load the Book info ============"
 book_info = ParseJson.new
 
 file_name_list = ['java', 'c', 'c++', 'c#', 'python', 'php', \
@@ -54,8 +43,9 @@ book_info.books.each do |b|
   average_rating: b.average_rating, ratings_count: b.ratings_count, \
   preview_url: b.preview_url, sales_rank: b.sales_rank)
 end
+puts "============ Book info loaded successfully ============"
 
-#=================== generate 2 fake comments for each book ===================
+puts "============ Begin to load the Comment info ============"
 # must generate fake comments after store book info
 first_book_id = Book.first.id
 last_book_id = Book.last.id
@@ -67,42 +57,26 @@ fake_comments.comment_hash_list.each do |comment|
   Comment.create(user_id: comment["user_id"], book_id: comment["book_id"], \
   title: comment["title"], body: comment["body"], like: comment["like"])
 end
+puts "============ Comment info loaded successfully ============"
 
-#============== store image to database from app/assets/images folder ==============
+puts "============ Begin to load the Image info ============"
+#store image to database from app/assets/images folder
 image_processing = ImageProcessing.new
 
-logo3_base64 = image_processing.image_processing('imdb_logo26', 'png')
-Image.create(name: 'logo3', base64: logo3_base64)
+logo1_base64 = image_processing.image_processing('imdb_logo30', 'png')
+Image.create(name: 'logo1', base64: logo1_base64)
 
-logo4_base64 = image_processing.image_processing('imdb_logo27', 'png')
-Image.create(name: 'logo4', base64: logo4_base64)
+logo2_base64 = image_processing.image_processing('imdb_logo32', 'png')
+Image.create(name: 'logo2', base64: logo2_base64)
 
-logo5_base64 = image_processing.image_processing('imdb_logo30', 'png')
-Image.create(name: 'logo5', base64: logo5_base64)
+white_arrow_base64 = image_processing.image_processing('white_arrow', 'png')
+Image.create(name: 'white_arrow', base64: white_arrow_base64)
 
-logo6_base64 = image_processing.image_processing('imdb_logo31', 'png')
-Image.create(name: 'logo6', base64: logo6_base64)
+black_arrow_base64 = image_processing.image_processing('black_arrow', 'png')
+Image.create(name: 'black_arrow', base64: black_arrow_base64)
 
 home_background_base64 = image_processing.image_processing('homepage_background2', 'png')
 Image.create(name: 'background', base64: home_background_base64)
+puts "============ Image info loaded successfully ============"
 
-# result = GoodR.new(40).results  # range (20-20005.,)
-# result.each do |single|
-#   title = single.best_book.title
-#   author = single.best_book.author.name
-#   puts "title:"
-#   puts title
-#   puts "author"
-#   puts author
-#   puts "++++++++++"
-#   Book.create(title: title, author:author)
-# end
-
-# data = Awsapi.new
-# data.search('ruby', 10)
-# data.books.each do |b|
-#   Book.create(title: b.title, author: b.author, ISBN: b.isbn, \
-#   publish_date: b.publish_date, description: b.description, \
-#   image_url: b.image_url, publisher: b.publisher, total_pages: b.total_pages, \
-#   written_language: b.written_language, asin: b.asin, price: b.price)
-# end
+puts "============ All seeds data loaded successfully! ============"

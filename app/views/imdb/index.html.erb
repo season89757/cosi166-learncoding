@@ -2,88 +2,140 @@
   <%= render 'top_menu'%>
 </div>
 
-<body class = "background">
 
-  <div id="main-container" class="container">
+<body>
 
-    <div class="row text-center">
-      <div id="leftsidebar" class="col-xs-6">
-        <%= index_top%>
-      </div>
-    </div>
+  <div id = "page1" class = "page_height" style = "background-color: #FFF;">
+    <a id="search_page" class="smooth"></a>
+    <div id="page1-container" class="container">
 
-    <div class="row text-center">
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div align=center>
-        <%= image_tag(@logo_src, size: "844x270") %>
-      </div>
-    </div>
-
-    <div align="center" class = "row">
-      <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
-      <div class = "col-xs-10">
-        <div class = "search_box">
-          <br>
-          <br>
-          <input name = "terms" class = "form-control"></input>
+      <div class="row text-center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div align=center>
+          <%= image_tag(@logo_src, size: "844x270") %>
         </div>
       </div>
-      <div class = "col-xs-2">
-        <br>
-        <br>
-        <button type = "submit" class = "btn btn-primary">Search</button>
-      </div>
-      <% end %>
-    </div>
 
+      <div align="center" class = "row">
+        <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
+        <div class = "col-xs-10">
+          <div class = "search_box">
+            <br>
+            <br>
+            <input name = "terms" class = "form-control"></input>
+          </div>
+        </div>
+        <div class = "col-xs-2">
+          <br>
+          <br>
+          <button type = "submit" class = "btn btn-primary">Search</button>
+        </div>
+        <% end %>
+      </div>
+
+      <div class = "row" align = "center">
+        <a href="#trend_chart_page" id="trend_chart_page" class = "smooth">
+          <%= image_tag(@black_arrow_src, size: "50x50") %>
+          <span class = "black_font smooth">New to codeing & More info needed?</span>
+        </a>
+        <br>
+        <br>
+      </div>
+
+    </div>
   </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <div id = "page2" class = "page_height" style = "background-color: #FFF;">
+    <a id="trend_chart_page" class="smooth"></a>
+    <div id = "page2_container" class = "container">
+
+      <div class = "row" align = "center">
+        
+        <br>
+        <br>
+      </div>
+
+      <div class = "row" align = "center">
+        <p class = "black_font"> Get started now!</p>
+      </div>
+
+      <div class = "row" align = "center">
+        <div class="btn-group btn-group-lg" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" style = "background-color: #ff9933; color: #FFF;">Java</button>
+          <button type="button" class="btn btn-default" style = "background-color: #000099; color: #FFF;">C</button>
+          <button type="button" class="btn btn-default" style = "background-color: #0000ff; color: #FFF;">C++</button>
+          <button type="button" class="btn btn-default" style = "background-color: #6600cc; color: #FFF;">C#</button>
+          <button type="button" class="btn btn-default" style = "background-color: #669900; color: #FFF;">Python</button>
+          <button type="button" class="btn btn-default" style = "background-color: #3399ff; color: #FFF;">PHP</button>
+          <button type="button" class="btn btn-default" style = "background-color: #e6b800; color: #FFF;">JavaScript</button>
+          <button type="button" class="btn btn-default" style = "background-color: #9999ff; color: #FFF;">Perl</button>
+          <button type="button" class="btn btn-default" style = "background-color: #ff5050; color: #FFF;">Ruby</button>
+          <button type="button" class="btn btn-default" style = "background-color: #808080; color: #FFF;">Visual Basic .NET</button>
+        </div>
+      </div>
+
+      <div class = "row" align = "center">
+        <div class="btn-group" role="group" aria-label="...">
+          <button type="button" class="btn btn-default">Delphi</button>
+          <button type="button" class="btn btn-default">Assembly Language</button>
+          <button type="button" class="btn btn-default">Objective-C</button>
+          <button type="button" class="btn btn-default">Visual Basic</button>
+          <button type="button" class="btn btn-default">Swift</button>
+          <button type="button" class="btn btn-default">MATLAB</button>
+          <button type="button" class="btn btn-default">PL/SQL</button>
+          <button type="button" class="btn btn-default">R</button>
+          <button type="button" class="btn btn-default">Groovy</button>
+        </div>
+      </div>
+
+      <div class = "row" align = "center">
+        <br>
+        <br>
+        <a href="#best_selling_page">
+          <%= image_tag(@black_arrow_src, size: "50x50") %>
+          <span class = "black_font">Ultimate solution here</span>
+        </a>
+        <br>
+        <br>
+      </div>
+
+    </div>
+  </div>
+
+  <div id = "page3" class = "page_height" style = "background-color: #000;">
+    <a id="best_selling_page" class="smooth"></a>
+    <div id = "page3_container" class = "container">
+
+      <div class = "row" align = "center">
+        <%=image_tag("pl_trends.jpg", class: "width100")%>
+      </div>
+
+      <div class = "row" align = "center">
+        <a href="#trend_chart_page">
+          <%= image_tag(@white_arrow_src, size: "50x50") %>
+          <span class = "white_font">Credit & About</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
+  <script>
+  $('.smooth').on('click', function() {
+      $.smoothScroll({
+          scrollElement: $('body'),
+          scrollTarget: '#' + this.id
+      });
+
+      return false;
+  });
+  </script>
+
+
 </body>
