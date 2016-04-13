@@ -5,7 +5,7 @@ class ImageProcessing
   end
 
   def image_processing (image_name, image_format)
-    image_path = File.dirname(File.dirname(__FILE__)) + '/app/assets/images/' \
+    image_path = File.dirname(File.dirname(File.dirname(__FILE__))) + '/app/assets/images/' \
                  + image_name + '.' + image_format
 
     image = open(image_path) { |f| f.read }

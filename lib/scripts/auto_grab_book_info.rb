@@ -1,4 +1,4 @@
-require_relative 'google_books_api/google_books_api'
+require_relative '../api/google_books_api/google_books_api'
 require 'json'
 
 class SaveBookInfo
