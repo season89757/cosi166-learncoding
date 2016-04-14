@@ -2,7 +2,6 @@ require 'pry-byebug'
 class SearchBoxController < ApplicationController
 
   def search_results
-
     query_string = params[:terms]
     @results = Book.run_search(query_string)
 
