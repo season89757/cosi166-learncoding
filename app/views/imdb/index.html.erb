@@ -124,6 +124,38 @@
     </div>
   </div>
 
+  <div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Welcome and Please Login</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            <%= login_error %>
+          </div>
+          <div align = center>
+            <%= form_tag("imdb/login", method: "get") do %>
+              <% if @error%>
+                <%= @error%>
+              <%end%>
+              <%= label_tag(:q_username, "Username")%>
+              <%= text_field_tag(:username) %><br>
+              <%= label_tag(:q_password, "Password")%>
+              <%= password_field_tag(:password) %><br>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag("Login1")%>
+          <% end %>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
   <script>

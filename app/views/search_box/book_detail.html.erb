@@ -117,13 +117,20 @@ GBS_insertEmbeddedViewer('ISBN:0738531367',600,500);
       <br><br>
     </div>
   </div>
-  <h4>Leave a Comment:</h4>
-  <form role="form">
-    <div class="form-group">
-      <textarea class="form-control" rows="3" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+  <%= render "comment_list"%>
+  <% if session[:imdb_user_id]%>
+    <h4>Leave a Comment:</h4>
+      <%= form_tag "comment", :method=> "post", :remote=> true, :id=>"user_comment" do %>
+        <%= hidden_field_tag "book_id", @book.id %>
+        <%= text_field_tag "comment_title", "Enter title here", :class=>"text_fieldone" %>
+        <%= text_field_tag "comment_body", "Enter comment here" %>
+        <%= submit_tag "Comment", :class=>"btn" %>
+      <%end%>
+  <%end%>
+  <script>
+  $("#user_comment").css("color","black");
+  </script>
+
 </div>
 </div>
 
