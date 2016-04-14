@@ -9,7 +9,7 @@ class FakeData
   def user_generator(num)
     (1..num).each do |i|
       username = Faker::Name.first_name + " " + Faker::Name.last_name
-      display_name = Faker::Lorem.word
+      display_name = username
       password = "1"
       email = Faker::Internet.email
       admin = "0"
