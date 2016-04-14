@@ -16,18 +16,22 @@
 
 # External-facing method. Call this to run the script. 
 def run_tag_script()
+    puts "Beginning the tag process."
+    
     clear_all_tags()
     terms_table = terms_table()
 
     terms_table.each do |tag, terms|
+
         relevant_books = run_query(terms)
         tag_books(tag, relevant_books)
+    
     end
+    puts "The tagging process is now complete."
 end
 
 
 ### INTERNAL METHODS ###
-
 
 # returns a hash of tag_name: [terms]
 def terms_table()
@@ -44,8 +48,9 @@ def terms_table()
 
         'Security' =>       ['security', 'crypto'],
 
-        'Introductory' => ['introduction', 'introductory', 'beginner', 
-                                'basic']
+        'Introductory' =>   ['introduction', 'introductory', 'beginner', 
+                                'basic'],
+        'python' => ['django', 'python']
     }
 
 end
