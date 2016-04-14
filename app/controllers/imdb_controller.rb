@@ -25,15 +25,11 @@ class ImdbController < ApplicationController
   end
 
   def login
-    if params[:error] then @error = params[:error] end
-
     if params[:username]
       @user = User.find_by(username: params[:username], password: params[:password])
       if @user
         session[:imdb_user_id]=@user.id
         redirect_to imdb_index_path
-      else
-        redirect_to imdb_login_path(:error => "Wrong credentials")
       end
     end
   end
@@ -63,6 +59,13 @@ class ImdbController < ApplicationController
       session[:imdb_user_id] = nil
     end
     redirect_to imdb_index_path
+  end
+
+  def new_release
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 end

@@ -1,3 +1,4 @@
+require 'pry-byebug'
 class SearchBoxController < ApplicationController
 
   # Helper Function---NOT A VIEW
@@ -102,12 +103,15 @@ class SearchBoxController < ApplicationController
   end
 
   def book_detail
+    @user = User.find_by(id: session[:imdb_user_id])
     id = params[:book_id]
     @book = Book.find_by(id: id)
     @comments = @book.comments
   end
 
-  def create
+  def comment
+    #binding.pry
+    @user = User.find_by(id: session[:imdb_user_id])
     title = params[:comment_title]
     body = params[:comment_body]
     book_id = params[:book_id]

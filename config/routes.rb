@@ -14,10 +14,11 @@ Rails.application.routes.draw do
 
   get 'search_box/book_detail'
 
-  post "search_box/create"
+  post "search_box/comment"
 
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
+  get "imdb/new_release" => 'imdb#new_release', :as => :new_release
 
   resources :books
   resources :forums do
