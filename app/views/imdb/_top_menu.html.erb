@@ -26,6 +26,9 @@
       <% if !session[:imdb_user_id]%>
         <div class = "col-xs-1" >
             <%= button_to 'Sign Up', {:controller => "imdb", :action => "register"}, :class => "btn btn-success"%>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#loginModal">Sign In</button>
+
+            <!-- Modal -->
 
         </div>
         <div class = "col-xs-1">
