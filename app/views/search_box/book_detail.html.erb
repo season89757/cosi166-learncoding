@@ -9,7 +9,7 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <style>
   body {
-      position: relative;
+    position: relative;
   }
   #section1 {padding-top:50px;height:500px;overflow:auto;color: #fff; background-color: #1E88E5;}
   #section2 {padding-top:50px;height:500px;overflow:auto;color: #fff; background-color: #673ab7;}
@@ -19,131 +19,134 @@
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/imdb/index">IMDB Homepage</a>
-    </div>
-    <div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="#section1">Book Information</a></li>
-          <li><a href="#section2">Comments</a></li>
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Get It<span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#section31">Buy</a></li>
-              <li><a href="#section32">Swap</a></li>
-            </ul>
-          </li>
-        </ul>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/imdb/index">IMDB Homepage</a>
       </div>
-    </div>
-  </div>
-</nav>
-
-<div id="section1" class="container-fluid">
-  <div class="row">
-    <div class="col-md-3">
       <div>
-        <%= image_tag(@book.image_url,:size=>"250x250")%>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="#section1">Book Information</a></li>
+            <li><a href="#section2">Comments</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Get It<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#section31">Buy</a></li>
+                <li><a href="#section32">Swap</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-primary" id="button-margin01">
-          tag1
-        </button>
-        <button type="button" class="btn btn-primary" id="button-margin01">
-          tag2
-        </button>
-        <button type="button" class="btn btn-primary" id="button-margin01">
-          tag3
+    </div>
+  </nav>
+
+  <div id="section1" class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <div>
+          <%= image_tag(@book.image_url,:size=>"250x250")%>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" id="button-margin01">
+            tag1
+          </button>
+          <button type="button" class="btn btn-primary" id="button-margin01">
+            tag2
+          </button>
+          <button type="button" class="btn btn-primary" id="button-margin01">
+            tag3
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div align=center>
+            <p id="booktitle"><%= @book.title %></p>
+          </div>
+          <div align=right>
+            <p id="bookauthor"><%= @book.author %></p>
+          </div>
+          <div >
+            <p id="bookdescription"><%= @book.description %></p>
+
+          </div>
+
+          <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
+          <script type="text/javascript">
+          GBS_insertEmbeddedViewer('ISBN:0738531367',600,500);
+          </script>
+
+        </div>
       </div>
     </div>
 
-    <div class="col-md-9">
-      <div align=center>
-        <p id="booktitle"><%= @book.title %></p>
-      </div>
-      <div align=right>
-        <p id="bookauthor"><%= @book.author %></p>
-      </div>
-      <div >
-        <p id="bookdescription"><%= @book.description %></p>
+    <div id="section2" class="container-fluid">
+      <div class="container-fluid">
+        <h2><strong>Comments:</strong></h2>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <img src="/images/obama.jpg" class="img-circle" height="165" width="165" alt="Avatar">
+          </div>
 
-      </div>
+          <div class="col-sm-9">
+            <h2>I Love Food</h2>
+            <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
+            <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
+            <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <br><br>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <img src="/images/hillary.jpg" class="img-circle" height="165" width="165" alt="Avatar">
+          </div>
+          <div class="col-sm-9">
+            <h2>Officially Blogging</h2>
+            <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
+            <h5><span class="label label-success">Lorem</span></h5><br>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <hr>
 
-      <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
-<script type="text/javascript">
-GBS_insertEmbeddedViewer('ISBN:0738531367',600,500);
-</script>
+            <br><br>
+          </div>
+        </div>
+        <div id = "comment_list" >
+          <%= render "comment_list"%>
+        </div>
 
-    </div>
-  </div>
-</div>
-
-<div id="section2" class="container-fluid">
-  <div class="container-fluid">
-  <h2><strong>Comments:</strong></h2>
-  <hr>
-  <div class="row">
-    <div class="col-sm-3">
-      <img src="/images/obama.jpg" class="img-circle" height="165" width="165" alt="Avatar">
-    </div>
-
-    <div class="col-sm-9">
-      <h2>I Love Food</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by Jane Dane, Sep 27, 2015.</h5>
-      <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-      <p>Food is my passion. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <br><br>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-3">
-      <img src="/images/hillary.jpg" class="img-circle" height="165" width="165" alt="Avatar">
-    </div>
-    <div class="col-sm-9">
-      <h2>Officially Blogging</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, Sep 24, 2015.</h5>
-      <h5><span class="label label-success">Lorem</span></h5><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
-
-      <br><br>
-    </div>
-  </div>
-  <%= render "comment_list"%>
-  <% if session[:imdb_user_id]%>
-    <h4>Leave a Comment:</h4>
-      <%= form_tag "comment", :method=> "post", :remote=> true, :id=>"user_comment" do %>
+        <% if session[:imdb_user_id]%>
+        <h4>Leave a Comment:</h4>
+        <%= form_tag "comment", :method=> "post", :remote=> true, :id=>"user_comment" do %>
         <%= hidden_field_tag "book_id", @book.id %>
         <%= text_field_tag "comment_title", "Enter title here", :class=>"text_fieldone" %>
         <%= text_field_tag "comment_body", "Enter comment here" %>
         <%= submit_tag "Comment", :class=>"btn" %>
-      <%end%>
-  <%end%>
-  <script>
-  $("#user_comment").css("color","black");
-  </script>
+        <%end%>
+        <%end%>
+        <script>
+        $("#user_comment").css("color","black");
+        </script>
 
-</div>
-</div>
+      </div>
+    </div>
 
-<div id="section31" class="container-fluid">
-  <h1>Online Shops:</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
-<div id="section32" class="container-fluid">
-  <h1>Swap with others:</h1>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-  <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
-</div>
+    <div id="section31" class="container-fluid">
+      <h1>Online Shops:</h1>
+      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+    </div>
+    <div id="section32" class="container-fluid">
+      <h1>Swap with others:</h1>
+      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+      <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look at the navigation bar while scrolling!</p>
+    </div>
 
-</body>
-</html>
+  </body>
+  </html>
