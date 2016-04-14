@@ -14,7 +14,7 @@
 # soon, and I don't want there to be tags pointing to books that don't exist. 
 
 
-# External-facing method. Call this to run the script. 
+# External-facing method. This is called when the script is run
 def run_tag_script()
     puts "Beginning the tag process."
     
@@ -36,37 +36,33 @@ end
 # returns a hash of tag_name: [terms]
 def terms_table()
     return {
-        'Web Development' => ['rails', 'django', 'flask', 
-                                'javascript', 'jquery', 'server', 
-                                'node', 'angular', 'meteor', 
-                                'express', 'mvc'],
+        'Web Development' => 'rails django flask javascript jquery server node angular meteor express mvc',
 
-        'Databases' =>      ['sql', 'mysql', 'postgres', 'mongo', 
-                                'mongodb'],
+        'Databases' => 'sql mysql postgres mongo mongodb',
 
-        'Data Structures + Algorithms' => ['algorithm', 'structures'],
+        'Data Structures + Algorithms' => 'algorithm structures',
 
-        'Security' =>       ['security', 'crypto'],
+        'Security' => 'security crypto',
 
-        'Introductory' =>   ['introduction', 'introductory', 'beginner', 
-                                'basic'],
-        'python' => ['django', 'python']
+        'Introductory' => 'introduction introductory beginner basic'
     }
 
 end
 
 # returns a list of books matching the terms. Terms is an array
 def run_query(terms)
-
-    # refactor existing search, perhaps
-
+    return Book.run_search(terms)
 end
 
 # creates tags for books. 
 def tag_books(tag, books)
-
-    # be sure to avoid duplicates!!
-
+    puts "Tagging #{books.length} books as #{tag}"
+    books.each do |b|
+        unless Tag.exists?(book_id: b.id, name: tag)
+            Tag.create(book_id: b.id, name: tag)
+        end
+    end
+    puts "Done tagging #{tag}"
 end
 
 # Deletes all tags currently existing in the database. 
@@ -74,4 +70,9 @@ def clear_all_tags()
     puts "Deleting Tags..."
     Tag.delete_all()
     puts "Finished deleting all tags."
+end
+
+# Main Method
+if __FILE__ == $0
+    run_tag_script()
 end
