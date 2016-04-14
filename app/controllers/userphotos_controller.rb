@@ -1,4 +1,5 @@
 class UserphotosController < ApplicationController
+  before_action :require_login
   def index
     @userphotos = Userphoto.all
   end
@@ -24,7 +25,13 @@ class UserphotosController < ApplicationController
   end
 
   private
-      def userphoto_params
+    def userphoto_params
       params.require(:userphoto).permit(:username, :attachment)
-   end
+    end
+
+    def require_login
+      if !session[:imdb_user_id]
+        redirect_to imdb_index_path
+      end
+    end
 end

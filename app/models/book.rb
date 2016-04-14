@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+  validates :ISBN, presence: true, uniqueness: true
   has_many :users, :through => :comments
   has_many :comments
   has_many :domains
