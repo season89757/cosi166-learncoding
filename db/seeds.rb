@@ -23,6 +23,14 @@ User.create(username: "hanzhenyu", display_name: "Zhenyu Han", password: "1", ad
 User.create(username: "breyerjs", display_name: "Jackson", password: "1", admin: "1", email: "breyerjs@brandeis.edu")
 User.create(username: "boyang", display_name: "Boyang", password: "1", admin: "1", email: "ban@brandeis.edu")
 User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample.com")
+
+fake_user = FakeData.new
+fake_user.user_generator(200)
+
+fake_user.user_hash_list.each do |u|
+  User.create(username: u["username"], display_name: u["display_name"], \
+  password: u["password"], email: u["email"], admin: u["admin"])
+end
 puts "============ User info loaded successfully ============"
 
 puts "============ Begin to load the Book info ============"
@@ -47,11 +55,14 @@ puts "============ Book info loaded successfully ============"
 
 puts "============ Begin to load the Comment info ============"
 # must generate fake comments after store book info
+first_user_id = User.first.id
+last_user_id = User.last.id
 first_book_id = Book.first.id
 last_book_id = Book.last.id
 
 fake_comments = FakeData.new
-fake_comments.book_comment_generator(first_book_id, last_book_id, 2)
+fake_comments.book_comment_generator(first_user_id, last_user_id, \
+first_book_id, last_book_id, 2)
 
 fake_comments.comment_hash_list.each do |comment|
   Comment.create(user_id: comment["user_id"], book_id: comment["book_id"], \
