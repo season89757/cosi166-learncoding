@@ -8,4 +8,14 @@ module SearchBoxHelper
       return "NoUserDisplayName"
     end
   end
+
+  def find_userphoto(user_id)
+    userphoto = Userphoto.find_by(userid: user_id)
+    if userphoto
+      return userphoto
+    else
+      return false
+    end
+  end
+
 end

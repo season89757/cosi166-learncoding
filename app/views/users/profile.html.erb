@@ -50,7 +50,11 @@
     <div class="col-sm-3 well">
       <div class="well">
         <p>Donald Trump</p>
-        <img src="/images/trump.jpg" class="img-circle" height="100" width="100" alt="Avatar">
+        <%if @photo%>
+          <img src=<%=@photo.attachment_url%> class="img-circle" height="100" width="100" alt="gogogo">
+        <%else%>
+          <img src="/images/unknown_user.png" class="img-circle" height="100" width="100" alt="Avatar">
+        <%end%>
         <p><a href="/userphotos/new">Change photo</a></p>
       </div>
       <div class="well">

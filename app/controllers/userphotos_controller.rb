@@ -6,16 +6,22 @@ class UserphotosController < ApplicationController
 
   def new
     @userphoto = Userphoto.new
+
   end
 
   def create
-    @userphoto = Userphoto.new(userphoto_params)
-
+    Userphoto.where(userid: session[:imdb_user_id]).destroy_all
+    if !params[:userphoto].blank?
+      @userphoto = Userphoto.new(userphoto_params)
+      @userphoto.userid = session[:imdb_user_id]
       if @userphoto.save
-         redirect_to users_profile_path, notice: "Successfully uploaded."
+        redirect_to users_profile_path, notice: "Successfully uploaded."
       else
-         render "new"
+        render "new"
       end
+    else
+      redirect_to users_profile_path, notice: "Nothing uploaded."
+    end
   end
 
   def destroy
@@ -26,7 +32,7 @@ class UserphotosController < ApplicationController
 
   private
     def userphoto_params
-      params.require(:userphoto).permit(:username, :attachment)
+      params.require(:userphoto).permit(:userid, :attachment)
     end
 
     def require_login

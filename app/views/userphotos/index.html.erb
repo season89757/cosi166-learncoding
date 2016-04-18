@@ -24,7 +24,7 @@
       <% @userphotos.each do |photo| %>
 
          <tr>
-            <td><%= photo.username %></td>
+            <td><%= photo.userid %></td>
             <td><img src=<%=photo.attachment_url%> class="img-circle" alt="Cinque Terre" height="250px" width="250px"></td>
             <td><%= button_to "Delete",  photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete?" %></td>
          </tr>

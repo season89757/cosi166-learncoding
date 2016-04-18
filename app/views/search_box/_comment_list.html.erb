@@ -1,6 +1,15 @@
 
 <% @comments.each do |c|%>
   <div class="row">
+    <div class="col-sm-3">
+      <!-- <img src="/images/obama.jpg" class="img-circle" height="165" width="165" alt="Avatar"> -->
+      <%if find_userphoto(c.user_id)%>
+        <img src=<%=find_userphoto(c.user_id).attachment_url%> class="img-circle" height="165" width="165" alt="Avatar">
+      <%else%>
+        <img src="/images/unknown_user.png" class="img-circle" height="165" width="165" alt="Avatar">
+      <%end%>
+    </div>
+
     <div class="col-sm-9">
       <h2><%=c.title%></h2>
       <h5><span class="glyphicon glyphicon-time"></span> <%= find_displayname(c.user_id)%>, <%=c.created_at %></h5>

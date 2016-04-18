@@ -12,10 +12,10 @@ class SearchBoxController < ApplicationController
     id = params[:book_id]
     @book = Book.find_by(id: id)
     @comments = @book.comments
+    @photo = Userphoto.find_by(userid: session[:imdb_user_id])
   end
 
   def comment
-    #binding.pry
     @user = User.find_by(id: session[:imdb_user_id])
     title = params[:comment_title]
     body = params[:comment_body]
