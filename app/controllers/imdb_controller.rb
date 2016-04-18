@@ -30,6 +30,8 @@ class ImdbController < ApplicationController
       if @user
         session[:imdb_user_id]=@user.id
         redirect_to imdb_index_path
+      else
+        redirect_to imdb_index_path, notice: "User name does not match the password, please login again!"
       end
     end
   end

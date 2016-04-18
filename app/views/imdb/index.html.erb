@@ -2,8 +2,14 @@
   <%= render 'top_menu'%>
 </div>
 
-
+<% if !flash[:notice].blank? %>
+   <br><br>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
 <body>
+
 
   <div id = "page1" class = "page_height" style = "background-color: #FFF;">
     <a id="search_page" class="smooth"></a>
@@ -136,28 +142,27 @@
             <%= login_error %>
           </div>
           <div align = center>
-            <%= form_tag("imdb/login", method: "get") do %>
-              <% if @error%>
-                <%= @error%>
-              <%end%>
+            <%= form_tag("/imdb/login", method: "get") do %>
               <%= label_tag(:q_username, "Username")%>
               <%= text_field_tag(:username) %><br>
               <%= label_tag(:q_password, "Password")%>
               <%= password_field_tag(:password) %><br>
-
+              <%= submit_tag("Login")%>
+            <% end %>
           </div>
         </div>
         <div class="modal-footer">
-          <%= submit_tag("Login1")%>
-          <% end %>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
 
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
   <script>
   $('.smooth').on('click', function() {
       $.smoothScroll({
