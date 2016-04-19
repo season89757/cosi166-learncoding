@@ -100,7 +100,6 @@ class Book < ActiveRecord::Base
         books_in_hash = results_scores.keys
         books_in_hash.each do |book|
             if not Tag.where('name = :tag AND book_id = :bookid', {tag: tag, bookid: book.id}).exists?
-                puts 'made it here'
                 results_scores.delete(book)
             end
         end
