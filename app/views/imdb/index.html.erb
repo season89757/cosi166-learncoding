@@ -27,11 +27,12 @@
       </div>
 
       <div align="center" class = "row">
+
         <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
         <div class = "col-xs-2">
             <br>
             <br>
-            <%= select_tag(:tag, options_for_select(@dropdown_choices))  %>
+            <%= select_tag :tag, options_for_select(@dropdown_choices), class: 'form-control' %>
         </div>
 
         <div class = "col-xs-8">

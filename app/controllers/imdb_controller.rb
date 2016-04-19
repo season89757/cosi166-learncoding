@@ -23,6 +23,7 @@ class ImdbController < ApplicationController
     all_tags.each do |tag|
       @dropdown_choices.push( [tag, tag] )
     end
+    @dropdown_choices.sort_by!{ |each| each[0].downcase }
 
 
     if params[:_user_id]

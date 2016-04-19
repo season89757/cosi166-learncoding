@@ -5,9 +5,6 @@ class SearchBoxController < ApplicationController
     query_string = params[:terms]
     tag = params[:tag]
     @results = Book.run_search(query_string, tag= tag)
-    puts "*****************************"
-    puts tag
-
   end
 
   def book_detail
