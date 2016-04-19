@@ -22,7 +22,8 @@ class Book < ActiveRecord::Base
   def self.run_search(query_string, tag=nil)
 # Controller for the resutls from a user search.
     # INPUT:
-    #   params[:terms] which holds a search query
+    #   query_string: which holds a search query
+    #   tag: domain within which to search (See Tag model)
     # RETURN:
     #   @results variable to the view. @results is an array of Book
     #   objects for consumption in the view.

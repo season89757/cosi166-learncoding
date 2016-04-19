@@ -18,6 +18,13 @@ class ImdbController < ApplicationController
     background_base64 = background.base64
     @background_src = "data:image/png;base64," + background_base64
 
+    all_tags = Tag.uniq.pluck(:name)
+    @dropdown_choices = [['Any Topic', 'Any Topic']]
+    all_tags.each do |tag|
+      @dropdown_choices.push( [tag, tag] )
+    end
+
+
     if params[:_user_id]
       id = params[:user_id]
       @session = User.find(id)

@@ -28,13 +28,20 @@
 
       <div align="center" class = "row">
         <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
-        <div class = "col-xs-10">
+        <div class = "col-xs-2">
+            <br>
+            <br>
+            <%= select_tag(:tag, options_for_select(@dropdown_choices))  %>
+        </div>
+
+        <div class = "col-xs-8">
           <div class = "search_box">
             <br>
             <br>
             <input name = "terms" class = "form-control"></input>
           </div>
         </div>
+
         <div class = "col-xs-2">
           <br>
           <br>
@@ -46,7 +53,7 @@
       <div class = "row" align = "center">
         <a href="#trend_chart_page" id="trend_chart_page" class = "smooth">
           <%= image_tag(@black_arrow_src, size: "50x50") %>
-          <span class = "black_font smooth">New to codeing & More info needed?</span>
+          <span class = "black_font smooth">New to coding? Check this out!</span>
         </a>
         <br>
         <br>
