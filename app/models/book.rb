@@ -19,10 +19,11 @@ class Book < ActiveRecord::Base
     string.scan(/(?=#{substring})/).count
   end
 
-  def self.run_search(query_string)
+  def self.run_search(query_string, tag=nil)
 # Controller for the resutls from a user search.
     # INPUT:
-    #   params[:terms] which holds a search query
+    #   query_string: which holds a search query
+    #   tag: domain within which to search (See Tag model)
     # RETURN:
     #   @results variable to the view. @results is an array of Book
     #   objects for consumption in the view.
@@ -92,6 +93,16 @@ class Book < ActiveRecord::Base
         for book in Book.where("lower(author) like ?", "%#{term}%")
             score = 1 * num_times_substring_appears(term, book.author)
             add_item_to_hash(book, score, results_scores)
+        end
+    end
+
+    # if there's a specific tag, then filter results 
+    unless tag == nil or tag == 'Any Topic'
+        books_in_hash = results_scores.keys
+        books_in_hash.each do |book|
+            if not Tag.where('name = :tag AND book_id = :bookid', {tag: tag, bookid: book.id}).exists?
+                results_scores.delete(book)
+            end
         end
     end
 

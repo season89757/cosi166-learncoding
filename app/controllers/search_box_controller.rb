@@ -3,8 +3,8 @@ class SearchBoxController < ApplicationController
 
   def search_results
     query_string = params[:terms]
-    @results = Book.run_search(query_string)
-
+    tag = params[:tag]
+    @results = Book.run_search(query_string, tag= tag)
   end
 
   def book_detail
