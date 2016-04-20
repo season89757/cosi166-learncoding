@@ -141,7 +141,7 @@
 
           <div class="col-md-4">
             <div>
-              <%= link_to image_tag(book.image_url, :size=>"250x250"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => book.id}), :remote => true %>
+              <%= link_to image_tag(book.image_url, :size=>"250x250"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => book.id})%>
             </div>
             <div class="btn-group">
               <button type="button" class="btn btn-primary" id="button-margin01">
