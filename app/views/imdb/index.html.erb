@@ -12,7 +12,6 @@
 
 
   <div id = "page1" class = "page_height" style = "background-color: #FFF;">
-    <a id="search_page" class="smooth"></a>
     <div id="page1-container" class="container">
 
       <div class="row text-center">
@@ -27,7 +26,6 @@
       </div>
 
       <div align="center" class = "row">
-
         <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
         <div class = "col-xs-2">
             <br>
@@ -52,7 +50,7 @@
       </div>
 
       <div class = "row" align = "center">
-        <a href="#trend_chart_page" id="trend_chart_page" class = "smooth">
+        <a href="#page2" class = "smooth">
           <%= image_tag(@black_arrow_src, size: "50x50") %>
           <span class = "black_font smooth">New to coding? Check this out!</span>
         </a>
@@ -64,7 +62,6 @@
   </div>
 
   <div id = "page2" class = "page_height" style = "background-color: #FFF;">
-    <a id="trend_chart_page" class="smooth"></a>
     <div id = "page2_container" class = "container">
 
       <div class = "row" align = "center">
@@ -109,7 +106,7 @@
       <div class = "row" align = "center">
         <br>
         <br>
-        <a href="#best_selling_page">
+        <a href="#page3">
           <%= image_tag(@black_arrow_src, size: "50x50") %>
           <span class = "black_font">Ultimate solution here</span>
         </a>
@@ -121,15 +118,13 @@
   </div>
 
   <div id = "page3" class = "page_height" style = "background-color: #000;">
-    <a id="best_selling_page" class="smooth"></a>
     <div id = "page3_container" class = "container">
-
       <div class = "row" align = "center">
         <%=image_tag("pl_trends.jpg", class: "width100")%>
       </div>
 
       <div class = "row" align = "center">
-        <a href="#trend_chart_page">
+        <a href="#page1">
           <%= image_tag(@white_arrow_src, size: "50x50") %>
           <span class = "white_font">Credit & About</span>
         </a>
@@ -167,20 +162,24 @@
   </div>
 
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="https://github.com/kswedberg/jquery-smooth-scroll/blob/master/jquery.smooth-scroll.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-  <script>
-  $('.smooth').on('click', function() {
-      $.smoothScroll({
-          scrollElement: $('body'),
-          scrollTarget: '#' + this.id
-      });
-
-      return false;
+<script>
+  $(function() {
+  $('a[href*="#"]:not([href="#"])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
   });
-  </script>
+});
+</script>
 
 
 </body>
