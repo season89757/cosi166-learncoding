@@ -94,16 +94,16 @@
       <a class="navbar-brand" href="/imdb/index">IMDB Homepage</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
+      <!-- <ul class="nav navbar-nav">
         <li><a href="#">Ruby</a></li>
         <li><a href="#">JAVA</a></li>
         <li><a href="#">Python</a></li>
         <li><a href="#">C++</a></li>
         <li><a href="#">HTML</a></li>
-      </ul>
-      <form class="navbar-form navbar-right" role="search">
+      </ul> -->
+      <form class="navbar-form navbar-right" role="search" action="/search_box/search_results" method="get">
         <div class="form-group input-group">
-          <input type="text" class="form-control" placeholder="Search..">
+          <input type="text" class="form-control" placeholder="Search.." name="terms">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button">
               <span class="glyphicon glyphicon-search"></span>
@@ -112,7 +112,7 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> User Profile</a></li>
+        <li><%= link_to "Profile", users_profile_path %></li>
       </ul>
     </div>
   </div>

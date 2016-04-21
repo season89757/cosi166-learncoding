@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   post "search_box/comment"
 
+  get "search_box/sectioncomment"
+
+  get "search_box/sectiondetail"
+
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
   get "imdb/new_release" => 'imdb#new_release', :as => :new_release

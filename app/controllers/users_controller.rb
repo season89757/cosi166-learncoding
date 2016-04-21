@@ -1,6 +1,7 @@
 require "pry-byebug"
 
 class UsersController < ApplicationController
+  before_action :require_login
 
   # GET /users
   # GET /users.json
@@ -13,4 +14,10 @@ class UsersController < ApplicationController
     @photo = Userphoto.find_by(userid:session[:imdb_user_id])
   end
 
+  private
+    def require_login
+      if !session[:imdb_user_id]
+        redirect_to imdb_index_path
+      end
+    end
 end

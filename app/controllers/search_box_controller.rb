@@ -33,4 +33,27 @@ class SearchBoxController < ApplicationController
       format.js
     end
   end
+
+  def sectioncomment
+    id = params[:id]
+    @book = Book.find_by(id: id)
+    @comments = @book.comments
+    @photo = Userphoto.find_by(userid: session[:imdb_user_id])
+    @section_target = "section_comment"
+    #binding.pry
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def sectiondetail
+    id = params[:id]
+    @book = Book.find_by(id: id)
+    @section_target = "section_detail"
+    #binding.pry
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end
