@@ -39,28 +39,30 @@ class ImdbController < ApplicationController
         session[:imdb_user_id]=@user.id
         redirect_to imdb_index_path
       else
-        redirect_to imdb_index_path, notice: "User name does not match the password, please login again!"
+        redirect_to imdb_index_path, notice: "Username does not match the password, please login again!"
       end
     end
   end
 
   def register
-    if params[:error] then @error = params[:error] end
 
-    if params[:username]
+    if params[:username]="" || !params[:confirm]="" || !params[:password]="" || !params[:display_name]="" || !params[:email]=""
+      redirect_to imdb_index_path, notice: "Input is empty"
+    else
       if params[:password] != params[:confirm]
-        redirect_to imdb_register_path(:error => "Passwords do not match")
+        redirect_to imdb_index_path, notice: "Passwords do not match"
       else
         user_exists = User.find_by(username:params[:username])
         email_exists = User.find_by(email:params[:email])
         if user_exists || email_exists
-          redirect_to imdb_register_path(:error => "User or Email already exists")
+          redirect_to imdb_index_path, notice: "User or Email already exists"
         else
           @user = User.create(username: params[:username], password: params[:password], email: params[:email], display_name: params[:display_name])
           session[:imdb_user_id]=@user.id
           redirect_to imdb_index_path
         end
       end
+
     end
   end
 
