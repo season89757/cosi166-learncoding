@@ -148,19 +148,14 @@
               <%= text_field_tag(:username) %><br>
               <%= label_tag(:q_password, "Password")%>
               <%= password_field_tag(:password) %><br>
-              <%= submit_tag("Login")%>
+              <%= submit_tag "Login", :class=>"btn btn-default"%>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <% end %>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div>
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script>
   $(function() {

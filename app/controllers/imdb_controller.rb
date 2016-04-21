@@ -33,7 +33,7 @@ class ImdbController < ApplicationController
   end
 
   def login
-    if params[:username]
+    if !session[:imdb_user_id]
       @user = User.find_by(username: params[:username], password: params[:password])
       if @user
         session[:imdb_user_id]=@user.id
