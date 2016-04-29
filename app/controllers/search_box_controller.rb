@@ -24,7 +24,6 @@ class SearchBoxController < ApplicationController
     comment = Comment.new(user_id:user_id, book_id:book_id, title:title, body:body)
     if comment
       comment.save
-      call_pusher(book_id)
     end
     book = Book.find_by(id:book_id)
     @comments = book.comments
@@ -32,6 +31,7 @@ class SearchBoxController < ApplicationController
     respond_to do |format|
       format.js
     end
+    
   end
 
   def sectioncomment
@@ -60,7 +60,7 @@ class SearchBoxController < ApplicationController
   def call_pusher(book_id)
     book = Book.find_by(id:book_id)
     coms = book.comments
-    Pusher.trigger('test_channel', 'my_event', {
+    Pusher.trigger('IMDBchannel', 'my_event', {
       comments: coms
     })
   end
