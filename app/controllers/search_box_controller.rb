@@ -26,12 +26,12 @@ class SearchBoxController < ApplicationController
       comment.save
     end
     book = Book.find_by(id:book_id)
-
     @comments = book.comments
 
     respond_to do |format|
       format.js
     end
+    
   end
 
   def sectioncomment
@@ -56,4 +56,12 @@ class SearchBoxController < ApplicationController
     end
   end
 
+  private
+  def call_pusher(book_id)
+    book = Book.find_by(id:book_id)
+    coms = book.comments
+    Pusher.trigger('IMDBchannel', 'my_event', {
+      comments: coms
+    })
+  end
 end

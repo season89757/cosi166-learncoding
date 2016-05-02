@@ -64,3 +64,4 @@ end
 gem "brakeman", :require => false
 gem 'pry-byebug'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'pusher'
