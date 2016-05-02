@@ -18,4 +18,13 @@ module SearchBoxHelper
     end
   end
 
+  def find_booktags(book_id)
+    tags= Tag.where(book_id:book_id)
+    if tags
+      return tags
+    else
+      return false
+    end
+  end
+
 end

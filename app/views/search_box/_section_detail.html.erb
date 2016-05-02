@@ -4,28 +4,23 @@
       <%= image_tag(@book.image_url,:size=>"250x250")%>
     </div>
     <div class="btn-group">
+      <%find_booktags(@book.id).find_each do |tag|%>
       <button type="button" class="btn btn-primary" id="button-margin01">
-        tag1
+        <%= tag.name%>
       </button>
-      <button type="button" class="btn btn-primary" id="button-margin01">
-        tag2
-      </button>
-      <button type="button" class="btn btn-primary" id="button-margin01">
-        tag3
-      </div>
-    </div>
-
-    <div class="col-md-9">
-      <div align=center>
-        <p id="booktitle"><%= @book.title %></p>
-      </div>
-      <div align=right>
-        <p id="bookauthor"><%= @book.author %></p>
-      </div>
-      <div >
-        <p id="bookdescription"><%= @book.description %></p>
-
-      </div>
-
+      <%end%>
     </div>
   </div>
+
+  <div class="col-md-9">
+    <div align=center>
+      <p id="booktitle"><%= @book.title %></p>
+    </div>
+    <div align=right>
+      <p id="bookauthor"><%= @book.author %></p>
+    </div>
+    <div >
+      <p id="bookdescription"><%= @book.description %></p>
+    </div>
+  </div>
+</div>

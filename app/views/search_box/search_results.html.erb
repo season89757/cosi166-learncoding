@@ -83,7 +83,7 @@
 	</script>
 </head>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -144,15 +144,12 @@
               <%= link_to image_tag(book.image_url, :size=>"250x250"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => book.id})%>
             </div>
             <div class="btn-group">
+              <%find_booktags(book.id).find_each do |tag|%>
               <button type="button" class="btn btn-primary" id="button-margin01">
-                tag1
+                <%=tag.name%>
               </button>
-              <button type="button" class="btn btn-primary" id="button-margin01">
-                tag2
-              </button>
-              <button type="button" class="btn btn-primary" id="button-margin01">
-                tag3
-              </div>
+              <%end%>
+            </div>
           </div>
 
           <div class="col-md-4">
