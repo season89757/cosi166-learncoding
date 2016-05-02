@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get "search_box/sectiondetail"
 
+  get "search_box/sectionpreviewbuy"
+
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
   get "imdb/new_release" => 'imdb#new_release', :as => :new_release

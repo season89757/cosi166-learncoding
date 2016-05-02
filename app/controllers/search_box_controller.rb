@@ -56,6 +56,16 @@ class SearchBoxController < ApplicationController
     end
   end
 
+  def sectionpreviewbuy
+    id = params[:id]
+    @book = Book.find_by(id: id)
+    @section_target = "section_previewbuy"
+    #binding.pry
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def call_pusher(book_id)
     book = Book.find_by(id:book_id)
