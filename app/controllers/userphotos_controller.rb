@@ -15,7 +15,7 @@ class UserphotosController < ApplicationController
       @userphoto = Userphoto.new(userphoto_params)
       @userphoto.userid = session[:imdb_user_id]
       if @userphoto.save
-        redirect_to users_profile_path, notice: "Successfully uploaded."
+        redirect_to users_profile_path
       else
         render "new"
       end
