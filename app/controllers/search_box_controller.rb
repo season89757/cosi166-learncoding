@@ -56,10 +56,10 @@ class SearchBoxController < ApplicationController
     end
   end
 
-  def sectionpreviewbuy
+  def sectionpreview
     id = params[:id]
     @book = Book.find_by(id: id)
-    @section_target = "section_previewbuy"
+    @section_target = "section_preview"
     #binding.pry
     respond_to do |format|
       format.js

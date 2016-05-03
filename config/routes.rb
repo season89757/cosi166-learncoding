@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get "search_box/sectiondetail"
 
-  get "search_box/sectionpreviewbuy"
+  get "search_box/sectionpreview"
 
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
