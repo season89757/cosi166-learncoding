@@ -6,6 +6,9 @@ gem 'rails_12factor', group: :production
 gem 'sqlite3', group: :development
 gem 'pg', group: :production
 
+gem 'chart-js-rails'
+
+
 gem 'faker'
 # password
 gem 'bcrypt-ruby', '~> 3.0.0'
