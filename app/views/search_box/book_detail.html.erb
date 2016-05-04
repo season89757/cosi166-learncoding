@@ -33,7 +33,9 @@
             <li><%= link_to "Details",controller: "search_box", action: "sectiondetail", id: @book.id, remote:true%></li>
             <li><%= link_to "Comments",controller: "search_box", action: "sectioncomment", id: @book.id, remote:true%></li>
             <li><%= link_to "PreviewBuy",controller: "search_box", action: "sectionpreview", id: @book.id, remote:true%></li>
-
+            <% if session[:imdb_user_id]%>
+              <li><%= link_to "Swap",controller: "swap", action: "swaphome", id: @book.id%></li>
+            <% end %>
 
             <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Get It<span class="caret"></span></a>
               <ul class="dropdown-menu">

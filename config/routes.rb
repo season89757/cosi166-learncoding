@@ -22,6 +22,14 @@ Rails.application.routes.draw do
 
   get "search_box/sectionpreview"
 
+  get "swap/swaphome"
+
+  post "swap/tradeoff"
+
+  post "swap/tradein"
+
+  post "swap/tradeoffnew"
+
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
   get "imdb/new_release" => 'imdb#new_release', :as => :new_release

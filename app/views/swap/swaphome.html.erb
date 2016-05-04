@@ -1,0 +1,7 @@
+<div>
+  <%= button_to "I don't have this book and I want this book!", action: "tradein", id: @id%>
+  <%= button_to "I have this book and I want trade off this book", action: "tradeoff", id:@id%>
+  <div id="tradeoff_block">
+    <%= render "tradeoff"%>
+  </div>
+</div>

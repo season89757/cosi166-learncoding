@@ -66,6 +66,7 @@ class SearchBoxController < ApplicationController
     end
   end
 
+
   private
   def call_pusher(book_id)
     book = Book.find_by(id:book_id)

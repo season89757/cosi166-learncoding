@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book_id: MyString
+  sender: MyString
+  receiver: MyString
+  message: MyText
+
+two:
+  book_id: MyString
+  sender: MyString
+  receiver: MyString
+  message: MyText

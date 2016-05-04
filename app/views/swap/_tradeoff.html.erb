@@ -1,0 +1,29 @@
+<% @tradeoff_users.each do |t|%>
+  <div>
+    <%=t.display_name%>
+    <% if t.id != session[:imdb_user_id]%>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#messageModal">Message</button>
+      <div class="modal fade" id="messageModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body">
+              <div align = center>
+                <%= form_tag("/swap/tradeoffnew", method: "post") do %>
+                  <%= hidden_field_tag :receiver, t.id %>
+                  <%= hidden_field_tag :id, @id %>
+                  <%= text_field_tag :message %>
+                  <%= submit_tag "Send"%>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <%end%>
+  </div>
+<% end %>
