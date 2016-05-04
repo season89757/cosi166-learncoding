@@ -10,11 +10,20 @@
 <% end %>
 
 <head>
-<style>
+<style text="text/javascript">
 canvas{
-    width: 80% !important;
+    width: 100% !important;
     max-width: 600px;
     height: auto !important;
+}
+
+body { padding:0px; margin:0px; }
+.page1 { width: 100%; height: 100%; }
+.page2 { height: 100%; width: 100%; }
+.page3 { height: 100%; width: 100%; }
+div#full {
+    height: 100vh;
+    width: 100vh;
 }
 </style>
 
@@ -26,21 +35,16 @@ canvas{
 
 
 <body>
-  <div id = "page1" style = "background-color: #FFF;" height = "80vh" width = "100vh">
+  <div id = "page1" style = 'height:85vh; width:100vh; margin-top: 15vh'>
     <div id="page1-container" class="container">
 
-      <div class="row text-center" height="50vh" width = "100vh">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+      <div class="row text-center">
         <div align=center>
           <%= image_tag(@logo_src, size: "844x270") %>
         </div>
       </div>
 
-      <div align="center" class = "row" height="15vh">
+      <div align="center" class = "row">
         <%= form_tag("/search_box/search_results", method: "get", id:'search') do %>
         <div class = "col-xs-2">
             <br>
@@ -64,13 +68,11 @@ canvas{
         <% end %>
       </div>
 
-      <div class = "row" align = "center" height="15vh">
+      <div class = "row" align = "center">
         <a href="#page2" class = "smooth">
           <%= image_tag(@black_arrow_src, size: "50x50") %>
           <span class = "black_font smooth">New to coding? Check this out!</span>
         </a>
-        <br>
-        <br>
       </div>
 
     </div>
@@ -78,31 +80,32 @@ canvas{
 
 
 
-  <div id = "page2" class = "fit_full_screen" style = "background-color: #000;">
-    <div id = "page3_container" class = "container">
-      <div class = "row" align = "center">
-        <%=image_tag("pl_trends.jpg", :width => "100%")%>
+  <div id = "page2" style = 'height:85vh; width:100vh'>
+    <div id = "page2_container" class = "container">
+      <div class = "row" align = "center" style = 'height:85vh'>
+        <%=image_tag("pl_trends.jpg", :height => "100%", :width => "100%")%>
       </div>
+    </div>
 
-
+    <div class = "row" align = "center">
+      <br>
+      <br>
+      <a href="#page3">
+        <%= image_tag(@black_arrow_src, size: "50x50") %>
+        <span class = "black_font">Even More Information!</span>
+      </a>
+      <br>
+      <br>
     </div>
   </div>
-  <div class = "row" align = "center">
-    <br>
-    <br>
-    <a href="#page3">
-      <%= image_tag(@black_arrow_src, size: "50x50") %>
-      <span class = "black_font">Even More Information!</span>
-    </a>
-    <br>
-    <br>
-  </div>
-<div id = "page3" height = "100vh" width = "100vh" style = "background-color: #FFF;">
+
+
+<div id = "page3" style = 'height:85vh; width:100vh; margin-top:15vh'>
     <div id = "page2_container" class = "container">
 
-      <div class = "row" align = "center" width = "100vh">
+      <div class = "row" align = "center">
         <div>
-        <canvas id="myChart" width="20" height="20"></canvas>
+        <canvas id="myChart" width="200" height="200"></canvas>
       </div>
         <script>
           var ctx = $("#myChart");
@@ -351,9 +354,6 @@ canvas{
       </div>
     </div>
   </div>
-
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script>
   $(function() {
