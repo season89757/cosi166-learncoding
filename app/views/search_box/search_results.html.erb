@@ -21,8 +21,8 @@
 	  curPage=1;    // make current page the first page
 	  displayPage();//display the first page
 
-	  document.getElementById("btn0").innerHTML="current " + curPage + "/" + page + " pages";    // show the current page
-	  document.getElementById("sjzl").innerHTML="totally result: " + len + "";        // show the total result number
+	  document.getElementById("btn0").innerHTML="Viewing Page " + curPage + " of " + page + "";    // show the current page
+	  document.getElementById("sjzl").innerHTML="" + len + " Results Found";        // show the total result number
 
 
 	  $("#btn1").click(function firstPage(){    // first page
@@ -68,8 +68,8 @@
 			begin=(curPage-1)*pageSize;// starting number of page to be shown
 			end = begin + 1*pageSize - 1;    // ending number of page to be shown
 
-			document.getElementById("btn0").innerHTML="current " + curPage + "/" + page + " pages";    // show the current page
-		  document.getElementById("sjzl").innerHTML="totally result: " + len + "";        // show the total result number
+    document.getElementById("btn0").innerHTML="Viewing Page " + curPage + " of " + page + "";    // show the current page
+    document.getElementById("sjzl").innerHTML="" + len + " Results Found";           // show the total result number
 
 			if(end > len ) end=len;
 			$("#searchresult tr").hide();    // first hide all records
@@ -124,10 +124,10 @@
     <div align ="right">
       <a id="btn0"></a><br>
   	  <a id="sjzl"></a><br>
-  	  <a  href="#" id="btn1">firstPage</a>
-  	  <a  href="#" id="btn2">prePage</a>
-  	  <a  href="#" id="btn3">nextPage</a>
-  	  <a  href="#" id="btn4">lastPage</a>
+  	  <button class="btn btn-primary"  href="#" id="btn1"> << </button>
+  	  <button class="btn btn-primary"  href="#" id="btn2"> < </button>
+  	  <button class="btn btn-primary"   href="#" id="btn3"> > </button>
+  	  <button class="btn btn-primary"   href="#" id="btn4"> >> </button>
     </div>
 
     <!-- here is the beginning of book information list-->
