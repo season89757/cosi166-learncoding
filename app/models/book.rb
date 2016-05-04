@@ -9,6 +9,7 @@ class Book < ActiveRecord::Base
   def self.add_item_to_hash(book, score, hash)
     # adds/updates an item in a hash with a particular score
     if hash.key?(book)
+        puts 'yes'
         hash[book] += score
     else
         hash[book] = score
@@ -16,7 +17,7 @@ class Book < ActiveRecord::Base
   end
 
   def self.num_times_substring_appears(substring, string)
-    string.scan(/(?=#{substring})/).count
+    string.scan(/(?= #{substring} )/).count
   end
 
   def self.run_search(query_string, tag=nil)
@@ -79,16 +80,19 @@ class Book < ActiveRecord::Base
 
     # begin scoring
     for term in terms
+
         # search by title
         for book in Book.where("lower(title) like ?", "%#{term}%")
-            score = 5 * num_times_substring_appears(term, book.title)
+            score = 100 * num_times_substring_appears(term, book.title)
             add_item_to_hash(book, score, results_scores)
         end
+
         # search by description
         for book in Book.where("lower(description) like ?", "%#{term}%")
-            score = 3 * num_times_substring_appears(term, book.description)
+            score = 1 * num_times_substring_appears(term, book.description)
             add_item_to_hash(book, score, results_scores)
         end
+
         # search by author
         for book in Book.where("lower(author) like ?", "%#{term}%")
             score = 1 * num_times_substring_appears(term, book.author)
@@ -106,12 +110,16 @@ class Book < ActiveRecord::Base
         end
     end
 
+    # use rating information
+    results_scores.keys.each do |book|
+        results_scores[book] += book.average_rating.to_i * 5
+    end
 
     # get hash results sorted by score
-    results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[a]}
+    results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[b]}
     # deduplicates the list
 
-    results = results.uniq
+    #results = results.uniq
 
     return results
   end
