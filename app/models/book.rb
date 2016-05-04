@@ -1,9 +1,31 @@
+
 class Book < ActiveRecord::Base
   validates :ISBN, presence: true, uniqueness: true
   has_many :users, :through => :comments
   has_many :comments
   has_many :domains
   has_many :languages
+
+  def self.terms_table()
+    return {
+        'Web Development' => 'rails django flask javascript jquery server node angular meteor express mvc',
+
+        'Databases' => 'sql mysql postgres mongo mongodb',
+
+        'Data Structures + Algorithms' => 'algorithm structures',
+
+        'Security' => 'security crypto',
+
+        'Introductory' => 'introduction introductory beginner',
+
+        'Testing' => 'testing',
+
+        'Networking' => 'networking',
+
+        'Theory' => 'theory theoretical'
+    }
+
+end
 
   # Helper Function---NOT A VIEW
   def self.add_item_to_hash(book, score, hash)
@@ -16,7 +38,7 @@ class Book < ActiveRecord::Base
   end
 
   def self.num_times_substring_appears(substring, string)
-    string.scan(/(?=#{substring})/).count
+    string.scan(/(?= #{substring} )/).count
   end
 
   def self.run_search(query_string, tag=nil)
@@ -77,18 +99,28 @@ class Book < ActiveRecord::Base
 
     results_scores = Hash.new
 
+    # adds tags terms to query for ranking purposes
+    unless tag == nil or tag == 'Any Topic'
+        terms_table = terms_table()
+        terms_for_tag = terms_table[tag]
+        terms.push(terms_for_tag.split(' '))
+    end
+
     # begin scoring
     for term in terms
+
         # search by title
         for book in Book.where("lower(title) like ?", "%#{term}%")
-            score = 5 * num_times_substring_appears(term, book.title)
+            score = 100 * num_times_substring_appears(term, book.title)
             add_item_to_hash(book, score, results_scores)
         end
+
         # search by description
         for book in Book.where("lower(description) like ?", "%#{term}%")
-            score = 3 * num_times_substring_appears(term, book.description)
+            score = 1 * num_times_substring_appears(term, book.description)
             add_item_to_hash(book, score, results_scores)
         end
+
         # search by author
         for book in Book.where("lower(author) like ?", "%#{term}%")
             score = 1 * num_times_substring_appears(term, book.author)
@@ -106,12 +138,16 @@ class Book < ActiveRecord::Base
         end
     end
 
+    # use rating information
+    results_scores.keys.each do |book|
+        results_scores[book] += book.average_rating.to_i * 5
+    end
 
     # get hash results sorted by score
-    results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[a]}
+    results = results_scores.keys.sort {|a, b| results_scores[b] <=> results_scores[b]}
     # deduplicates the list
 
-    results = results.uniq
+    #results = results.uniq
 
     return results
   end

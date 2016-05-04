@@ -73,7 +73,7 @@ div#full {
 
         <div class = "col-xs-2">
           <br>
-          <br>
+          <br>l
           <button type = "submit" class = "btn btn-primary">Search</button>
         </div>
         <% end %>
@@ -100,7 +100,7 @@ div#full {
       </div>
     </div>
 
-    <div class = "row" align = "center">
+    <div class = "row" class="text-center">
       <a href="#page3">
         <%= image_tag(@black_arrow_src, size: "50x50") %>
         <span class = "black_font">Even More Information!</span>
@@ -119,7 +119,9 @@ div#full {
         <script>
           var ctx = $("#myChart");
           var data = {
-    labels: ["AVG. Salary", "Popularity", "", "AVG. Learning Time", "Difficulty", "Appeared Time", "#Books"],
+            LabelsFontSize: 50,
+    labels: ["AVG. Salary", "Popularity", "Trend", "New Watchers of GitHub", "Active Repo", "Total Pushes", "#Books"],
+
     datasets: [
         {
             label: "Java",
@@ -129,7 +131,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [4, 9, 9, 9, 9, 9, 1]
+            data: [91.07, 100, 100, 37.68, 68.79, 67.12, 100]
         },
         {
             label: "C",
@@ -139,7 +141,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [8, 9, 9, 9, 9, 9, 2]
+            data: [88.39, 66.70, 26.06, 37.44, 22.56, 23.24, 94.43]
         },
         {
             label: "C++",
@@ -149,7 +151,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [7, 9, 9, 9, 9, 9, 3]
+            data: [91.07, 28.39, 34.97, 34.84, 26.70, 29.29, 92.86]
         },
         {
             label: "C#",
@@ -159,7 +161,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [10, 9, 9, 9, 9, 9, 4]
+            data: [82.14, 18.21, 33.74, 28.86, 17.31, 16.13, 89.29]
         },
         {
             label: "Python",
@@ -169,7 +171,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [3, 9, 9, 9, 9, 9, 5]
+            data: [91.07, 15.97, 53.67, 34.54, 50.89, 47.79, 85.71]
         },
         {
             label: "PHP",
@@ -179,7 +181,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [12, 9, 9, 9, 9, 9, 6]
+            data: [77.68, 14.36, 46.32, 28.74, 42.84, 40.20, 82.14]
         },
         {
             label: "JavaScript",
@@ -189,7 +191,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [9, 9, 9, 9, 9, 9, 7]
+            data: [83.04, 12.31, 38.42, 58.33, 100, 100, 78.57]
         },
         {
             label: "Perl",
@@ -199,7 +201,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [5, 9, 9, 9, 9, 9, 8]
+            data: [89.29, 12.11, 59.69, 19.50, 5, 3.61, 75]
         },
         {
             label: "Ruby",
@@ -209,38 +211,11 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(255,99,132,1)",
-            data: [2, 9, 9, 9, 9, 9, 9]
+            data: [91.07, 11.25, 60.80, 35.75, 41.01, 31.96, 71.43]
         },
-        {
-            label: "Visual Basic .NET",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [11, 9, 9, 9, 9, 9, 10]
-        },
-        {
-            label: "Delphi",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [8, 9, 9, 9, 9, 9, 11]
-        },
-        {
-            label: "Assembly language",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [8, 9, 9, 9, 9, 9, 12]
-        },
+
+
+
         {
             label: "Objective-C",
             backgroundColor: "rgba(179,181,198,0.2)",
@@ -249,18 +224,9 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [5.5, 9, 9, 9, 9, 9, 13]
+            data: [91.96, 8.21, 0, 67.63, 11.29, 7.21, 57.14]
         },
-        {
-            label: "Visual Basic",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [8, 9, 9, 9, 9, 9, 14]
-        },
+
         {
             label: "Swift",
             backgroundColor: "rgba(179,181,198,0.2)",
@@ -269,7 +235,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [8, 9, 9, 9, 9, 9, 15]
+            data: [100, 7.09, 53.23, 100, 3.44, 1.87, 53.57]
         },
         {
             label: "Matlab",
@@ -279,18 +245,9 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [8, 9, 9, 9, 9, 9, 16]
+            data: [83.04, 6.45, 47.44, 14.98, 1.87, 1.58, 50]
         },
-        {
-            label: "PL/SQL",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [8, 9, 9, 9, 9, 9, 17]
-        },
+
         {
             label: "R",
             backgroundColor: "rgba(255,99,132,0.2)",
@@ -299,17 +256,7 @@ div#full {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgba(255,99,132,1)",
-            data: [6, 9, 9, 9, 9, 9, 18]
-        },
-        {
-            label: "Groovy",
-            backgroundColor: "rgba(179,181,198,0.2)",
-            borderColor: "rgba(179,181,198,1)",
-            pointBackgroundColor: "rgba(179,181,198,1)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgba(179,181,198,1)",
-            data: [1, 9, 9, 9, 9, 9, 19]
+            data: [8.39, 6.07, 49.22, 19.08, 10.58, 4.73, 42.86]
         }
     ]
 };
@@ -317,9 +264,10 @@ div#full {
           new Chart(ctx, {
               type: "radar",
               data: data,
+
               options: {
                       scale: {
-                          reverse: true,
+                          reverse: false,
                           ticks: {
                               beginAtZero: true
                           }

@@ -1,7 +1,15 @@
-<div>
-  <%= button_to "I don't have this book and I want this book!", action: "tradein", id: @id%>
-  <%= button_to "I have this book and I want trade off this book", action: "tradeoff", id:@id%>
-  <div id="tradeoff_block">
-    <%= render "tradeoff"%>
+<div class = "row">
+  <div class = "col-md-6">
+    <%= button_to "I don't have this book and I want this book!", action: "tradein", id: @id%>
+    <div id="tradein_block">
+      <%= render "tradein"%>
+    </div>
+  </div>
+
+  <div class = "col-md-6">
+    <%= button_to "I have this book and I want trade off this book", action: "tradeoff", id:@id%>
+    <div id="tradeoff_block">
+      <%= render "tradeoff"%>
+    </div>
   </div>
 </div>
