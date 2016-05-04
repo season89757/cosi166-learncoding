@@ -44,7 +44,13 @@ def terms_table()
 
         'Security' => 'security crypto',
 
-        'Introductory' => 'introduction introductory beginner basic'
+        'Introductory' => 'introduction introductory beginner',
+
+        'Testing' => 'testing',
+
+        'Networking' => 'networking',
+
+        'Theory' => 'theory theoretical'
     }
 
 end

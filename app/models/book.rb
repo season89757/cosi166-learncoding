@@ -1,3 +1,4 @@
+
 class Book < ActiveRecord::Base
   validates :ISBN, presence: true, uniqueness: true
   has_many :users, :through => :comments
@@ -5,11 +6,31 @@ class Book < ActiveRecord::Base
   has_many :domains
   has_many :languages
 
+  def self.terms_table()
+    return {
+        'Web Development' => 'rails django flask javascript jquery server node angular meteor express mvc',
+
+        'Databases' => 'sql mysql postgres mongo mongodb',
+
+        'Data Structures + Algorithms' => 'algorithm structures',
+
+        'Security' => 'security crypto',
+
+        'Introductory' => 'introduction introductory beginner',
+
+        'Testing' => 'testing',
+
+        'Networking' => 'networking',
+
+        'Theory' => 'theory theoretical'
+    }
+
+end
+
   # Helper Function---NOT A VIEW
   def self.add_item_to_hash(book, score, hash)
     # adds/updates an item in a hash with a particular score
     if hash.key?(book)
-        puts 'yes'
         hash[book] += score
     else
         hash[book] = score
@@ -77,6 +98,13 @@ class Book < ActiveRecord::Base
     # column is being searched.
 
     results_scores = Hash.new
+
+    # adds tags terms to query for ranking purposes
+    unless tag == nil or tag == 'Any Topic'
+        terms_table = terms_table()
+        terms_for_tag = terms_table[tag]
+        terms.push(terms_for_tag.split(' '))
+    end
 
     # begin scoring
     for term in terms
