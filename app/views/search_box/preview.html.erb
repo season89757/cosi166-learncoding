@@ -30,8 +30,8 @@
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
             <!-- <li><a href="#section1">Book Information</a></li> -->
-            <li><%= link_to "Details",controller: "search_box", action: "sectiondetail", id: @book.id, remote:true%></li>
-            <li><%= link_to "Comments",controller: "search_box", action: "sectioncomment", id: @book.id, remote:true%></li>
+            <li><%= link_to "Details",controller: "search_box", action: "book_detail", book_id: @book.id%></li>
+            <li><%= link_to "Comments",controller: "search_box", action: "book_detail", book_id: @book.id%></li>
             <li><%= link_to "Preview",controller: "search_box", action: "preview", id: @book.id %></li>
 
 
@@ -47,12 +47,8 @@
     </div>
   </nav>
 
-  <div id="section1" class="container-fluid">
-    <% if @section_target%>
-      <%= render @section_target%>
-    <% else %>
-      <%= render "section_detail"%>
-    <%end%>
+  <div id="section1" class="container-fluid" align="center">
+    <script>GBS_insertEmbeddedViewer('ISBN:<%=@book.ISBN%>','700px','700px');</script>
   </div>
 
 </body>
