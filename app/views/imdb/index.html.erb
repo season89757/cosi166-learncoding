@@ -1,13 +1,24 @@
-<div>
+<head>
+  <style>
+  canvas{
+      width: 80% !important;
+      max-width: 600px;
+      height: auto !important;
+  }
+  </style>
+  <script src="app/assets/libs/Chart.js-master/dist/Chart.js"></script>
+</head>
+
+<div class="header">
   <%= render 'top_menu'%>
 </div>
-
 <% if !flash[:notice].blank? %>
    <br><br>
    <div class = "alert alert-info">
       <%= flash[:notice] %>
    </div>
 <% end %>
+
 
 <head>
 <style text="text/javascript">
@@ -68,6 +79,7 @@ div#full {
         <% end %>
       </div>
 
+
       <div class = "row" align = "center">
         <a href="#page2" class = "smooth">
           <%= image_tag(@black_arrow_src, size: "50x50") %>
@@ -77,6 +89,7 @@ div#full {
 
     </div>
   </div>
+
 
 
 
