@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   post "swap/tradeoffnew"
 
+  post "swap/tradeinnew"
+
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
   get "imdb/new_release" => 'imdb#new_release', :as => :new_release
