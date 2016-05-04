@@ -21,8 +21,8 @@
 	  curPage=1;    // make current page the first page
 	  displayPage();//display the first page
 
-	  document.getElementById("btn0").innerHTML="current " + curPage + "/" + page + " pages";    // show the current page
-	  document.getElementById("sjzl").innerHTML="totally result: " + len + "";        // show the total result number
+	  document.getElementById("btn0").innerHTML="Viewing Page " + curPage + " of " + page + "";    // show the current page
+	  document.getElementById("sjzl").innerHTML="" + len + " Results Found";        // show the total result number
 
 
 	  $("#btn1").click(function firstPage(){    // first page
@@ -68,8 +68,8 @@
 			begin=(curPage-1)*pageSize;// starting number of page to be shown
 			end = begin + 1*pageSize - 1;    // ending number of page to be shown
 
-			document.getElementById("btn0").innerHTML="current " + curPage + "/" + page + " pages";    // show the current page
-		  document.getElementById("sjzl").innerHTML="totally result: " + len + "";        // show the total result number
+    document.getElementById("btn0").innerHTML="Viewing Page " + curPage + " of " + page + "";    // show the current page
+    document.getElementById("sjzl").innerHTML="" + len + " Results Found";           // show the total result number
 
 			if(end > len ) end=len;
 			$("#searchresult tr").hide();    // first hide all records
@@ -122,13 +122,14 @@
   <div class="well">
     <h2 align=center>Search Result</h2>
     <div align ="right">
-      <a id="btn0"></a><br>
-  	  <a id="sjzl"></a><br>
-  	  <a  href="#" id="btn1">firstPage</a>
-  	  <a  href="#" id="btn2">prePage</a>
-  	  <a  href="#" id="btn3">nextPage</a>
-  	  <a  href="#" id="btn4">lastPage</a>
+      <span id="btn0"></span><br>
+  	  <span id="sjzl"></span><br>
+  	  <button class="btn btn-primary"  href="#" id="btn1"> << </button>
+  	  <button class="btn btn-primary"  href="#" id="btn2"> < </button>
+  	  <button class="btn btn-primary"   href="#" id="btn3"> > </button>
+  	  <button class="btn btn-primary"   href="#" id="btn4"> >> </button>
     </div>
+    <br>
 
     <!-- here is the beginning of book information list-->
 
@@ -152,18 +153,18 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-8">
 
-            <div align=center>
+            <div align="center">
               <p id="p1"><%= book.title %></p>
             </div>
-            <div align=center>
+            <div align="right">
               <p id="p2"><%= book.author %></p>
             </div>
 
-            <div align=center>
+            <div align="center">
               <p id="p3"><%= book.description %></p>
-              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#<%=book.ISBN%>">More Details</button>
+              <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#<%=book.ISBN%>">Description Details</button>
 
               <!-- Modal -->
 
@@ -185,25 +186,6 @@
             </div>
           </div>
 
-          <div class="col-md-4" align=center>
-            <div >
-              <p id="p1">Comments:</p>
-            </div>
-
-            <div >
-              <p id="p2">firstpost</p>
-            </div>
-
-            <div >
-              <p id="p2">secondpost</p>
-            </div>
-
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary" id="button-margin01">Buy</button>
-              <button type="button" class="btn btn-primary" id="button-margin01">Swap</button>
-            </div>
-
-          </div>
           </div>
         </div>
       </td>
