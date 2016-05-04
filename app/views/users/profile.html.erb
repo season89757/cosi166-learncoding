@@ -142,6 +142,9 @@
       <div class="well">
         <button class="glyphicon glyphicon-envelope"></button>
         <p>Message</p>
+        <%@message.each do |m|%>
+        <%=m.message%>
+        <%end%>
       </div>
     </div>
   </div>
