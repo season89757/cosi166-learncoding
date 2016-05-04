@@ -69,7 +69,28 @@
     </div>
   </div>
 
-  <div id = "page2" height = "100vh" width = "100vh" style = "background-color: #FFF;">
+  
+
+  <div id = "page2" class = "fit_full_screen" style = "background-color: #000;">
+    <div id = "page3_container" class = "container">
+      <div class = "row" align = "center">
+        <%=image_tag("pl_trends.jpg", :width => "100%")%>
+      </div>
+
+
+    </div>
+  </div>
+  <div class = "row" align = "center">
+    <br>
+    <br>
+    <a href="#page3">
+      <%= image_tag(@black_arrow_src, size: "50x50") %>
+      <span class = "black_font">Even More Information!</span>
+    </a>
+    <br>
+    <br>
+  </div>
+<div id = "page3" height = "100vh" width = "100vh" style = "background-color: #FFF;">
     <div id = "page2_container" class = "container">
 
       <div class = "row" align = "center" width = "100vh">
@@ -121,65 +142,6 @@
         <br>
       </div>
 
-      <div class = "row" align = "center">
-        <p class = "black_font"> Get started now!</p>
-      </div>
-
-      <div class = "row" align = "center">
-        <div class="btn-group btn-group-lg" role="group" aria-label="...">
-          <button type="button" class="btn btn-default" style = "background-color: #ff9933; color: #FFF;">Java</button>
-          <button type="button" class="btn btn-default" style = "background-color: #000099; color: #FFF;">C</button>
-          <button type="button" class="btn btn-default" style = "background-color: #0000ff; color: #FFF;">C++</button>
-          <button type="button" class="btn btn-default" style = "background-color: #6600cc; color: #FFF;">C#</button>
-          <button type="button" class="btn btn-default" style = "background-color: #669900; color: #FFF;">Python</button>
-          <button type="button" class="btn btn-default" style = "background-color: #3399ff; color: #FFF;">PHP</button>
-          <button type="button" class="btn btn-default" style = "background-color: #e6b800; color: #FFF;">JavaScript</button>
-          <button type="button" class="btn btn-default" style = "background-color: #9999ff; color: #FFF;">Perl</button>
-          <button type="button" class="btn btn-default" style = "background-color: #ff5050; color: #FFF;">Ruby</button>
-          <button type="button" class="btn btn-default" style = "background-color: #808080; color: #FFF;">Visual Basic .NET</button>
-        </div>
-      </div>
-
-      <div class = "row" align = "center">
-        <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-default">Delphi</button>
-          <button type="button" class="btn btn-default">Assembly Language</button>
-          <button type="button" class="btn btn-default">Objective-C</button>
-          <button type="button" class="btn btn-default">Visual Basic</button>
-          <button type="button" class="btn btn-default">Swift</button>
-          <button type="button" class="btn btn-default">MATLAB</button>
-          <button type="button" class="btn btn-default">PL/SQL</button>
-          <button type="button" class="btn btn-default">R</button>
-          <button type="button" class="btn btn-default">Groovy</button>
-        </div>
-      </div>
-
-      <div class = "row" align = "center">
-        <br>
-        <br>
-        <a href="#page3">
-          <%= image_tag(@black_arrow_src, size: "50x50") %>
-          <span class = "black_font">Ultimate solution here</span>
-        </a>
-        <br>
-        <br>
-      </div>
-
-    </div>
-  </div>
-
-  <div id = "page3" class = "fit_full_screen" style = "background-color: #000;">
-    <div id = "page3_container" class = "container">
-      <div class = "row" align = "center">
-        <%=image_tag("pl_trends.jpg", :width => "100%")%>
-      </div>
-
-      <div class = "row" align = "center">
-        <a href="#page1">
-          <%= image_tag(@white_arrow_src, size: "50x50") %>
-          <span class = "white_font">Credit & About</span>
-        </a>
-      </div>
 
     </div>
   </div>
