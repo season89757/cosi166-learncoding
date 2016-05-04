@@ -56,14 +56,9 @@ class SearchBoxController < ApplicationController
     end
   end
 
-  def sectionpreview
+  def preview
     id = params[:id]
     @book = Book.find_by(id: id)
-    @section_target = "section_preview"
-    #binding.pry
-    respond_to do |format|
-      format.js
-    end
   end
 
 

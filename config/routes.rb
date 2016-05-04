@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get "search_box/sectiondetail"
 
-  get "search_box/sectionpreview"
+  get "search_box/preview"
 
   get "swap/swaphome"
 
