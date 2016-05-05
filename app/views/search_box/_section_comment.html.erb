@@ -12,9 +12,10 @@
     <%= form_tag "comment", :method=> "post", :remote=> true, :id=>"user_comment" do %>
     <%= hidden_field_tag "book_id", @book.id %>
     <h5>title:</h5>
-    <textarea class="form-control" rows="5" id="comment_title" name="comment_title" type="text"></textarea>
+    <textarea class="form-control" rows="1" id="comment_title" name="comment_title" type="text"></textarea>
     <h5>comments:</h5>
-    <textarea class="form-control" rows="5" id="comment_body" name="comment_body" type="text"></textarea>
+    <textarea class="form-control" rows="4" id="comment_body" name="comment_body" type="text"></textarea>
+    <br>
     <%= submit_tag "Comment", :class=>"btn" %>
     <%end%>
     <%end%>

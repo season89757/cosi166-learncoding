@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bootstrap Example</title>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
@@ -33,14 +31,9 @@
             <li><%= link_to "Details",controller: "search_box", action: "book_detail", book_id: @book.id%></li>
             <li><%= link_to "Comments",controller: "search_box", action: "book_detail", book_id: @book.id%></li>
             <li><%= link_to "Preview",controller: "search_box", action: "preview", id: @book.id %></li>
-
-
-            <!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Get It<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#section31">Buy</a></li>
-                <li><a href="#section32">Swap</a></li>
-              </ul>
-            </li> -->
+            <% if session[:imdb_user_id]%>
+              <li><%= link_to "Swap",controller: "swap", action: "swaphome", id: @book.id%></li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -48,7 +41,7 @@
   </nav>
 
   <div id="section1" class="container-fluid" align="center">
-    <script>GBS_insertEmbeddedViewer('ISBN:<%=@book.ISBN%>','700px','700px');</script>
+    <script>GBS_insertEmbeddedViewer('ISBN:<%=@book.ISBN%>','650px','550px');</script>
   </div>
 
 </body>

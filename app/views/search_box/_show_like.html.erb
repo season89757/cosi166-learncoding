@@ -1,12 +1,10 @@
 <%if @status == 'dislike'%>
- <%="like"%>
   <%= form_tag("/search_box/like", method: "post") do %>
     <span class="glyphicon glyphicon-star-empty" aria-hidden="true" id = "star"></span>
     <%= hidden_field_tag :id, @book.id%>
     <%=submit_tag "Like", :id => "like_submit" %>
   <%end%>
 <%else%>
- <%="dislike"%>
   <%= form_tag("/search_box/like", method: "post") do %>
     <span class="glyphicon glyphicon-star" aria-hidden="true" id = "star"></span>
     <%= hidden_field_tag :id, @book.id%>
