@@ -207,14 +207,23 @@
         <div class="col-sm-9">
           <div id="swap"class="well">
             <% @tradeins.each do |tin|%>
-            <div class="row well" align="left">
-              <div class="col-sm-4">
-              <%= link_to image_tag(find_book(tin.book_id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => tin.book_id})%>
+            <div class="well" align="left">
+              <div class="row">
+                <div class="col-sm-4">
+                <%= link_to image_tag(find_book(tin.book_id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => tin.book_id})%>
+                </div>
+                <div class="col-sm-8">
+                <%= link_to find_book(tin.book_id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => tin.book_id})%>
+                </div>
               </div>
-              <div class="col-sm-8">
-              <%= link_to find_book(tin.book_id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => tin.book_id})%>
+              <div class="row">
+                <%= form_tag users_delete_tradein_path, method: "delete" do %>
+                  <%= hidden_field_tag :book_id, tin.book_id %>
+                  <%= submit_tag "Delete", class: "form-control" %>
+                <% end %>
               </div>
             </div>
+
             <%end%>
           </div>
         </div>
@@ -230,12 +239,20 @@
         <div class="col-sm-9">
           <div id="message" class="well">
             <% @tradeoffs.each do |toff|%>
-            <div class="row well" align="left">
-              <div class="col-sm-4">
-                <%= link_to image_tag(find_book(toff.book_id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => toff.book_id})%>
+            <div class="well" align="left">
+              <div class="row">
+                <div class="col-sm-4">
+                  <%= link_to image_tag(find_book(toff.book_id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => toff.book_id})%>
+                </div>
+                <div class="col-sm-8">
+                  <%= link_to find_book(toff.book_id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => toff.book_id})%>
+                </div>
               </div>
-              <div class="col-sm-8">
-                <%= link_to find_book(toff.book_id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => toff.book_id})%>
+              <div class="row">
+                <%= form_tag users_delete_tradeoff_path, method: "delete" do %>
+                  <%= hidden_field_tag :book_id, toff.book_id %>
+                  <%= submit_tag "Delete", class: "form-control" %>
+                <% end %>
               </div>
             </div>
             <%end%>
