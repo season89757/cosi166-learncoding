@@ -17,7 +17,7 @@
             </div>
             <div class="modal-body">
               <div align = center>
-                <%= form_tag("/swap/tradeoffnew", method: "post") do %>
+                <%= form_tag swap_tradeoffnew_path, method: "post" do %>
                   <%= hidden_field_tag :receiver, t.id %>
                   <%= hidden_field_tag :id, @id %>
                   <%= text_field_tag :message %>

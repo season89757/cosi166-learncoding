@@ -50,7 +50,20 @@ def terms_table()
 
         'Networking' => 'networking',
 
-        'Theory' => 'theory theoretical'
+        'Theory' => 'theory theoretical',
+
+        'Python' => 'python',
+
+        'Ruby' => 'ruby',
+
+        'Java' => 'java',
+
+        'C++' => 'c++',
+
+        'PHP' => 'php',
+
+        'Javascript' => 'javascript'
+
     }
 
 end

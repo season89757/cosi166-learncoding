@@ -42,9 +42,11 @@ class SwapController < ApplicationController
   end
 
   def tradeinnew
-
+    if params[:id] && params[:receiver] && params[:message]
+      Message.create(book_id:params[:id],message:params[:message],sender:session[:imdb_user_id],receiver:params[:receiver])
+      redirect_to controller: "swap", action: "swaphome", id: params[:id]
+    end
   end
-
 
   private
     def require_login
