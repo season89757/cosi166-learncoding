@@ -1,10 +1,13 @@
 require 'faker'
 
 class FakeData
-  attr_accessor :comment_hash_list, :user_hash_list
+  attr_accessor :comment_hash_list, :user_hash_list, :book_like_list, :book_tradein, :book_tradeoff
   def initialize
     @comment_hash_list = []
     @user_hash_list = []
+    @book_like_list = []
+    @book_tradein = []
+    @book_tradeoff = []
   end
   def user_generator(num)
     (1..num).each do |i|
@@ -30,6 +33,32 @@ class FakeData
       end
     end
   end
+
+  def book_like_generator(bid_start, bid_end)
+    (1..4).each do |i|
+      (1..10).each do
+        user_id = i
+        book_id = Faker::Number.between(bid_start, bid_end)
+        @book_like_list.push({"user_id" => user_id, "book_id" => book_id})
+      end
+    end
+  end
+
+  def tradeinfo_generator(uid_start, uid_end, bid_start, bid_end)
+    (bid_start..bid_end).each do |i|
+      (1..2).each do
+        book_id = i
+        user_id = Faker::Number.between(uid_start, uid_start + (uid_end - uid_start)/2)
+        @book_tradein.push({"user_id" => user_id, "book_id" => book_id})
+      end
+      (1..2).each do
+        book_id = i
+        user_id = Faker::Number.between((uid_start + (uid_end - uid_start)/2) + 1, uid_end)
+        @book_tradeoff.push({"user_id" => user_id, "book_id" => book_id})
+      end
+    end
+  end
+
 end
 
 # try = FakeData.new
