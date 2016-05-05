@@ -4,12 +4,31 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+    #favourites{
+      height:160px;
+      overflow: scroll;
+    }
+    #recommend{
+      height:160px;
+      overflow: scroll;
+    }
+    #swap{
+      height:160px;
+      overflow: scroll;
+    }
+    #message{
+      height:160px;
+      overflow: scroll;
+    }
+    .row-no-margin{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  </style>
 </head>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -17,7 +36,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/imdb/index">IMDB Homepage</a>
+      <a class="navbar-brand" href="/imdb/index">IMDB for CS books</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <!-- <ul class="nav navbar-nav">
@@ -31,7 +50,7 @@
         <div class="form-group input-group">
           <input type="text" class="form-control" placeholder="Search.." name="terms">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">
+            <button class="btn btn-default" type="submit">
               <span class="glyphicon glyphicon-search"></span>
             </button>
           </span>
@@ -44,14 +63,14 @@
   </div>
 </nav>
 
-<body>
+<body style="margin-top:4%">
 <div class="container text-center">
-  <div class="row">
+  <div class="row row-no-margin">
     <div class="col-sm-3 well">
       <div class="well">
         <p><%=@user.display_name%></p>
         <%if @photo%>
-          <img src=<%=@photo.attachment_url%> class="img-circle" height="100" width="100" alt="gogogo">
+          <img src=<%=@photo.attachment_url%> class="img-circle" height="100" width="100">
         <%else%>
           <img src="/images/unknown_user.png" class="img-circle" height="100" width="100" alt="Avatar">
         <%end%>
@@ -73,8 +92,50 @@
         <tr><td>Email:    </td><td><%=@user.email%></td></tr>
         </table>
       </div>
+
+      <div class="well">
+        <button class="glyphicon glyphicon-envelope" data-toggle="modal" data-target="#myModal"></button>
+        <p>Message</p>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Messages:</h4>
+              </div>
+              <div class="modal-body">
+                <%@message.each do |m|%>
+
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div>
+                        <%if find_userphoto(m.sender)%>
+                          <img src=<%=find_userphoto(m.sender).attachment_url%> class="img-circle" height="50" width="50" alt="Avatar">
+                        <%else%>
+                          <img src="/images/unknown_user.png" class="img-circle" height="50" width="50" alt="Avatar">
+                        <%end%>
+                      </div>
+                      <div>
+                        <%= find_displayname(m.sender)%>
+                      </div>
+                    </div>
+                    <div class="col-sm-8">
+                      <p text-align="left"><%=m.message%></p>
+                    </div>
+                  </div>
+                  <hr>
+                <%end%>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="col-sm-7">
+    <div class="col-sm-9">
 
       <div class="row">
         <div class="col-sm-3">
@@ -84,30 +145,19 @@
           </div>
         </div>
         <div class="col-sm-9">
-          <div class="well">
+          <div id = "favourites" class="well">
             <p>Learn java the hard way</p>
             <p>love java</p>
             <p>ruby the best book</p>
             <p>Python hard way</p>
+            <p>Python hard way</p>
+            <p>Python hard way</p>
+            <p>Python hard way</p>
+            <p>Python hard way</p>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="well">
-           <p><strong>Q+A History</strong></p>
-           <img src="/images/qa.jpg" class="img-rounded" height="70" width="70">
-          </div>
-        </div>
-        <div class="col-sm-9">
-          <div class="well">
-            <p>asdfasdfasfasfasdfa</p>
-            <p>asldfja akdf alks ajslkdfj alsdf </p>
-            <p>lksadjf alskfj asdf asf asfd asdf a </p>
-            <p>alsdfja asd asdf a asd fsdf asdf asd </p>
-          </div>
-        </div>
-      </div>
+
       <div class="row">
         <div class="col-sm-3">
           <div class="well">
@@ -116,7 +166,7 @@
           </div>
         </div>
         <div class="col-sm-9">
-          <div class="well">
+          <div id="recommend" class="well">
             <p>Learn java the hard way</p>
             <p>love java</p>
             <p>ruby the best book</p>
@@ -125,28 +175,43 @@
         </div>
       </div>
 
-    </div>
-    <div class="col-sm-2 well">
-      <div class="well" >
-        <div id="friendslist">
-          <p>Friends List:</p>
-          <img src="/images/obama.jpg" class="img-circle" width="55" height="55">
-          <p><strong>Obama</strong></p>
-          <img src="/images/bush.jpg" class="img-circle" width="55" height="55">
-          <p><strong>Bush</strong></p>
-          <img src="/images/hillary.jpg" class="img-circle" width="55" height="55">
-          <p><strong>Hillary</strong></p>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p><strong>Want</strong></p>
+           <img src="/images/want.png" class="img-rounded" height="70" width="70">
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div id="swap"class="well">
+            <p>asdfasdfasfasfasdfa</p>
+            <p>asldfja akdf alks ajslkdfj alsdf </p>
+            <p>lksadjf alskfj asdf asf asfd asdf a </p>
+            <p>alsdfja asd asdf a asd fsdf asdf asd </p>
+          </div>
         </div>
       </div>
 
-      <div class="well">
-        <button class="glyphicon glyphicon-envelope"></button>
-        <p>Message</p>
-        <%@message.each do |m|%>
-        <%=m.message%>
-        <%end%>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+           <p><strong>Have</strong></p>
+           <img src="/images/have.jpg" class="img-rounded" height="70" width="70">
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div id="message" class="well">
+            <p>asdfasdfasfasfasdfa</p>
+            <p>asldfja akdf alks ajslkdfj alsdf </p>
+            <p>lksadjf alskfj asdf asf asfd asdf a </p>
+            <p>alsdfja asd asdf a asd fsdf asdf asd </p>
+          </div>
+        </div>
       </div>
+
+
     </div>
+
   </div>
 </div>
 
