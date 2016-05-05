@@ -112,7 +112,12 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Profile", users_profile_path %></li>
+        <li><%if find_userphoto(session[:imdb_user_id])%>
+          <img src=<%=find_userphoto(session[:imdb_user_id]).attachment_url%> class="img-circle" height="50" width="50">
+        <%else%>
+          <img src="/images/unknown_user.png" class="img-circle" height="50" width="50">
+        <%end%>
+        </li>
       </ul>
     </div>
   </div>
@@ -155,8 +160,8 @@
 
           <div class="col-md-8">
 
-            <div>
-              <p id="p1"><%= book.title %></p>
+            <div id="p1">
+              <%= link_to book.title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => book.id})%>
             </div>
             <div>
               <p id="p2"><%= book.author %></p>
