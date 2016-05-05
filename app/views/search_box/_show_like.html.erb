@@ -9,7 +9,7 @@
   <%= form_tag("/search_box/like", method: "post") do %>
     <span class="glyphicon glyphicon-star" aria-hidden="true" id = "star"></span>
     <%= hidden_field_tag :id, @book.id%>
-    <%=submit_tag "Disike", :id => "like_submit" %>
+    <%=submit_tag "Unlike", :id => "like_submit" %>
   <%end%>
 <%end%>
 </div>
