@@ -202,10 +202,12 @@
         </div>
         <div class="col-sm-9">
           <div id="swap"class="well">
-            <p>asdfasdfasfasfasdfa</p>
-            <p>asldfja akdf alks ajslkdfj alsdf </p>
-            <p>lksadjf alskfj asdf asf asfd asdf a </p>
-            <p>alsdfja asd asdf a asd fsdf asdf asd </p>
+            <% @tradeins.each do |tin|%>
+            <div class="row well" align="left">
+              <%= link_to image_tag(find_book(tin.book_id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => tin.book_id})%>
+              <%= link_to find_book(tin.book_id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => tin.book_id})%>
+            </div>
+            <%end%>
           </div>
         </div>
       </div>
@@ -219,10 +221,12 @@
         </div>
         <div class="col-sm-9">
           <div id="message" class="well">
-            <p>asdfasdfasfasfasdfa</p>
-            <p>asldfja akdf alks ajslkdfj alsdf </p>
-            <p>lksadjf alskfj asdf asf asfd asdf a </p>
-            <p>alsdfja asd asdf a asd fsdf asdf asd </p>
+            <% @tradeoffs.each do |toff|%>
+            <div class="row well" align="left">
+              <%= link_to image_tag(find_book(toff.book_id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => toff.book_id})%>
+              <%= link_to find_book(toff.book_id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => toff.book_id})%>
+            </div>
+            <%end%>
           </div>
         </div>
       </div>
