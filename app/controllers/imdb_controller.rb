@@ -1,3 +1,4 @@
+require "pry-byebug"
 class ImdbController < ApplicationController
   attr_accessor :book_image, :tag1, :book_name, :id
 
@@ -50,19 +51,18 @@ class ImdbController < ApplicationController
   end
 
   def register
-
-    if params[:username]="" || !params[:confirm]="" || !params[:password]="" || !params[:display_name]="" || !params[:email]=""
+    if params[:imdb_user_name]=="" || params[:confirm]=="" || params[:password]=="" || params[:display_name]=="" || params[:email]==""
       redirect_to imdb_index_path, notice: "Input is empty"
     else
       if params[:password] != params[:confirm]
         redirect_to imdb_index_path, notice: "Passwords do not match"
       else
-        user_exists = User.find_by(username:params[:username])
+        user_exists = User.find_by(username:params[:imdb_user_name])
         email_exists = User.find_by(email:params[:email])
         if user_exists || email_exists
           redirect_to imdb_index_path, notice: "User or Email already exists"
         else
-          @user = User.create(username: params[:username], password: params[:password], email: params[:email], display_name: params[:display_name])
+          @user = User.create(username: params[:imdb_user_name], password: params[:password], email: params[:email], display_name: params[:display_name])
           session[:imdb_user_id]=@user.id
           redirect_to imdb_index_path
         end

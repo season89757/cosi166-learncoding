@@ -64,7 +64,6 @@ Rails.application.routes.draw do
 
   get 'imdb/index'
 
-  get 'imdb/register'
 
   get 'imdb/detail'
 
