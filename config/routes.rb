@@ -38,7 +38,9 @@ Rails.application.routes.draw do
 
   post "swap/tradeinnew"
 
+  delete "users/delete_tradein"
 
+  delete "users/delete_tradeoff"
 
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
