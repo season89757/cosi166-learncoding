@@ -10,24 +10,8 @@
       </button>
       <%end%>
     </div>
-    <div>
-
-<%= render "show_like"%>
-
-<script>
-  function change_icon(value){
-    if(value == "like"){
-      $("#like_submit").attr("value","dislike");
-      $("#star").attr("class","glyphicon glyphicon-star");
-    }
-    else{
-      $("#like_submit").attr("value","like");
-      $("#star").attr("class","glyphicon glyphicon-star-empty");
-    }
-  }
-</script>
-
-
+    <div id="book_like">
+      <%= render "show_like"%>
     </div>
   </div>
   <div class="col-md-9">
