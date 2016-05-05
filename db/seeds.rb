@@ -26,7 +26,6 @@ User.create(username: "aaaaaa", password: "1", admin: "0", email: "sample@sample
 
 fake_user = FakeData.new
 fake_user.user_generator(200)
-
 fake_user.user_hash_list.each do |u|
   User.create(username: u["username"], display_name: u["display_name"], \
   password: u["password"], email: u["email"], admin: u["admin"])
@@ -69,6 +68,25 @@ fake_comments.comment_hash_list.each do |comment|
   title: comment["title"], body: comment["body"], like: comment["like"])
 end
 puts "============ Comment info loaded successfully ============"
+
+puts "============ Begin to load the book like info ============"
+fake_book_like = FakeData.new
+fake_book_like.book_like_generator(first_book_id, last_book_id)
+fake_book_like.book_like_list.each do |like|
+  Like.create(user_id: like["user_id"], book_id: like["book_id"])
+end
+puts "============ Book like info loaded successfully ============"
+
+puts "============ Begin to load the swap info ============"
+fake_book_swap = FakeData.new
+fake_book_swap.tradeinfo_generator(first_user_id, last_user_id, first_book_id, last_book_id)
+fake_book_swap.book_tradein.each do |ti|
+  Tradein.create(user_id: ti["user_id"], book_id: ti["book_id"])
+end
+fake_book_swap.book_tradeoff.each do |to|
+  Tradeoff.create(user_id: to["user_id"], book_id: to["book_id"])
+end
+puts "============ Swap info loaded successfully ============"
 
 puts "============ Begin to load the Image info ============"
 #store image to database from app/assets/images folder
