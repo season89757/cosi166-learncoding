@@ -150,7 +150,8 @@
             <% @likes.each do |l|%>
             <div class="row well" align="left">
               <%= link_to image_tag(find_book(l.book_id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => l.book_id})%>
-              <%= find_book(l.book_id).title %>
+              <%= link_to find_book(l.book_id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => l.book_id})%>
+
             </div>
             <%end%>
           </div>

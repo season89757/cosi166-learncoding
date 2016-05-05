@@ -1,9 +1,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script>
 	var pageSize = 10;    //the number of records every page shows
 	var curPage=0;        //current page
@@ -94,13 +91,6 @@
       <a class="navbar-brand" href="/imdb/index">IMDB for CS Books</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <!-- <ul class="nav navbar-nav">
-        <li><a href="#">Ruby</a></li>
-        <li><a href="#">JAVA</a></li>
-        <li><a href="#">Python</a></li>
-        <li><a href="#">C++</a></li>
-        <li><a href="#">HTML</a></li>
-      </ul> -->
       <form class="navbar-form navbar-right" role="search" action="/search_box/search_results" method="get">
         <div class="form-group input-group">
           <input type="text" class="form-control" placeholder="Search.." name="terms">
@@ -112,12 +102,26 @@
         </div>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><%if find_userphoto(session[:imdb_user_id])%>
-          <img src=<%=find_userphoto(session[:imdb_user_id]).attachment_url%> class="img-circle" height="50" width="50">
-        <%else%>
-          <img src="/images/unknown_user.png" class="img-circle" height="50" width="50">
-        <%end%>
+        <%if session[:imdb_user_id] %>
+        <li>
+          <%if find_userphoto(session[:imdb_user_id])%>
+            <img src=<%=find_userphoto(session[:imdb_user_id]).attachment_url%> class="img-circle" height="50" width="50">
+          <%else%>
+            <img src="/images/unknown_user.png" class="img-circle" height="50" width="50">
+          <%end%>
         </li>
+        <li>
+          <div class="col-xs-2 dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><%=@user.display_name%>
+              <span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "My profile", users_profile_path, :class => "middle"%></li>
+                <li><%= link_to "Sign Out", imdb_logout_path, :class => "middle"%></li>
+              </ul>
+          </div>
+        </li>
+        <%end%>
       </ul>
     </div>
   </div>
