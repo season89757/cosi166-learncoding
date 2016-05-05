@@ -1,4 +1,3 @@
-require "pry-byebug"
 class SwapController < ApplicationController
   before_action :require_login
   def swaphome

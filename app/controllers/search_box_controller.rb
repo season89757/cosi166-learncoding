@@ -1,4 +1,3 @@
-require 'pry-byebug'
 class SearchBoxController < ApplicationController
 
   def search_results
