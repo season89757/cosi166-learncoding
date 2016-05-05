@@ -7,8 +7,8 @@
     <%end%>
     <%=t.display_name%>
     <% if t.id != session[:imdb_user_id]%>
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#messageModal">Message</button>
-      <div class="modal fade" id="messageModal" role="dialog">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#messageModal<%=t.id%>">Message</button>
+      <div class="modal fade" id="messageModal<%=t.id%>" role="dialog">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
             <div class="modal-header">
@@ -17,7 +17,7 @@
             </div>
             <div class="modal-body">
               <div align = center>
-                <%= form_tag("/swap/tradeoffnew", method: "post") do %>
+                <%= form_tag swap_tradeoffnew_path, method: "post" do %>
                   <%= hidden_field_tag :receiver, t.id %>
                   <%= hidden_field_tag :id, @id %>
                   <%= text_field_tag :message %>

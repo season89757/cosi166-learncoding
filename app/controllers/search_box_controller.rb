@@ -5,6 +5,7 @@ class SearchBoxController < ApplicationController
     query_string = params[:terms]
     tag = params[:tag]
     @results = Book.run_search(query_string, tag= tag)
+    @user = User.find_by(id: session[:imdb_user_id])
   end
 
   def book_detail
@@ -60,6 +61,8 @@ class SearchBoxController < ApplicationController
   def preview
     id = params[:id]
     @book = Book.find_by(id: id)
+    @user = User.find_by(id: session[:imdb_user_id])
+
   end
 
   def like

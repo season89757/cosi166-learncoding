@@ -2,6 +2,7 @@ require "pry-byebug"
 class SwapController < ApplicationController
   before_action :require_login
   def swaphome
+    @user = User.find_by(id: session[:imdb_user_id])
     @tradeoff_users = []
     @tradein_users = []
     @id = params[:id]
@@ -41,9 +42,11 @@ class SwapController < ApplicationController
   end
 
   def tradeinnew
-
+    if params[:id] && params[:receiver] && params[:message]
+      Message.create(book_id:params[:id],message:params[:message],sender:session[:imdb_user_id],receiver:params[:receiver])
+      redirect_to controller: "swap", action: "swaphome", id: params[:id]
+    end
   end
-
 
   private
     def require_login

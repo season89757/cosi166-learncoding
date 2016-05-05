@@ -1,4 +1,3 @@
-require "pry-byebug"
 class ImdbController < ApplicationController
   attr_accessor :book_image, :tag1, :book_name, :id
 
