@@ -32,7 +32,11 @@
       <% else %>
         <div class = "row col-xs-4">
             <div class = "col-xs-2" >
-              <img src=<%=@photo.attachment_url%> class="img-circle" height="50" width="50">
+              <%if find_userphoto(session[:imdb_user_id])%>
+                <img src=<%=@photo.attachment_url%> class="img-circle" height="50" width="50">
+              <%else%>
+                <img src="/images/unknown_user.png" class="img-circle" height="50" width="50">
+              <%end%>
             </div>
             <div class="col-xs-2 dropdown">
               <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><%=@user.display_name%>
