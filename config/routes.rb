@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  post 'love/like'
+
+  post 'search_box/like'
+
+  get 'search_box/like'
+
   get 'userphotos/index'
 
   get 'userphotos/new'
@@ -31,6 +37,8 @@ Rails.application.routes.draw do
   post "swap/tradeoffnew"
 
   post "swap/tradeinnew"
+
+
 
   resources :userphotos, only: [:index, :new, :create, :destroy]
 
