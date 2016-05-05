@@ -118,7 +118,7 @@ div#full {
       </div>
         <script>
           var ctx = $("#myChart");
-          
+
           var data = {
 
     labels: ["AVG. Salary", "Popularity", "Trend", "New Watchers of GitHub", "Active Repo of GitHub", "Total Pushes of Github ", "#Books"],
@@ -319,6 +319,37 @@ div#full {
               <%= password_field_tag(:password) %><br>
               <%= submit_tag("Login")%>
             <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="registerModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Please Register</h4>
+        </div>
+        <div class="modal-body">
+
+          <div align = center>
+            <%= form_tag("/imdb/register", method: "post") do %>
+              <%= label_tag(:q_display_name, "Display Name")%>
+              <%= text_field_tag(:display_name) %><br>
+              <%= label_tag(:q_username, "Username")%>
+              <%= text_field_tag(:imdb_user_name) %><br>
+              <%= label_tag(:q_password, "Password")%>
+              <%= password_field_tag(:password) %><br>
+              <%= label_tag(:q_confirm, "Confirm")%>
+              <%= password_field_tag(:confirm) %><br>
+              <%= label_tag(:q_email, "Email")%>
+              <%= text_field_tag(:email) %><br>
+              <%= submit_tag("Register")%>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              <% end %>
           </div>
         </div>
       </div>
