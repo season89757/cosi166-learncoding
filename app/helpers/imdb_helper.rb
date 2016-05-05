@@ -10,7 +10,16 @@ module ImdbHelper
           "Hello " + @user.display_name
         end
       end
-      
+
+    end
+  end
+
+  def find_userphoto(user_id)
+    userphoto = Userphoto.find_by(userid: user_id)
+    if userphoto
+      return userphoto
+    else
+      return false
     end
   end
 
