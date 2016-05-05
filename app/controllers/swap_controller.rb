@@ -2,6 +2,7 @@ require "pry-byebug"
 class SwapController < ApplicationController
   before_action :require_login
   def swaphome
+    @user = User.find_by(id: session[:imdb_user_id])
     @tradeoff_users = []
     @tradein_users = []
     @id = params[:id]

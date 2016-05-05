@@ -61,6 +61,8 @@ class SearchBoxController < ApplicationController
   def preview
     id = params[:id]
     @book = Book.find_by(id: id)
+    @user = User.find_by(id: session[:imdb_user_id])
+
   end
 
   def like
