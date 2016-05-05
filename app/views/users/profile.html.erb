@@ -189,10 +189,17 @@
         </div>
         <div class="col-sm-9">
           <div id="recommend" class="well">
-            <p>Learn java the hard way</p>
-            <p>love java</p>
-            <p>ruby the best book</p>
-            <p>Python hard way</p>
+            <% @results.each do |l|%>
+            <div class="row well" align="left">
+              <div class="col-sm-4">
+                <%= link_to image_tag(find_book(l.id).image_url, :size=>"100x100"), url_for({:controller => 'search_box', :action => 'book_detail', :book_id => l.id})%>
+              </div>
+              <div class="col-sm-8">
+                <%= link_to find_book(l.id).title, url_for({:controller => 'search_box', :action => 'book_detail', :book_id => l.id})%>
+              </div>
+
+            </div>
+            <%end%>
           </div>
         </div>
       </div>

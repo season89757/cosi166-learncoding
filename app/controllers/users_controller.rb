@@ -16,6 +16,9 @@ class UsersController < ApplicationController
     @tradeins = Tradein.where(user_id:session[:imdb_user_id])
     @tradeoffs = Tradeoff.where(user_id:session[:imdb_user_id])
 
+    recent_book = Like.find_book(session[:imdb_user_id])
+    rec = Tag.find_tags(recent_book.id).first.name
+    @results=Book.run_search(rec, tag= rec)
       # query_string = params[:terms]
     # tag = params[:tag]
     # #@results = Book.run_search(query_string, tag= tag)
