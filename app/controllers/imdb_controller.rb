@@ -3,7 +3,7 @@ class ImdbController < ApplicationController
   attr_accessor :book_image, :tag1, :book_name, :id
 
   def index
-    logo = Image.find_by(name: 'logo2')
+    logo = Image.find_by(name: 'logo_5')
     logo_base64 = logo.base64
     @logo_src = "data:image/png;base64," + logo_base64
 

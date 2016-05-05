@@ -106,6 +106,15 @@ Image.create(name: 'black_arrow', base64: black_arrow_base64)
 
 home_background_base64 = image_processing.image_processing('homepage_background2', 'png')
 Image.create(name: 'background', base64: home_background_base64)
+
+logo3_base64 = image_processing.image_processing('NNL', 'png')
+Image.create(name: 'logo_3', base64: logo3_base64)
+
+logo4_base64 = image_processing.image_processing('NNL2', 'png')
+Image.create(name: 'logo_4', base64: logo4_base64)
+
+logo5_base64 = image_processing.image_processing('NNL3', 'png')
+Image.create(name: 'logo_5', base64: logo5_base64)
 puts "============ Image info loaded successfully ============"
 
 puts "============ All seeds data loaded successfully! ============"
