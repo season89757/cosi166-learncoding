@@ -1,3 +1,4 @@
+<div id="user_like">
 <%if @status == 'dislike'%>
   <%= form_tag("/search_box/like", method: "post") do %>
     <span class="glyphicon glyphicon-star-empty" aria-hidden="true" id = "star"></span>
@@ -11,3 +12,8 @@
     <%=submit_tag "Unlike", :id => "like_submit" %>
   <%end%>
 <%end%>
+</div>
+
+<script>
+$("#user_like").css("color","red");
+</script>

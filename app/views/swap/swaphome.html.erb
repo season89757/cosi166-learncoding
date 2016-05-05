@@ -40,20 +40,27 @@
     </div>
   </nav>
 
-  <div id="section1" class="container-fluid" align="center">
+  <div class="container-fluid">
+    <div>
+      <%=image_tag(find_book(@id).image_url, :size=>"210x280")%>
+      <%=find_book(@id).title%>
+    </div>
+    <br>
     <div class = "row">
-      <div class = "col-md-6">
-        <%= button_to "I don't have this book and I want this book!", action: "tradein", id: @id%>
+      <div class = "col-md-6 well">
+        <h3>People who want this book:</h3>
         <div id="tradein_block">
           <%= render "tradein"%>
         </div>
+        <%= button_to "I don't have this book and I want this book!", action: "tradein", id: @id%>
       </div>
 
-      <div class = "col-md-6">
-        <%= button_to "I have this book and I want trade off this book", action: "tradeoff", id:@id%>
+      <div class = "col-md-6 well">
+        <h3>People who have this book:</h3>
         <div id="tradeoff_block">
           <%= render "tradeoff"%>
         </div>
+        <%= button_to "I have this book and I want trade off this book", action: "tradeoff", id:@id%>
       </div>
     </div>
   </div>
