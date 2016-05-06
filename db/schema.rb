@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506012740) do
+ActiveRecord::Schema.define(version: 20160506014403) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 20160506012740) do
 
   create_table "messages", force: :cascade do |t|
     t.integer  "book_id"
-    t.string   "sender"
-    t.string   "receiver"
+    t.integer  "sender"
+    t.integer  "receiver"
     t.text     "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
