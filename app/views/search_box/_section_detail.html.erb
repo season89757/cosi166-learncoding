@@ -12,7 +12,9 @@
     </div>
     <div>
       <br>
-      <%= render "show_like"%>
+      <% if session[:imdb_user_id]%>
+        <%= render "show_like"%>
+      <%end%>
     </div>
   </div>
   <div class="col-md-9">
