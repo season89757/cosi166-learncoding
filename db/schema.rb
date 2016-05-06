@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504212538) do
+ActiveRecord::Schema.define(version: 20160506012740) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
@@ -83,14 +83,14 @@ ActiveRecord::Schema.define(version: 20160504212538) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "book_id"
+    t.integer  "user_id"
+    t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string   "book_id"
+    t.integer  "book_id"
     t.string   "sender"
     t.string   "receiver"
     t.text     "message"
@@ -136,15 +136,15 @@ ActiveRecord::Schema.define(version: 20160504212538) do
   end
 
   create_table "tradeins", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "book_id"
+    t.integer  "user_id"
+    t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "tradeoffs", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "book_id"
+    t.integer  "user_id"
+    t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
