@@ -9,10 +9,10 @@ class UsersController < ApplicationController
   def profile
     @user = User.find_by(id:session[:imdb_user_id])
     @photo = Userphoto.find_by(userid:session[:imdb_user_id])
-    @message = Message.where("receiver = ?",session[:imdb_user_id].to_s)
-    @likes = Like.where(user_id:session[:imdb_user_id].to_s)
-    @tradeins = Tradein.where(user_id:session[:imdb_user_id].to_s)
-    @tradeoffs = Tradeoff.where(user_id:session[:imdb_user_id].to_s)
+    @message = Message.where("receiver = ?",session[:imdb_user_id])
+    @likes = Like.where(user_id:session[:imdb_user_id]  )
+    @tradeins = Tradein.where(user_id:session[:imdb_user_id])
+    @tradeoffs = Tradeoff.where(user_id:session[:imdb_user_id])
 
     recent_book = Like.find_book(session[:imdb_user_id])
     rec = Tag.find_tags(recent_book.id).first.name
